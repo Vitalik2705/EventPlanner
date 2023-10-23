@@ -1,0 +1,39 @@
+﻿using DAL.Data;
+using DAL.Models;
+using DAL.RepositoryPattern;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+
+namespace PresentationUI
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        private readonly GenericRepository<IngredientUnit> _ingredients;
+
+        private EventPlannerContextFactory _contextFactory;
+        public MainWindow()
+        {
+            _contextFactory = new EventPlannerContextFactory();
+            _ingredients = new GenericRepository<IngredientUnit>(_contextFactory.CreateDbContext(new string[1]));
+            InitializeComponent();
+        }
+        private void Ingredients_Click(object sender, RoutedEventArgs e)
+        {
+            List<IngredientUnit> GetIngredients = _ingredients.GetAll().ToList();
+            string GetIngredient = $"Інгредієнт: {GetIngredients[0].Ingredient}. Одиниця виміру: {GetIngredients[0].Unit}. Кількість: {GetIngredients[0].Amount}\n"; 
+            Label Ingred = new Label();
+            Ingred.Content = GetIngredient;
+            Ingred.FontSize = 30;
+            Thickness thickness = new Thickness(30, 100, 0, 0);
+            Ingred.Margin = thickness;
+
+            Grid_First_Page.Children.Add(Ingred);
+        }
+    }
+}

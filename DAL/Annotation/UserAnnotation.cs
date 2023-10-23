@@ -20,7 +20,7 @@ namespace DAL.Annotation
             ModelBuilder.Property(u => u.PhoneNumber).IsRequired().HasMaxLength(15).HasColumnName("phone_number");
             ModelBuilder.Property(u => u.Email).IsRequired().HasMaxLength(40);
             ModelBuilder.Property(u => u.Password).IsRequired().HasMaxLength(40);
-            ModelBuilder.HasMany(u => u.Events).WithOne(u => u.User).HasForeignKey(u => u.User.UserId);
+            ModelBuilder.HasMany(u => u.Events).WithOne(u => u.User).HasForeignKey(u => u.UserId);
             ModelBuilder.Property(u => u.Gender).IsRequired();
             ModelBuilder.Property(u => u.CreatedDate).IsRequired();
             ModelBuilder.Property(u => u.ModifiedDate);

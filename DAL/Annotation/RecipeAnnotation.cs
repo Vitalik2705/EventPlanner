@@ -21,7 +21,7 @@ namespace DAL.Annotation
             ModelBuilder.Property(u => u.CookingTime).IsRequired();
             ModelBuilder.Property(u => u.CreatedDate).IsRequired();
             ModelBuilder.Property(u => u.ModifiedDate);
-            ModelBuilder.HasMany(u => u.IngredientsUnits);
+            ModelBuilder.HasMany(u => u.IngredientsUnits).WithMany(u => u.Recipes);
         }
     }
 }

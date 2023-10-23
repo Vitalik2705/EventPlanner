@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace DAL.Models
 {
     public enum Ingredient
     {
-        Бамія,
+        Бамія = 1,
         Боби,
         ГорохЗелений,
         ГорохСтручковий,

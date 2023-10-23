@@ -13,9 +13,10 @@ namespace DAL.Annotation
 
         public override void Annotate()
         {
-            ModelBuilder.Property(u => u.Ingredient).IsRequired();
-            ModelBuilder.Property(u => u.Unit).IsRequired();
-            ModelBuilder.Property(u => u.Amount).IsRequired();
+            ModelBuilder.HasKey(u => u.IngredientUnitId);
+            ModelBuilder.Property(u => u.IngredientUnitId).ValueGeneratedOnAdd().UseIdentityColumn().HasColumnName("ingredient_unit_id");
+            ModelBuilder.Property(u => u.Ingredient).HasConversion<string>();
+            ModelBuilder.Property(u => u.Unit).HasConversion<string>();
         }
     }
 }

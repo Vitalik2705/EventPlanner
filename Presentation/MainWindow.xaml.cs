@@ -13,27 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EventPlanner
+namespace Presentation
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        //public MainWindow()
-        //{
-        //    InitializeComponent();
-        //}
-
-        private void Ingredients_Click(object sender, RoutedEventArgs e)
+        public MainWindow()
         {
-            Label Ingred = new Label();
-            Ingred.Content = "Something";
-            Ingred.FontSize = 30;
-            Thickness thickness = new Thickness(30, 100, 0, 0);
-            Ingred.Margin = thickness;
-
-            Grid_First_Page.Children.Add(Ingred);
+            InitializeComponent();
         }
     }
 }

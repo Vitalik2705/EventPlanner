@@ -14,6 +14,8 @@ namespace DAL.Models
 
         public User User { get; set; }
 
+        public int UserId { get; set; }
+
         public ICollection<Guest> Guests { get; set; }
 
         public ICollection<Recipe> Recipes { get; set; }
