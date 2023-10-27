@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation1", "EventPlanner\Presentation1.csproj", "{47D323C5-893E-488E-833A-F3B8D752E4E9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{ACF88F14-6AA2-4B21-9E63-4C4C30676CE8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{0455D0A4-19CD-4995-A37D-835269F74225}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationUI", "PresentationUI\PresentationUI.csproj", "{EAA6031B-E176-40BA-AE5E-7B70063EC6F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationUI", "PresentationUI\PresentationUI.csproj", "{EAA6031B-E176-40BA-AE5E-7B70063EC6F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{47D323C5-893E-488E-833A-F3B8D752E4E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47D323C5-893E-488E-833A-F3B8D752E4E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47D323C5-893E-488E-833A-F3B8D752E4E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47D323C5-893E-488E-833A-F3B8D752E4E9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ACF88F14-6AA2-4B21-9E63-4C4C30676CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ACF88F14-6AA2-4B21-9E63-4C4C30676CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACF88F14-6AA2-4B21-9E63-4C4C30676CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU

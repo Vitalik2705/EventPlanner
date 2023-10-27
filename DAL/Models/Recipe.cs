@@ -24,5 +24,7 @@ namespace DAL.Models
         public DateTime CreatedDate { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
+
+        public byte[] RecipeImage { get; set; }
     }
 }

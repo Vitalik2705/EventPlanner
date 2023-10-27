@@ -46,7 +46,7 @@ namespace DAL.Data
             }
         }
 
-        public DbSet<User> User { get; set; }
+        public DbSet<User> User { get; set; } = default!;
 
         public DbSet<Recipe> Recipe { get; set; }
 

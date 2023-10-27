@@ -10,9 +10,9 @@ namespace DAL.Models
     {
         public int GuestId { get; set; }
 
-        public string Surname { get; set; }
+        public string Surname { get; set; } = string.Empty;
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         public Gender Gender { get; set; }
     }

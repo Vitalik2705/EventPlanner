@@ -14,8 +14,8 @@ namespace DAL.RepositoryPattern
     //That is we need to specify the actual class name of the type T
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private EventPlannerContext _context = null;
-        private DbSet<T> table = null;
+        private EventPlannerContext _context;
+        private DbSet<T> table;
 
         public GenericRepository(EventPlannerContext _context)
         {

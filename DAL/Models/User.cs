@@ -28,5 +28,7 @@ namespace DAL.Models
 
         public DateTime? ModifiedDate { get; set; }
 
+        public byte[] UserImage { get; set; }
+
     }
 }
