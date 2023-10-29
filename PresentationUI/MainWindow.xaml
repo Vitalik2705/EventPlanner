@@ -5,31 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="968" Width="1522">
+        Title="MainWindow" Height="660" Width="990">
     <Grid x:Name="Grid_First_Page">
-        <Grid.ColumnDefinitions>
+      <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Image Source="C:\Users\bozen\Documents\Програмна інженерія\EventPlanner\EventPlanner\Images\first_page" Margin="-166,-7,-190,-217" Grid.ColumnSpan="2"/>
+      <Image Height="660" Width="990" Source="C:\Users\Vitalik\Source\Repos\EventPlanner\PresentationUI\images\image2.png"/>
         <Canvas>
-            <Button x:Name="Ingredients"
-                    Content="Інгредієнти"
-                    Width="169" 
-                    Height="62" 
+            <Button x:Name="Login"
+                    Content="Увійти"
+                    Width="120" 
+                    Height="45" 
                     Background="#8B92D0"
-                    FontSize="30"
+                    FontSize="20"
                     Foreground="White"
-                    Margin="20"
-                    Canvas.Left="1280"
-                    Canvas.Top="30"
-                    Click="Ingredients_Click">
+                    Canvas.Left="820"
+                    Canvas.Top="10"
+                    Click="Login_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"></Setter>
                     </Style>
                 </Button.Resources>
             </Button>
+          <TextBlock Canvas.Left="720"
+                     Canvas.Top="18">
+          <Hyperlink NavigateUri="YourPage.xaml"
+                     FontSize="20"
+                     Foreground="Black"
+                     TextDecorations="None">Про нас</Hyperlink>
+          </TextBlock>
+          <TextBlock Canvas.Left="500"
+                     Canvas.Top="18">
+            <Hyperlink NavigateUri="YourPage.xaml"
+                       FontSize="20"
+                       Foreground="Black"
+                       TextDecorations="None">Можливості продукту</Hyperlink>
+          </TextBlock>
+          <Image  Canvas.Left="10"
+                  Canvas.Top="5" 
+                  Height="50"
+                  Width="40"
+                  Source="C:\Users\Vitalik\Source\Repos\EventPlanner\PresentationUI\images\Mask group.png"/>
+          <TextBlock Canvas.Left="65" Canvas.Top="13" FontSize="25">
+            EventPlanner
+          </TextBlock>
+          <TextBlock Canvas.Left="450" Canvas.Top="135" FontSize="35" FontFamily="Segoe UI">
+            З нами ти проведеш найкращу
+            <LineBreak/>подію у своєму житті
+          </TextBlock>
+          <TextBlock Canvas.Left="50" Canvas.Top="525" FontSize="32" FontFamily="Segoe UI">
+            Плануй
+          </TextBlock>
+          <TextBlock Canvas.Left="880" Canvas.Top="470" FontSize="32" FontFamily="Segoe UI">
+            Твори
+          </TextBlock>
+          <Image  Canvas.Left="800"
+                  Canvas.Top="40"
+                  Height="130"
+                  Width="100"
+                  Source="C:\Users\Vitalik\Source\Repos\EventPlanner\PresentationUI\images\Arrow 1.png"/>
         </Canvas>
     </Grid>
 </Window>
