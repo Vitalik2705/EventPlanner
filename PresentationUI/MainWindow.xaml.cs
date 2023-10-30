@@ -15,9 +15,14 @@ namespace PresentationUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly GenericRepository<IngredientUnit> _ingredients;
+
+        private EventPlannerContextFactory _contextFactory;
         public MainWindow()
         {
-            //InitializeComponent();
+            _contextFactory = new EventPlannerContextFactory();
+            _ingredients = new GenericRepository<IngredientUnit>(_contextFactory.CreateDbContext(new string[1]));
+            InitializeComponent();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)

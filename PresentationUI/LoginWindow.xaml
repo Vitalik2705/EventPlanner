@@ -4,107 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationUI"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="LoginWindow"
-        Height="660"
-        Width="990"
-        ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen">
-
+        Title="LoginWindow" Height="660" Width="990">
+    
     <Grid x:Name="Grid_Login_Page">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="4*" />
-        </Grid.RowDefinitions>
-
-        <Canvas Grid.Column="1" Grid.Row="1">
-            <Image Height="400" Width="400" Source="C:\Users\Vitalik\Source\Repos\EventPlanner\PresentationUI\images\image 1.png"/>
-        </Canvas>
-
-        <Canvas Grid.Column="0" Grid.Row="0">
-            <Image  Canvas.Left="10"
-                  Canvas.Top="5" 
-                  Height="50"
-                  Width="40"
-                  Source="C:\Users\Vitalik\Source\Repos\EventPlanner\PresentationUI\images\Mask group.png"/>
-            <TextBlock Canvas.Left="65" Canvas.Top="13" FontSize="25">
-            EventPlanner
-            </TextBlock>
-        </Canvas>
-
-        <Canvas Grid.Column="0" Grid.Row="1">
-            <TextBlock Canvas.Left="200" Canvas.Top="50" FontWeight="Bold"  FontSize="35">
-               Увійти
-            </TextBlock>
-            <Button Background="White" Canvas.Left="145" Canvas.Top="110" Width="230" Height="35" BorderBrush="Gray" BorderThickness="1">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Image Source="C:\Users\Vitalik\Source\Repos\EventPlanner\PresentationUI\images\google.png" Width="20" Height="20" Margin="0,0,0,0" />
-                    <TextBlock FontSize="15" Text="Вхід через Google" Margin="10,0,0,0"/>
-                </StackPanel>
-            </Button>
-        </Canvas>
-
-        <Canvas Grid.Column="0" Grid.Row="2">
-            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     materialDesign:HintAssist.Hint="Email"
-                     Width="230"
-                     Height="50"
-                     Canvas.Left="145"
-                     Canvas.Top="10"
-                     FontSize="17"
-                     BorderThickness="0 0 0 1.5" 
-                     BorderBrush="#565A7B" 
-                     materialDesign:HintAssist.FloatingOffset="0,-18" />
-
-            <PasswordBox 
-                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
-                materialDesign:HintAssist.Hint="Password"
-                Width="230"
-                Height="50"
-                Canvas.Left="145"
-                Canvas.Top="60"
-                FontSize="17"
-                BorderThickness="0 0 0 1.5" 
-                BorderBrush="#565A7B"
-                materialDesign:HintAssist.FloatingOffset="0,-18" />
-            <Button x:Name="Login"
-                    Content="Увійти"
-                    Width="230" 
-                    Height="35" 
-                    Background="#565A7B"
-                    FontSize="19"
+      
+        <Canvas>
+               <Button x:Name="Login"
+                   
+                    Width="120" 
+                    Height="45" 
+                    Background="#8B92D0"
+                    FontSize="20"
                     Foreground="White"
-                    Canvas.Left="145"
-                    Canvas.Top="120">
+                    Canvas.Left="820"
+                    Canvas.Top="10"
+                    Click="Login_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="7"></Setter>
+                        <Setter Property="CornerRadius" Value="10"></Setter>
                     </Style>
                 </Button.Resources>
             </Button>
-            <TextBlock Canvas.Left="145"
-                       Canvas.Top="160">
-            <Hyperlink NavigateUri="YourPage.xaml"
-                       FontSize="10"
-                       Foreground="Black">
-                Забули пароль?
-            </Hyperlink>
-            </TextBlock>
-            <StackPanel Orientation="Horizontal" Canvas.Left="145" Canvas.Top="200">
-                <TextBlock Text="Ще не маєте акаунта?" />
-                <TextBlock Margin="5,0,0,0">
-                <Hyperlink NavigateUri="https://www.example.com" TextDecorations="None">
-                    Зареєструйтесь
-                </Hyperlink>
-                </TextBlock>
-            </StackPanel>
         </Canvas>
-
     </Grid>
 </Window>
