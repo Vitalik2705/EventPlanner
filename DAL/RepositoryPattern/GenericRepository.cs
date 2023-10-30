@@ -1,5 +1,6 @@
 ﻿using DAL.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,12 @@ namespace DAL.RepositoryPattern
     {
         private EventPlannerContext _context;
         private DbSet<T> table;
+        private readonly IDesignTimeDbContextFactory<EventPlannerContext> _contextFactory;
 
-        public GenericRepository(EventPlannerContext _context)
+        public GenericRepository(IDesignTimeDbContextFactory<EventPlannerContext> contextFactory)
         {
-            this._context = _context;
+            _contextFactory = contextFactory;
+            _context = _contextFactory.CreateDbContext(new string[0]);
             table = _context.Set<T>();
         }
 

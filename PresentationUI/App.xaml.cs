@@ -1,5 +1,8 @@
 ﻿using DAL.Data;
+using DAL.Models;
+using DAL.RepositoryPattern;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,34 +22,35 @@ namespace PresentationUI
     /// </summary>
     public partial class App : Application
     {
-        //public IServiceProvider ServiceProvider { get; private set; }
+        public static IHost? AppHost { get; private set; }
 
-        //public IConfiguration Configuration { get; private set; }
+        public App()
+        {
+            AppHost = Host.CreateDefaultBuilder()
+                .ConfigureServices((hostContext, services) =>
+                {
+                    services.AddSingleton<MainWindow>();
+                    services.AddScoped<IGenericRepository<IngredientUnit>, GenericRepository<IngredientUnit>>();
+                    services.AddTransient<IDesignTimeDbContextFactory<EventPlannerContext>, EventPlannerContextFactory>();
+                })
+                .Build();
+        }
 
-        //protected override void OnStartup(StartupEventArgs e)
-        //{
-        //    var builder = new ConfigurationBuilder()
-        //     .SetBasePath(Directory.GetCurrentDirectory())
-        //     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+        protected override async void OnStartup(StartupEventArgs e)
+        {
+            await AppHost!.StartAsync();
 
-        //    Configuration = builder.Build();
+            var startupForm = AppHost.Services.GetRequiredService<MainWindow>();
+            startupForm.Show();
 
-        //    var serviceCollection = new ServiceCollection();
-        //    ConfigureServices(serviceCollection);
+            base.OnStartup(e);
+        }
 
-        //    ServiceProvider = serviceCollection.BuildServiceProvider();
+        protected override async void OnExit(ExitEventArgs e)
+        {
+            await AppHost!.StopAsync();
+            base.OnExit(e);
+        }
 
-        //    var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-        //    mainWindow.Show();
-        //}
-
-        //private void ConfigureServices(IServiceCollection services)
-        //{
-        //    services.AddDbContext<EventPlannerContext>
-        //(options => options.UseNpgsql(
-        //            Configuration.GetConnectionString("Host=localhost;Port=5432;Username=postgres;Password=Yuiwerghjsdf21;Database=EventPlanner")));
-
-        //    services.AddTransient(typeof(MainWindow));
-        //}
     }
 }

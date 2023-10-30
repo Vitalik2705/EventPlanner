@@ -14,20 +14,18 @@ namespace PresentationUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly GenericRepository<IngredientUnit> _ingredients;
+        private readonly IGenericRepository<IngredientUnit> _ingredients;
 
-        private EventPlannerContextFactory _contextFactory;
-        public MainWindow()
+        public MainWindow(IGenericRepository<IngredientUnit> ingredients)
         {
-            _contextFactory = new EventPlannerContextFactory();
-            _ingredients = new GenericRepository<IngredientUnit>(_contextFactory.CreateDbContext(new string[1]));
+            _ingredients = ingredients;
             InitializeComponent();
         }
         private void Ingredients_Click(object sender, RoutedEventArgs e)
         {
             List<IngredientUnit> GetIngredients = _ingredients.GetAll().ToList();
-             Label Ingred = new Label();
-            Ingred.Content = $"Інгредієнт: {GetIngredients[0].Ingredient}. Одиниця виміру: {GetIngredients[0].Unit}. Кількість: {GetIngredients[0].Amount}\n"; ;
+            Label Ingred = new Label();
+            Ingred.Content = $"Інгредієнт: {GetIngredients[0].Ingredient}. Одиниця виміру: {GetIngredients[0].Unit}. Кількість: {GetIngredients[0].Amount}\n";
             Ingred.FontSize = 30;
             var thickness = new Thickness(30, 100, 0, 0);
             Ingred.Margin = thickness;

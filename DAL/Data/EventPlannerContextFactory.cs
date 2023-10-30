@@ -13,7 +13,7 @@ namespace DAL.Data
         public EventPlannerContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<EventPlannerContext>();
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=Yuiwerghjsdf21;Database=EventPlanner",
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=Vitavika2004;Database=EventPlanner",
                     options => options.EnableRetryOnFailure());
 
             return new EventPlannerContext(optionsBuilder.Options);
