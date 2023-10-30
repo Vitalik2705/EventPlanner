@@ -1,5 +1,5 @@
 ﻿using DAL.Models;
-using DAL.RepositoryPattern;
+using BLL.Services.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +10,35 @@ namespace BLL.Services.Interfaces
 {
     public class RecipeService
     {
-        private readonly IGenericRepository<Recipe> _recipeRepo;
+        private IGenericRepository<Recipe> _recipeRepository;
 
-        public RecipeService(IGenericRepository<Recipe> recipeRepo)
+        public RecipeService(IGenericRepository<Recipe> repository)
         {
-            _recipeRepo = recipeRepo;
+            _recipeRepository = repository;
         }
 
         public IEnumerable<Recipe> GetAll()
         {
-            return _recipeRepo.GetAll();
+            return _recipeRepository.GetAll();
+        }
+        public Recipe GetRecipeById(int id)
+        {
+            return _recipeRepository.GetById(id);
+        }
+        public void AddRecipe(Recipe recipe)
+        {
+            _recipeRepository.Add(recipe);
+            _recipeRepository.Save();
+        }
+        public void UpdateRecipe(Recipe recipe)
+        {
+            _recipeRepository.Update(recipe);
+            _recipeRepository.Save();
+        }
+        public void DeleteRecipe(int id)
+        {
+            _recipeRepository.Delete(id);
+            _recipeRepository.Save();
         }
     }
 }

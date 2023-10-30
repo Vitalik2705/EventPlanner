@@ -10,5 +10,9 @@ namespace BLL.Services.Interfaces
     public interface IRecipeService
     {
         Task<Recipe> GetByIdAsync(int id);
+        Recipe GetRecipeById(int id);
+        void AddRecipe(Recipe recipe);
+        void UpdateRecipe(Recipe recipe);
+        void DeleteRecipe(int id);
     }
 }
