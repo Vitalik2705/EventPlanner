@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="660" Width="990">
+        Title="MainWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
     <Grid x:Name="Grid_First_Page">
       <Grid.ColumnDefinitions>
             <ColumnDefinition/>

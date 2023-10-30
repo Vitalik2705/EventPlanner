@@ -15,13 +15,8 @@ namespace PresentationUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly GenericRepository<IngredientUnit> _ingredients;
-
-        private EventPlannerContextFactory _contextFactory;
         public MainWindow()
         {
-            _contextFactory = new EventPlannerContextFactory();
-            _ingredients = new GenericRepository<IngredientUnit>(_contextFactory.CreateDbContext(new string[1]));
             InitializeComponent();
         }
 
@@ -31,6 +26,5 @@ namespace PresentationUI
             secondWindow.Show();
             this.Close();
         }
-
     }
 }
