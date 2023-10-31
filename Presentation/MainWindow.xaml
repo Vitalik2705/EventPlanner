@@ -13,7 +13,7 @@
     </Grid.ColumnDefinitions>
     <Image Source="C:\Users\bozen\Documents\Програмна інженерія\EventPlanner\EventPlanner\Images\first_page" Margin="-166,-7,-190,-217" Grid.ColumnSpan="2"/>
     <Canvas>
-      <Button x:Name="Ingredients"
+      <Button x:Name="Login"
               Content="Інгредієнти"
               Width="169"
               Height="62"

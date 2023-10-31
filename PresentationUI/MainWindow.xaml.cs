@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace PresentationUI
 {
@@ -30,7 +31,12 @@ namespace PresentationUI
             var thickness = new Thickness(30, 100, 0, 0);
             Ingred.Margin = thickness;
 
-            Grid_First_Page.Children.Add(Ingred);
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow secondWindow = new LoginWindow();
+            secondWindow.Show();
+            this.Close();
         }
     }
 }
