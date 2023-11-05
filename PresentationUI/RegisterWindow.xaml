@@ -1,4 +1,4 @@
-<Window x:Class="PresentationUI.LoginWindow"
+﻿<Window x:Class="PresentationUI.RegisterWindow"
          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PresentationUI"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="LoginWindow"
+        Title="RegisterWindow"
         Height="660"
         Width="990"
         ResizeMode="NoResize"
@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <Canvas Grid.Column="1" Grid.Row="1">
-            <Image Height="400" Width="400" Source="images/image 1.png"/>
+            <Image Height="400" Width="400" Source="images/4957136 1.png"/>
         </Canvas>
 
         <Canvas Grid.Column="0" Grid.Row="0">
@@ -39,13 +39,13 @@
         </Canvas>
 
         <Canvas Grid.Column="0" Grid.Row="1">
-            <TextBlock Canvas.Left="200" Canvas.Top="50" FontWeight="Bold"  FontSize="35">
-               Login
+            <TextBlock Canvas.Left="168" Canvas.Top="50" FontWeight="Bold"  FontSize="35">
+               Реєстрація
             </TextBlock>
             <Button Background="White" Canvas.Left="145" Canvas.Top="110" Width="230" Height="35" BorderBrush="Gray" BorderThickness="1">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Image Source="images/google.png" Width="20" Height="20" Margin="0,0,0,0" />
-                    <TextBlock FontSize="15" Text="Login with Google" Margin="10,0,0,0"/>
+                    <TextBlock FontSize="15" Text="Вхід через Google" Margin="10,0,0,0"/>
                 </StackPanel>
             </Button>
         </Canvas>
@@ -74,34 +74,25 @@
                 BorderBrush="#565A7B"
                 materialDesign:HintAssist.FloatingOffset="0,-18" />
             <Button x:Name="Login"
-                    Content="Login"
+                    Content="Реєстрація"
                     Width="230" 
                     Height="35" 
                     Background="#565A7B"
                     FontSize="19"
                     Foreground="White"
                     Canvas.Left="145"
-                    Canvas.Top="120"
-                    Click="Login_Click">
+                    Canvas.Top="120">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="7"></Setter>
                     </Style>
                 </Button.Resources>
             </Button>
-            <TextBlock Canvas.Left="145"
-                       Canvas.Top="160">
-            <Hyperlink NavigateUri="YourPage.xaml"
-                       FontSize="10"
-                       Foreground="Black">
-                Forgot password?
-            </Hyperlink>
-            </TextBlock>
-            <StackPanel Orientation="Horizontal" Canvas.Left="145" Canvas.Top="200">
-                <TextBlock Text="You haven`t account yet?" />
+            <StackPanel Orientation="Horizontal" Canvas.Left="175" Canvas.Top="180">
+                <TextBlock Text="Вже зареєстровані?" />
                 <TextBlock Margin="5,0,0,0">
-                <Hyperlink NavigateUri="https://www.example.com" TextDecorations="None" Click="Register_Click">
-                    Sign up
+                <Hyperlink NavigateUri="https://www.example.com" TextDecorations="None" Click="Login_Click"> 
+                    Увійдіть
                 </Hyperlink>
                 </TextBlock>
             </StackPanel>
