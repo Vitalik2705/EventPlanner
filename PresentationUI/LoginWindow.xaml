@@ -81,8 +81,7 @@
                     FontSize="19"
                     Foreground="White"
                     Canvas.Left="145"
-                    Canvas.Top="120"
-                    Click="Login_Click">
+                    Canvas.Top="120">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="7"></Setter>
@@ -100,7 +99,7 @@
             <StackPanel Orientation="Horizontal" Canvas.Left="145" Canvas.Top="200">
                 <TextBlock Text="You haven`t account yet?" />
                 <TextBlock Margin="5,0,0,0">
-                <Hyperlink NavigateUri="https://www.example.com" TextDecorations="None" Click="Register_Click">
+                <Hyperlink NavigateUri="https://www.example.com" TextDecorations="None">
                     Sign up
                 </Hyperlink>
                 </TextBlock>
