@@ -19,19 +19,5 @@ namespace PresentationUI
         {
             InitializeComponent();
         }
-
-        private void Register_Click(object sender, RoutedEventArgs e)
-        {
-            RegisterWindow secondWindow = new RegisterWindow();
-            secondWindow.Show();
-            this.Close();
-        }
-
-        private void Login_Click(object sender, RoutedEventArgs e)
-        {
-            AccountWindow secondWindow = new AccountWindow();
-            secondWindow.Show();
-            this.Close();
-        }
     }
 }
