@@ -11,7 +11,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-      <Image Height="660" Width="990" Source="C:\Users\Vitalik\Source\Repos\EventPlanner\PresentationUI\images\image2.png"/>
+      <Image Height="660" Width="990" Source="C:\Users\bozen\Documents\Програмна інженерія\EventPlanner\PresentationUI\images\image2.png"/>
         <Canvas>
             <Button x:Name="Login"
                     Content="Увійти"
@@ -41,13 +41,17 @@
             <Hyperlink NavigateUri="YourPage.xaml"
                        FontSize="20"
                        Foreground="Black"
-                       TextDecorations="None">Можливості продукту</Hyperlink>
+                       TextDecorations="None"
+                       Click="Hyperlink_Click"
+                       >Можливості продукту
+            </Hyperlink>
+                      
           </TextBlock>
           <Image  Canvas.Left="10"
                   Canvas.Top="5" 
                   Height="50"
                   Width="40"
-                  Source="C:\Users\Vitalik\Source\Repos\EventPlanner\PresentationUI\images\Mask group.png"/>
+                  Source="C:\Users\bozen\Documents\Програмна інженерія\EventPlanner\PresentationUI\images\Mask group.png"/>
           <TextBlock Canvas.Left="65" Canvas.Top="13" FontSize="25">
             EventPlanner
           </TextBlock>
@@ -65,7 +69,7 @@
                   Canvas.Top="40"
                   Height="130"
                   Width="100"
-                  Source="C:\Users\Vitalik\Source\Repos\EventPlanner\PresentationUI\images\Arrow 1.png"/>
+                  Source="C:\Users\bozen\Documents\Програмна інженерія\EventPlanner\PresentationUI\images\Arrow 1.png"/>
         </Canvas>
     </Grid>
 </Window>

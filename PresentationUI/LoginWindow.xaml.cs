@@ -1,6 +1,6 @@
 using DAL.Data;
 using DAL.Models;
-using DAL.RepositoryPattern;
+using BLL.Services.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;

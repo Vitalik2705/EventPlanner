@@ -16,6 +16,11 @@ namespace DAL.Data
 
         private readonly IConfiguration _configuration;
 
+        public EventPlannerContext()
+        {
+
+        }
+
         public EventPlannerContext(DbContextOptions<EventPlannerContext> options)
             : base(options)
         {

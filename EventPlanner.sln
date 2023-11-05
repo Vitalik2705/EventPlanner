@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{0455D0A4-19CD-4995-A37D-835269F74225}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationUI", "PresentationUI\PresentationUI.csproj", "{EAA6031B-E176-40BA-AE5E-7B70063EC6F8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0455D0A4-19CD-4995-A37D-835269F74225} = {0455D0A4-19CD-4995-A37D-835269F74225}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

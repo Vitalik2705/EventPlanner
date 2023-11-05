@@ -1,6 +1,6 @@
 ﻿using DAL.Data;
 using DAL.Models;
-using DAL.RepositoryPattern;
+using BLL.Services.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +14,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using BLL.Services.Interfaces;
 
 namespace PresentationUI
 {
@@ -30,8 +31,9 @@ namespace PresentationUI
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddSingleton<MainWindow>();
-                    services.AddScoped<IGenericRepository<IngredientUnit>, GenericRepository<IngredientUnit>>();
+                    services.AddTransient<IGenericRepository<IngredientUnit>, GenericRepository<IngredientUnit>>();
                     services.AddTransient<IDesignTimeDbContextFactory<EventPlannerContext>, EventPlannerContextFactory>();
+                    services.AddTransient<EventPlannerContext>();
                 })
                 .Build();
         }
