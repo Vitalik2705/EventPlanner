@@ -14,5 +14,7 @@ namespace BLL.Services.Interfaces
         async Task AddUser(User _User);
         async Task UpdateUser(User _User);
         async Task DeleteUser(int id);
+        //Task<User> GetByEmail(string email);
+        async Task<User> GetUserByUsernameAndPasswordAsync(string username, string password);
     }
 }

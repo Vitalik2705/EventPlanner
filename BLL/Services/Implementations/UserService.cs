@@ -42,5 +42,16 @@ namespace BLL.Services.Interfaces
             _UserRepository.Delete(id);
             await _userRepository.Save();
         }
+
+        //public async Task<Account> GetByEmail(string email)
+        //{
+        //    return await _userRepository. == email;
+        //}
+
+        public async Task<User> GetUserByUsernameAndPasswordAsync(string username, string password)
+        {
+            
+        }
+
     }
 }
