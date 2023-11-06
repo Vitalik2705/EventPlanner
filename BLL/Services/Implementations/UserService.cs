@@ -3,54 +3,55 @@ using BLL.Services.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace BLL.Services.Interfaces
 {
     public class UserService : IUserService
     {
-        private IGenericRepository<User> _userRepository;
+        private IUserRepository _userRepository;
 
-        public UserService(IGenericRepository<User> repository)
+        public UserService(IUserRepository repository)
         {
             _userRepository = repository;
         }
 
-        public async Task<IEnumerable<User>> GetAll()
-        {
-            return await _userRepository.GetAll();
-        }
-
-        public async Task<User> GetUserById(int id)
-        {
-            return await _userRepository.GetById(id);
-        }
-
-        public async Task AddUser(User _user)
-        {
-            _userRepository.Add(_user);
-            await _userRepository.Save();
-        }
-
-        public async Task UpdateUser(User _user)
-        {
-            _userRepository.Update(_User);
-            await _UserRepository.Save();
-        }
-
-        public async Task DeleteUser(int id)
-        {
-            _UserRepository.Delete(id);
-            await _userRepository.Save();
-        }
-
-        //public async Task<Account> GetByEmail(string email)
+        //public async Task<IEnumerable<User>> GetAll(Expression<Func<User, bool>>? filter = null)
         //{
-        //    return await _userRepository. == email;
+        //    return await _userRepository.GetAllAsync(filter);
         //}
 
-        public async Task<User> GetUserByUsernameAndPasswordAsync(string username, string password)
+        //public async Task<User> GetUser(Expression<Func<User, bool>>? filter = null)
+        //{
+        //    return await _userRepository.GetAsync(filter);
+        //}
+
+        //public async Task AddUser(User _user)
+        //{
+        //    await _userRepository.AddAsync(_user);
+        //}
+
+        //public async Task UpdateUser(User _user)
+        //{
+        //    await _userRepository.UpdateAsync(_user);
+        //}
+
+        //public async Task DeleteUser(int id)
+        //{
+        //    await _userRepository.DeleteAsync(id);
+        //}
+
+        public async Task<User> Login(string password, string email)
         {
-            
+            var user = await _userRepository.Login(password, email);
+
+            return user;
+        }
+        public async Task<User> Register(User user)
+        {
+            var regUser = await _userRepository.Register(user);
+
+            return regUser;
         }
 
     }

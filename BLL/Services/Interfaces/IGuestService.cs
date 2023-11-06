@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,10 +10,10 @@ namespace BLL.Services.Interfaces
 {
     public interface IGuestService
     {
-        async Task<IEnumerable<Guest>> GetAll();
-        async Task<Guest> GetGuestById(int id);
-        async Task AddGuest(Guest _guest);
-        async Task UpdateGuest(Guest _guest);
-        async Task DeleteGuest(int id);
+        Task<IEnumerable<Guest>> GetAll(Expression<Func<Guest, bool>>? filter = null);
+        Task<Guest> GetGuest(Expression<Func<Guest, bool>>? filter = null);
+        Task AddGuest(Guest _guest);
+        Task UpdateGuest(Guest _guest);
+        Task DeleteGuest(int id);
     }
 }

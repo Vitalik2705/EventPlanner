@@ -3,6 +3,7 @@ using BLL.Services.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace BLL.Services.Interfaces
 {
@@ -15,32 +16,29 @@ namespace BLL.Services.Interfaces
             _guestRepository = repository;
         }
 
-        public async Task<IEnumerable<Guest>> GetAll()
+        public async Task<IEnumerable<Guest>> GetAll(Expression<Func<Guest, bool>>? filter = null)
         {
-            return await _guestRepository.GetAll();
+            return await _guestRepository.GetAllAsync(filter);
         }
 
-        public async Task<Guest> GetGuestById(int id)
+        public async Task<Guest> GetGuest(Expression<Func<Guest, bool>>? filter = null)
         {
-            return await _guestRepository.GetById(id);
+            return await _guestRepository.GetAsync(filter);
         }
 
         public async Task AddGuest(Guest _guest)
         {
-            _guestRepository.Add(_guest);
-            await _guestRepository.Save();
+            await _guestRepository.AddAsync(_guest);
         }
 
         public async Task UpdateGuest(Guest _guest)
         {
-            _guestRepository.Update(_guest);
-            await _guestRepository.Save();
+            await _guestRepository.UpdateAsync(_guest);
         }
 
         public async Task DeleteGuest(int id)
         {
-            _guestRepository.Delete(id);
-            await _guestRepository.Save();
+            await _guestRepository.DeleteAsync(id);
         }
     }
 }

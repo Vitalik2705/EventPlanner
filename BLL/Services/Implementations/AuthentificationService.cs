@@ -8,19 +8,24 @@ namespace BLL.Services.Interfaces
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private readonly IUserService _userService;
+        private readonly IUserService _authenticationService;
 
-        public AuthenticationService(IUserService userService)
+        public AuthenticationService(IUserService authenticationService)
         {
-            _userService = userService;
+            _authenticationService = authenticationService;
         }
 
-        public async Task<User> Login(string username, string password)
-        {
-            User user = await _userService.GetUserByUsernameAndPasswordAsync(username, password);
+        //public async Task<User> Login(string username, string password)
+        //{
+        //    User user = await _userService.GetUserByUsernameAndPasswordAsync(username, password);
 
-            return user;
-        }
+        //    return user;
+        //}
+
+        //public async Task<User> GetUserByUsernameAndPasswordAsync(string username, string password)
+        //{
+        //    var user = _authenticationService.
+        //}
 
     }
 }

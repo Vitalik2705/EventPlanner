@@ -3,6 +3,7 @@ using BLL.Services.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace BLL.Services.Interfaces
 {
@@ -15,32 +16,29 @@ namespace BLL.Services.Interfaces
             _recipeRepository = repository;
         }
 
-        public async Task<IEnumerable<Recipe>> GetAll()
+        public async Task<IEnumerable<Recipe>> GetAll(Expression<Func<Recipe, bool>>? filter = null)
         {
-            return await _recipeRepository.GetAll();
+            return await _recipeRepository.GetAllAsync(filter);
         }
 
-        public async Task<Recipe> GetRecipeById(int id)
+        public async Task<Recipe> GetRecipe(Expression<Func<Recipe, bool>>? filter = null)
         {
-            return await _recipeRepository.GetById(id);
+            return await _recipeRepository.GetAsync(filter);
         }
 
         public async Task AddRecipe(Recipe _recipe)
         {
-            _recipeRepository.Add(_recipe);
-            await _recipeRepository.Save();
+            await _recipeRepository.AddAsync(_recipe);
         }
 
         public async Task UpdateRecipe(Recipe _recipe)
         {
-            _recipeRepository.Update(_recipe);
-            await _recipeRepository.Save();
+            await _recipeRepository.UpdateAsync(_recipe);
         }
 
         public async Task DeleteRecipe(int id)
         {
-            _recipeRepository.Delete(id);
-            await _recipeRepository.Save();
+            await _recipeRepository.DeleteAsync(id);
         }
     }
 }

@@ -51,7 +51,8 @@
         </Canvas>
 
         <Canvas Grid.Column="0" Grid.Row="2">
-            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+            <TextBox x:Name="EmailInput"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      materialDesign:HintAssist.Hint="Email"
                      Width="230"
                      Height="50"
@@ -62,7 +63,7 @@
                      BorderBrush="#565A7B" 
                      materialDesign:HintAssist.FloatingOffset="0,-18" />
 
-            <PasswordBox 
+            <PasswordBox x:Name="PasswordInput" 
                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                 materialDesign:HintAssist.Hint="Password"
                 Width="230"
@@ -73,7 +74,7 @@
                 BorderThickness="0 0 0 1.5" 
                 BorderBrush="#565A7B"
                 materialDesign:HintAssist.FloatingOffset="0,-18" />
-            <Button x:Name="Login"
+            <Button x:Name="Register"
                     Content="Реєстрація"
                     Width="230" 
                     Height="35" 
@@ -81,7 +82,8 @@
                     FontSize="19"
                     Foreground="White"
                     Canvas.Left="145"
-                    Canvas.Top="120">
+                    Canvas.Top="120"
+                    Click="Register_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="7"></Setter>

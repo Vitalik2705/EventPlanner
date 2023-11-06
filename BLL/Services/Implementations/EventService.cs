@@ -3,6 +3,7 @@ using BLL.Services.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace BLL.Services.Interfaces
 {
@@ -15,32 +16,29 @@ namespace BLL.Services.Interfaces
             _eventRepository = repository;
         }
 
-        public async Task<IEnumerable<Event>> GetAll()
+        public async Task<IEnumerable<Event>> GetAll(Expression<Func<Event, bool>>? filter = null)
         {
-            return await _eventRepository.GetAll();
+            return await _eventRepository.GetAllAsync(filter);
         }
 
-        public async Task<Event> GetEventById(int id)
+        public async Task<Event> GetEvent(Expression<Func<Event, bool>>? filter = null)
         {
-            return await _eventRepository.GetById(id);
+            return await _eventRepository.GetAsync(filter);
         }
 
         public async Task AddEvent(Event _event)
         {
-            _eventRepository.Add(_event);
-            await _eventRepository.Save();
+            await _eventRepository.AddAsync(_event);
         }
 
         public async Task UpdateEvent(Event _event)
         {
-            _eventRepository.Update(_event);
-            await _eventRepository.Save();
+            await _eventRepository.UpdateAsync(_event);
         }
 
         public async Task DeleteEvent(int id)
         {
-            _eventRepository.Delete(id);
-            await _eventRepository.Save();
+            await _eventRepository.DeleteAsync(id);
         }
     }
 }

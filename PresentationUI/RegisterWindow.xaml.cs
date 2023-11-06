@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL.Services.Interfaces;
+using DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +21,37 @@ namespace PresentationUI
     /// </summary>
     public partial class RegisterWindow : Window
     {
-        public RegisterWindow()
+        private readonly IUserService _userService;
+        public RegisterWindow(IUserService userService)
         {
+            _userService = userService;
             InitializeComponent();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow secondWindow = new LoginWindow();
+
+
+            LoginWindow secondWindow = new LoginWindow(_userService);
+            secondWindow.Show();
+            this.Close();
+        }
+
+
+        private async void Register_Click(object sender, RoutedEventArgs e)
+        {
+            var email = EmailInput.Text;
+            var password = PasswordInput.Password;
+
+            User user = new User()
+            {
+                Email = email,
+                Password = password,
+            };
+
+            var userReg = await _userService.Register(user);
+            //User user = null;
+            AccountWindow secondWindow = new AccountWindow(userReg);
             secondWindow.Show();
             this.Close();
         }

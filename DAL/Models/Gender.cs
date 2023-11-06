@@ -8,7 +8,7 @@ namespace DAL.Models
 {
     public enum Gender
     {
-        Чоловік = 0,
-        Жінка = 1
+        Male = 0,
+        Female = 1
     }
 }

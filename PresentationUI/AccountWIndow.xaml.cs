@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL.Services.Interfaces;
+using DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +21,12 @@ namespace PresentationUI
     /// </summary>
     public partial class AccountWindow : Window
     {
-        public AccountWindow()
+        
+        public AccountWindow(User user)
         {
+            UserName.Text = $"{user.Surname} {user.Name}";
+            Email.Text = user.Email;
+            Phone.Text = user.PhoneNumber;
             InitializeComponent();
         }
     }

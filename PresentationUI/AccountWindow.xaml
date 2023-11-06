@@ -93,21 +93,24 @@
 
 
         <Canvas Grid.Column="1" Grid.Row="1">
-            <TextBlock Canvas.Left="215" Canvas.Top="50" FontWeight="SemiBold"  FontSize="35">
-                Вікторія Макух 
+            <TextBlock x:Name="UserName" Canvas.Left="215" Canvas.Top="50" FontWeight="SemiBold"  FontSize="35">
             </TextBlock>
         </Canvas>
 
 
         <Canvas Grid.Column="1" Grid.Row="1">
-            <TextBlock Canvas.Left="215" Canvas.Top="100" FontSize="25">
-                viktoriiamakukh@gmail.com
+            <TextBlock x:Name="Email" Canvas.Left="215" Canvas.Top="100" FontSize="25">
+            </TextBlock>
+        </Canvas>
+
+        <Canvas Grid.Column="1" Grid.Row="1">
+            <TextBlock x:Name="Phone" Canvas.Left="215" Canvas.Top="150" FontSize="25">
             </TextBlock>
         </Canvas>
 
         <Canvas Grid.Column="1" Grid.Row="2">
             <TextBlock Canvas.Left="50" Canvas.Top="30" FontSize="25">
-                Номер телефону
+                Змінити Емейл
             </TextBlock>
         </Canvas>
 

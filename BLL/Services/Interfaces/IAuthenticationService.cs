@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BLL.Services.Interfaces
 {
-    public interface IAuthenficationService
+    public interface IAuthenticationService
     {
-        
+        //Task<User> GetUserByUsernameAndPasswordAsync(string username, string password);
     }
 }

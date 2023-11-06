@@ -1,6 +1,5 @@
-﻿using DAL.Data;
-using DAL.Models;
-using BLL.Services.Repositories;
+﻿//using DAL.Data;
+//using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -15,12 +14,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using BLL.Services.Interfaces;
+using BLL.Services.Repositories;
+using DAL.Data;
 
 namespace PresentationUI
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+    /// 
+
+
+
+
     public partial class App : Application
     {
         public static IHost? AppHost { get; private set; }
@@ -30,8 +36,10 @@ namespace PresentationUI
             AppHost = Host.CreateDefaultBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddSingleton<MainWindow>();
-                    services.AddTransient<IGenericRepository<IngredientUnit>, GenericRepository<IngredientUnit>>();
+                    services.AddTransient<MainWindow>();
+                    services.AddTransient<IUserRepository, UserRepository>();
+                    services.AddTransient<IUserService, UserService>();
+                    //services.AddTransient<IGenericRepository, GenericRepository>();
                     services.AddTransient<IDesignTimeDbContextFactory<EventPlannerContext>, EventPlannerContextFactory>();
                     services.AddTransient<EventPlannerContext>();
                 })
@@ -56,4 +64,40 @@ namespace PresentationUI
 
 
     }
+
+
+
+
+
+
+
+    //public partial class App : Application
+    //{
+    //    private IServiceProvider _serviceProvider;
+
+    //    protected override void OnStartup(StartupEventArgs e)
+    //    {
+    //        base.OnStartup(e);
+
+    //        // Set up services and the service provider
+    //        var services = new ServiceCollection();
+    //        ConfigureServices(services);
+    //        _serviceProvider = services.BuildServiceProvider();
+
+    //        // Create and show the main window
+    //        var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+    //        mainWindow.Show();
+    //    }
+
+    //    private void ConfigureServices(IServiceCollection services)
+    //    {
+    //        // Register your services here
+    //        services.AddSingleton<IUserRepository, UserRepository>();
+    //        services.AddSingleton<IUserService, UserService>(); // Example registration
+    //        services.AddTransient<MainWindow>();
+    //        services.AddSingleton<IDesignTimeDbContextFactory<EventPlannerContext>, EventPlannerContextFactory>();
+    //        services.AddSingleton<EventPlannerContext>();  // Example registration
+    //        // Add more services as needed
+    //    }
+    //}
 }

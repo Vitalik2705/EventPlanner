@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,35 +19,51 @@ namespace BLL.Services.Repositories
             this._context = _context;
             _table = _context.Set<T>();
         }
-        public void Add(T model)
+        async public Task AddAsync(T model)
         {
-            _table.Add(model);
+            await _table.AddAsync(model);
+            await SaveAsync();
         }
 
-        public void Delete(int id)
+        async public Task DeleteAsync(int id)
         {
-            T existing = _table.Find(id);
+            T existing = await _table.FindAsync(id);
             _table.Remove(existing);
+            await SaveAsync();
         }
 
-        public IEnumerable<T> GetAll()
+        async public Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? fillter = null)
         {
-            return _table.ToList();
+            IQueryable<T> query = _table;
+            if (fillter != null)
+            {
+                query.Where(fillter);
+            }
+
+            return await query.ToListAsync();
         }
 
-        public T GetById(int id)
+        async public Task<T> GetAsync(Expression<Func<T, bool>>? fillter = null)
         {
-            return _table.Find(id);
+            IQueryable<T> query = _table;
+            if(fillter != null)
+            {
+                query.Where(fillter);
+            }
+
+            return await query.FirstOrDefaultAsync();
         }
 
-        public void Update(T model)
+        async public Task UpdateAsync(T model)
         {
             _table.Attach(model);
             _context.Entry(model).State = EntityState.Modified;
+            await SaveAsync();
         }
-        public void Save()
+        async public Task SaveAsync()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+            
         }
     }
 }

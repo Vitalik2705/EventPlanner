@@ -23,8 +23,8 @@ namespace DAL.Annotation
             ModelBuilder.HasMany(u => u.Events).WithOne(u => u.User).HasForeignKey(u => u.UserId);
             ModelBuilder.Property(u => u.Gender).IsRequired().HasConversion<string>().HasColumnName("gender");
             ModelBuilder.Property(u => u.CreatedDate).IsRequired().HasColumnName("created_date");
-            ModelBuilder.Property(u => u.ModifiedDate).HasColumnName("modified_date");
-            ModelBuilder.Property(p => p.UserImage).HasColumnName("user_image");
+            ModelBuilder.Property(u => u.ModifiedDate).HasColumnName("modified_date").IsRequired(false);
+            ModelBuilder.Property(p => p.UserImage).HasColumnName("user_image").IsRequired(false);
         }
     }
 }

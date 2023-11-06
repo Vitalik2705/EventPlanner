@@ -10,7 +10,7 @@ namespace DAL.Models
     {
         public int UserId { get; set; }
 
-        public string Surname { get; set; }
+        public string? Surname { get; set; } = default;
 
         public string Name { get; set; }
 
@@ -20,7 +20,7 @@ namespace DAL.Models
 
         public string Password { get; set; }
 
-        public virtual ICollection<Event> Events { get; set; }
+        public virtual ICollection<Event>? Events { get; set; }
 
         public Gender Gender { get; set; }
 
@@ -28,7 +28,7 @@ namespace DAL.Models
 
         public DateTime? ModifiedDate { get; set; }
 
-        public byte[] UserImage { get; set; }
+        public byte[]? UserImage { get; set; }
 
     }
 }
