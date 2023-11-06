@@ -9,10 +9,10 @@ namespace BLL.Services.Interfaces
 {
     public interface IRecipeService
     {
-        IEnumerable<Recipe> GetAll();
-        Recipe GetRecipeById(int id);
-        void AddRecipe(Recipe recipe);
-        void UpdateRecipe(Recipe recipe);
-        void DeleteRecipe(int id);
+        async Task<IEnumerable<Recipe>> GetAll();
+        async Task<Recipe> GetRecipeById(int id);
+        async Task AddRecipe(Recipe _recipe);
+        async Task UpdateRecipe(Recipe _recipe);
+        async Task DeleteRecipe(int id);
     }
 }

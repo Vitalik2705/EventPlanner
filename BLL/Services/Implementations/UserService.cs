@@ -1,9 +1,7 @@
-﻿using BLL.Services.Repositories;
-using DAL.Models;
+﻿using DAL.Models;
+using BLL.Services.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.Services.Interfaces
@@ -17,29 +15,32 @@ namespace BLL.Services.Interfaces
             _userRepository = repository;
         }
 
-        public IEnumerable<User> GetAll()
+        public async Task<IEnumerable<User>> GetAll()
         {
-            return _userRepository.GetAll();
-        }
-        public User GetUserById(int id)
-        {
-            return _userRepository.GetById(id);
+            return await _userRepository.GetAll();
         }
 
-        public void AddUser(User user)
+        public async Task<User> GetUserById(int id)
         {
-            _userRepository.Add(user);
-            _userRepository.Save();
+            return await _userRepository.GetById(id);
         }
-        public void UpdateUser(User user)
+
+        public async Task AddUser(User _user)
         {
-            _userRepository.Update(user);
-            _userRepository.Save();
+            _userRepository.Add(_user);
+            await _userRepository.Save();
         }
-        public void DeleteUser(int id)
+
+        public async Task UpdateUser(User _user)
         {
-            _userRepository.Delete(id);
-            _userRepository.Save();
+            _userRepository.Update(_User);
+            await _UserRepository.Save();
+        }
+
+        public async Task DeleteUser(int id)
+        {
+            _UserRepository.Delete(id);
+            await _userRepository.Save();
         }
     }
 }

@@ -2,8 +2,6 @@
 using BLL.Services.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.Services.Interfaces
@@ -17,28 +15,32 @@ namespace BLL.Services.Interfaces
             _recipeRepository = repository;
         }
 
-        public IEnumerable<Recipe> GetAll()
+        public async Task<IEnumerable<Recipe>> GetAll()
         {
-            return _recipeRepository.GetAll();
+            return await _recipeRepository.GetAll();
         }
-        public Recipe GetRecipeById(int id)
+
+        public async Task<Recipe> GetRecipeById(int id)
         {
-            return _recipeRepository.GetById(id);
+            return await _recipeRepository.GetById(id);
         }
-        public void AddRecipe(Recipe recipe)
+
+        public async Task AddRecipe(Recipe _recipe)
         {
-            _recipeRepository.Add(recipe);
-            _recipeRepository.Save();
+            _recipeRepository.Add(_recipe);
+            await _recipeRepository.Save();
         }
-        public void UpdateRecipe(Recipe recipe)
+
+        public async Task UpdateRecipe(Recipe _recipe)
         {
-            _recipeRepository.Update(recipe);
-            _recipeRepository.Save();
+            _recipeRepository.Update(_recipe);
+            await _recipeRepository.Save();
         }
-        public void DeleteRecipe(int id)
+
+        public async Task DeleteRecipe(int id)
         {
             _recipeRepository.Delete(id);
-            _recipeRepository.Save();
+            await _recipeRepository.Save();
         }
     }
 }

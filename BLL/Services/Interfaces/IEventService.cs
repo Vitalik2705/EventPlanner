@@ -9,10 +9,10 @@ namespace BLL.Services.Interfaces
 {
     public interface IEventService
     {
-        IEnumerable<Event> GetAll();
-        Event GetEventById(int id);
-        void AddEvent(Event _event);
-        void UpdateEvent(Event _event);
-        void DeleteEvent(int id);
+        async Task<IEnumerable<Event>> GetAll();
+        async Task<Event> GetEventById(int id);
+        async Task AddEvent(Event _event);
+        async Task UpdateEvent(Event _event);
+        async Task DeleteEvent(int id);
     }
 }

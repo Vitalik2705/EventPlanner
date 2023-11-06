@@ -9,10 +9,10 @@ namespace BLL.Services.Interfaces
 {
     public interface IGuestService
     {
-        IEnumerable<Guest> GetAll();
-        Guest GetGuestById(int id);
-        void AddGuest(Guest guest);
-        void UpdateGuest(Guest guest);
-        void DeleteGuest(int id);
+        async Task<IEnumerable<Guest>> GetAll();
+        async Task<Guest> GetGuestById(int id);
+        async Task AddGuest(Guest _guest);
+        async Task UpdateGuest(Guest _guest);
+        async Task DeleteGuest(int id);
     }
 }

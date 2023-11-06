@@ -9,10 +9,10 @@ namespace BLL.Services.Interfaces
 {
     public interface IUserService
     {
-        IEnumerable<User> GetAll();
-        User GetUserById(int id);
-        void AddUser(User user);
-        void UpdateUser(User user);
-        void DeleteUser(int id);
+        async Task<IEnumerable<User>> GetAll();
+        async Task<User> GetUserById(int id);
+        async Task AddUser(User _User);
+        async Task UpdateUser(User _User);
+        async Task DeleteUser(int id);
     }
 }

@@ -9,10 +9,10 @@ namespace BLL.Services.Interfaces
 {
     public interface IIngredientUnitService
     {
-        IEnumerable<IngredientUnit> GetAll();
-        IngredientUnit GetIngredientUnitById(int id);
-        void AddIngredientUnit(IngredientUnit ingredientUnit);
-        void UpdateIngredientUnit(IngredientUnit ingredientUnit);
-        void DeleteIngredientUnit(int id);
+        async Task<IEnumerable<IngredientUnit>> GetAll();
+        async Task<IngredientUnit> GetIngredientUnitById(int id);
+        async Task AddIngredientUnit(IngredientUnit _ingredientUnit);
+        async Task UpdateIngredientUnit(IngredientUnit _ingredientUnit);
+        async Task DeleteIngredientUnit(int id);
     }
 }

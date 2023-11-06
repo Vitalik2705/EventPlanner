@@ -2,8 +2,6 @@
 using BLL.Services.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.Services.Interfaces
@@ -17,28 +15,32 @@ namespace BLL.Services.Interfaces
             _ingredientUnitRepository = repository;
         }
 
-        public IEnumerable<IngredientUnit> GetAll()
+        public async Task<IEnumerable<IngredientUnit>> GetAll()
         {
-            return _ingredientUnitRepository.GetAll();
+            return await _ingredientUnitRepository.GetAll();
         }
-        public IngredientUnit GetIngredientUnitById(int id)
+
+        public async Task<IngredientUnit> GetIngredientUnitById(int id)
         {
-            return _ingredientUnitRepository.GetById(id);
+            return await _ingredientUnitRepository.GetById(id);
         }
-        public void AddIngredientUnit(IngredientUnit ingredientUnit)
+
+        public async Task AddIngredientUnit(IngredientUnit _ingredientUnit)
         {
-            _ingredientUnitRepository.Add(ingredientUnit);
-            _ingredientUnitRepository.Save();
+            _ingredientUnitRepository.Add(_ingredientUnit);
+            await _ingredientUnitRepository.Save();
         }
-        public void UpdateIngredientUnit(IngredientUnit ingredientUnit)
+
+        public async Task UpdateIngredientUnit(IngredientUnit _ingredientUnit)
         {
-            _ingredientUnitRepository.Update(ingredientUnit);
-            _ingredientUnitRepository.Save();
+            _ingredientUnitRepository.Update(_ingredientUnit);
+            await _ingredientUnitRepository.Save();
         }
-        public void DeleteIngredientUnit(int id)
+
+        public async Task DeleteIngredientUnit(int id)
         {
             _ingredientUnitRepository.Delete(id);
-            _ingredientUnitRepository.Save();
+            await _ingredientUnitRepository.Save();
         }
     }
 }
