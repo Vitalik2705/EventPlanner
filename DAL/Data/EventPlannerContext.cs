@@ -1,37 +1,44 @@
-﻿using DAL.Annotation;
-using DAL.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="EventPlannerContext.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace DAL.Data
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using DAL.Annotation;
+    using DAL.Models;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+
     public class EventPlannerContext : DbContext
     {
+        private readonly IConfiguration? _configuration;
 
-        private readonly IConfiguration _configuration;
-
-        public EventPlannerContext()
+        public EventPlannerContext(IConfiguration configuration)
         {
-
+            this._configuration = configuration;
         }
 
         public EventPlannerContext(DbContextOptions<EventPlannerContext> options)
             : base(options)
         {
-            Database.Migrate();
+            this.Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql(_configuration.GetConnectionString("EventPlannerDbConnectionString"));
+                var connectionString = this._configuration?.GetConnectionString("EventPlannerDbConnectionString");
+                if (connectionString != null)
+                {
+                    optionsBuilder.UseNpgsql(connectionString);
+                }
             }
         }
 
