@@ -24,10 +24,25 @@ namespace PresentationUI
         
         public AccountWindow(User user)
         {
-            UserName.Text = $"{user.Surname} {user.Name}";
+
+            InitializeComponent();
+            string userName = $"{user.Surname} {user.Name}";
+
+            
+
+            //TextBlock userNameTextBlock = UserName;
+
+            // Встановіть текст для TextBlock
+            UserName.Text = userName;
+            //TextBlock? emailTextBlock = FindName("Email") as TextBlock;
+            //TextBlock? phoneTextBlock = FindName("Phone") as TextBlock;
+            //if (userNameTextBlock != null)
+            //{
             Email.Text = user.Email;
             Phone.Text = user.PhoneNumber;
-            InitializeComponent();
+            //}
+
+            
         }
     }
 }

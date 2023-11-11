@@ -93,7 +93,7 @@
 
 
         <Canvas Grid.Column="1" Grid.Row="1">
-            <TextBlock x:Name="UserName" Canvas.Left="215" Canvas.Top="50" FontWeight="SemiBold"  FontSize="35">
+            <TextBlock x:Name="UserName"  Canvas.Left="215" Canvas.Top="50" FontWeight="SemiBold"  FontSize="35">
             </TextBlock>
         </Canvas>
 
@@ -164,7 +164,9 @@
                 FontSize="17"
                 BorderThickness="0 0 0 1.5" 
                 BorderBrush="#565A7B"
-                materialDesign:HintAssist.FloatingOffset="0,-18" >
+                materialDesign:HintAssist.FloatingOffset="0,-18"
+                SelectedIndex="0"
+                >
                 <ComboBoxItem>Українська</ComboBoxItem>
                 <ComboBoxItem>Англійська</ComboBoxItem>
             </ComboBox>

@@ -14,7 +14,7 @@ namespace DAL.Annotation
         public override void Annotate()
         {
             ModelBuilder.HasKey(u => u.UserId);
-            ModelBuilder.Property(u => u.UserId).ValueGeneratedOnAdd().UseIdentityColumn().HasColumnName("user_id");
+            ModelBuilder.Property(u => u.UserId).ValueGeneratedOnAdd().UseIdentityColumn(1, 10000).HasColumnName("user_id");
             ModelBuilder.Property(u => u.Surname).IsRequired().HasMaxLength(20).HasColumnName("surname");
             ModelBuilder.Property(u => u.Name).IsRequired().HasMaxLength(20).HasColumnName("name");
             ModelBuilder.Property(u => u.PhoneNumber).IsRequired().HasMaxLength(15).HasColumnName("phone_number");
