@@ -36,7 +36,7 @@ namespace PresentationUI
             AppHost = Host.CreateDefaultBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddTransient<MainWindow>();
+                    services.AddSingleton<MainWindow>();
                     services.AddTransient<IUserRepository, UserRepository>();
                     services.AddTransient<IUserService, UserService>();
                     //services.AddTransient<IGenericRepository, GenericRepository>();
