@@ -20,11 +20,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="2*" />
-            <RowDefinition Height="4*" />
+            <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
 
         <Canvas Grid.Column="1" Grid.Row="1">
-            <Image Height="400" Width="400" Source="images/4957136 1.png"/>
+            <Image Canvas.Left="30" Canvas.Top="50" Height="400" Width="400" Source="images/4957136 1.png"/>
         </Canvas>
 
         <Canvas Grid.Column="0" Grid.Row="0">
@@ -39,10 +39,10 @@
         </Canvas>
 
         <Canvas Grid.Column="0" Grid.Row="1">
-            <TextBlock Canvas.Left="168" Canvas.Top="50" FontWeight="Bold"  FontSize="35">
+            <TextBlock Canvas.Left="168" Canvas.Top="20" FontWeight="Bold"  FontSize="35">
                Реєстрація
             </TextBlock>
-            <Button Background="White" Canvas.Left="145" Canvas.Top="110" Width="230" Height="35" BorderBrush="Gray" BorderThickness="1">
+            <Button Background="White" Canvas.Left="145" Canvas.Top="80" Width="230" Height="35" BorderBrush="Gray" BorderThickness="1">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Image Source="images/google.png" Width="20" Height="20" Margin="0,0,0,0" />
                     <TextBlock FontSize="15" Text="Вхід через Google" Margin="10,0,0,0"/>
@@ -57,7 +57,7 @@
                      Width="230"
                      Height="50"
                      Canvas.Left="145"
-                     Canvas.Top="10"
+                     Canvas.Top="0"
                      FontSize="17"
                      BorderThickness="0 0 0 1.5" 
                      BorderBrush="#565A7B" 
@@ -69,11 +69,64 @@
                 Width="230"
                 Height="50"
                 Canvas.Left="145"
-                Canvas.Top="60"
+                Canvas.Top="50"
                 FontSize="17"
                 BorderThickness="0 0 0 1.5" 
                 BorderBrush="#565A7B"
                 materialDesign:HintAssist.FloatingOffset="0,-18" />
+
+            <TextBox x:Name="FirstnameInput"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="First name"
+                     Width="230"
+                     Height="50"
+                     Canvas.Left="145"
+                     Canvas.Top="100"
+                     FontSize="17"
+                     BorderThickness="0 0 0 1.5" 
+                     BorderBrush="#565A7B" 
+                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+
+            <TextBox x:Name="LastnameInput"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Last name"
+                     Width="230"
+                     Height="50"
+                     Canvas.Left="145"
+                     Canvas.Top="150"
+                     FontSize="17"
+                     BorderThickness="0 0 0 1.5" 
+                     BorderBrush="#565A7B" 
+                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+
+            <TextBox x:Name="PhoneNumberInput"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Phone number"
+                     Width="230"
+                     Height="50"
+                     Canvas.Left="145"
+                     Canvas.Top="200"
+                     FontSize="17"
+                     BorderThickness="0 0 0 1.5" 
+                     BorderBrush="#565A7B" 
+                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+
+            <ComboBox 
+                Style="{StaticResource MaterialDesignComboBox}"
+                Width="115"
+                Height="50"
+                Canvas.Left="145"
+                Canvas.Top="250"
+                FontSize="17"
+                BorderThickness="0 0 0 1.5" 
+                BorderBrush="#565A7B"
+                materialDesign:HintAssist.FloatingOffset="0,-18"
+                materialDesign:HintAssist.Hint="Sex"
+                >
+                <ComboBoxItem>Male</ComboBoxItem>
+                <ComboBoxItem>Female</ComboBoxItem>
+            </ComboBox>
+
             <Button x:Name="Register"
                     Content="Реєстрація"
                     Width="230" 
@@ -82,7 +135,7 @@
                     FontSize="19"
                     Foreground="White"
                     Canvas.Left="145"
-                    Canvas.Top="120"
+                    Canvas.Top="310"
                     Click="Register_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -90,7 +143,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <StackPanel Orientation="Horizontal" Canvas.Left="175" Canvas.Top="180">
+            <StackPanel Orientation="Horizontal" Canvas.Left="175" Canvas.Top="360">
                 <TextBlock Text="Вже зареєстровані?" />
                 <TextBlock Margin="5,0,0,0">
                 <Hyperlink NavigateUri="https://www.example.com" TextDecorations="None" Click="Login_Click"> 

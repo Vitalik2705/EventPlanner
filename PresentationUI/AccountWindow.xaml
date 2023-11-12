@@ -41,7 +41,7 @@
                   Width="40"
                   Source="images/mdi_account-outline.png"/>
             <TextBlock Canvas.Left="65" Canvas.Top="32" FontSize="25">
-                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000">
+                <Hyperlink NavigateUri="AccountWindow.xaml" TextDecorations="None" Foreground="#000000">
                 Акаунт
                 </Hyperlink>
             </TextBlock>
@@ -80,7 +80,7 @@
                   Width="40"
                   Source="images/fluent_guest-add-20-filled.png"/>
             <TextBlock Canvas.Left="65" Canvas.Top="242" FontSize="25">
-                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000">
+                <Hyperlink NavigateUri="GuestListWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Guest_Page">
             Гості
                     </Hyperlink>
             </TextBlock>

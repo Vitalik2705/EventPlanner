@@ -1,48 +1,31 @@
-﻿using BLL.Services.Interfaces;
-using DAL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-namespace PresentationUI
+﻿namespace PresentationUI
 {
+    using System.Windows;
+    using DAL.Models;
+
     /// <summary>
-    /// Interaction logic for AccountWIndow.xaml
+    /// Interaction logic for AccountWIndow.xaml.
     /// </summary>
     public partial class AccountWindow : Window
     {
-        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountWindow"/> class.
+        /// </summary>
+        /// <param name="user">name.</param>
         public AccountWindow(User user)
         {
-
-            InitializeComponent();
+            this.InitializeComponent();
             string userName = $"{user.Surname} {user.Name}";
+            this.UserName.Text = userName;
+            this.Email.Text = user.Email;
+            this.Phone.Text = user.PhoneNumber;
+        }
 
-            
-
-            //TextBlock userNameTextBlock = UserName;
-
-            // Встановіть текст для TextBlock
-            UserName.Text = userName;
-            //TextBlock? emailTextBlock = FindName("Email") as TextBlock;
-            //TextBlock? phoneTextBlock = FindName("Phone") as TextBlock;
-            //if (userNameTextBlock != null)
-            //{
-            Email.Text = user.Email;
-            Phone.Text = user.PhoneNumber;
-            //}
-
-            
+        private void Guest_Page(object sender, RoutedEventArgs e)
+        {
+            GuestListWindow secondWindow = new GuestListWindow();
+            secondWindow.Show();
+            this.Close();
         }
     }
 }
