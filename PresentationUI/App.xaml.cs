@@ -16,6 +16,8 @@ using System.Windows;
 using BLL.Services.Interfaces;
 using BLL.Services.Repositories;
 using DAL.Data;
+using Serilog;
+using Microsoft.Extensions.Logging;
 
 namespace PresentationUI
 {
@@ -34,6 +36,12 @@ namespace PresentationUI
         public App()
         {
             AppHost = Host.CreateDefaultBuilder()
+                .UseSerilog((host, loggerConfiguration) =>
+                {
+                    loggerConfiguration.WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
+                        .MinimumLevel.Error()
+                        .MinimumLevel.Override("LoggingDemo.Commands", Serilog.Events.LogEventLevel.Debug);
+                })
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddSingleton<MainWindow>();
@@ -42,6 +50,8 @@ namespace PresentationUI
                     //services.AddTransient<IGenericRepository, GenericRepository>();
                     services.AddTransient<IDesignTimeDbContextFactory<EventPlannerContext>, EventPlannerContextFactory>();
                     services.AddTransient<EventPlannerContext>();
+                    //services.AddTransient<ILogger<LoginWindow>, Logger<LoginWindow>>();
+                    //services.AddTransient<ILogger<RegisterWindow>, Logger<RegisterWindow>>();
                 })
                 .Build();
         }

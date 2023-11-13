@@ -1,5 +1,6 @@
 ﻿using BLL.Services.Interfaces;
 using DAL.Models;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,17 +23,17 @@ namespace PresentationUI
     public partial class RegisterWindow : Window
     {
         private readonly IUserService _userService;
-        public RegisterWindow(IUserService userService)
+        private readonly ILogger<RegisterWindow> _registerLogger;
+        public RegisterWindow(IUserService userService, ILogger<RegisterWindow> registerLogger)
         {
             _userService = userService;
+            _registerLogger = registerLogger;
             InitializeComponent();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-
-
-            LoginWindow secondWindow = new LoginWindow(_userService);
+            LoginWindow secondWindow = new LoginWindow(_userService, _loginLogger);
             secondWindow.Show();
             this.Close();
         }
@@ -40,6 +41,7 @@ namespace PresentationUI
 
         private async void Register_Click(object sender, RoutedEventArgs e)
         {
+            _registerLogger.LogInformation("Attempting to register an account.");
             var email = EmailInput.Text;
             var password = PasswordInput.Password;
 
@@ -51,9 +53,19 @@ namespace PresentationUI
 
             var userReg = await _userService.Register(user);
             //User user = null;
-            AccountWindow secondWindow = new AccountWindow(userReg);
-            secondWindow.Show();
-            this.Close();
+
+            if (user != null)
+            {
+                _registerLogger.LogInformation("Successfully registered the account.");
+
+                AccountWindow secondWindow = new AccountWindow(userReg);
+                secondWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                _registerLogger.LogError("Failed to register an account.");
+            }
         }
     }
 }
