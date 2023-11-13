@@ -28,7 +28,7 @@ namespace PresentationUI
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWindow secondWindow = new RegisterWindow(_userService, _loginLogger);
+            RegisterWindow secondWindow = new RegisterWindow(_userService);
             secondWindow.Show();
             this.Close();
         }

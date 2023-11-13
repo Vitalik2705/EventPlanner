@@ -23,17 +23,16 @@ namespace PresentationUI
     public partial class RegisterWindow : Window
     {
         private readonly IUserService _userService;
-        private readonly ILogger _registerLogger;
-        public RegisterWindow(IUserService userService, ILogger registerLogger)
+        private readonly ILogger _loginLogger;
+        public RegisterWindow(IUserService userService)
         {
             _userService = userService;
-            _registerLogger = registerLogger;
             InitializeComponent();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow secondWindow = new LoginWindow(_userService, _registerLogger);
+            LoginWindow secondWindow = new LoginWindow(_userService, _loginLogger);
             secondWindow.Show();
             this.Close();
         }
@@ -41,7 +40,6 @@ namespace PresentationUI
 
         private async void Register_Click(object sender, RoutedEventArgs e)
         {
-            _registerLogger.LogInformation("Attempting to register an account.");
             var email = EmailInput.Text;
             var password = PasswordInput.Password;
 
@@ -56,7 +54,6 @@ namespace PresentationUI
 
             if (user != null)
             {
-                _registerLogger.LogInformation("Successfully registered the account.");
 
                 AccountWindow secondWindow = new AccountWindow(userReg);
                 secondWindow.Show();
@@ -64,7 +61,7 @@ namespace PresentationUI
             }
             else
             {
-                _registerLogger.LogError("Failed to register an account.");
+
             }
         }
     }
