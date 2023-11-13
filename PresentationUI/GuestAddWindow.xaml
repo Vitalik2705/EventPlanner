@@ -1,0 +1,179 @@
+﻿<Window x:Class="PresentationUI.GuestAddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:PresentationUI"
+        mc:Ignorable="d"
+        Title="GuestAddWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="9*" />
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Fill="#8B92D0" />
+        <Rectangle Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Fill="#CBCBCB" />
+
+        <Canvas Grid.Column="0" Grid.Row="0">
+            <Image  Canvas.Left="10"
+                  Canvas.Top="5" 
+                  Height="50"
+                  Width="40"
+                  Source="images/agenda (4) 1.png"/>
+            <TextBlock Foreground="White" Canvas.Left="65" Canvas.Top="13" FontSize="25">
+            EventPlanner
+            </TextBlock>
+        </Canvas>
+
+        <Canvas x:Name="accountCanvas" Grid.Column="0" Grid.Row="1">
+
+            <Image  Canvas.Left="10"
+                  Canvas.Top="25" 
+                  Height="50"
+                  Width="40"
+                  Source="images/mdi_account-outline.png"/>
+            <TextBlock Canvas.Left="65" Canvas.Top="32" FontSize="25">
+                <Hyperlink NavigateUri="AccountWindow.xaml" TextDecorations="None" Foreground="#000000">
+                Акаунт
+                </Hyperlink>
+            </TextBlock>
+        </Canvas>
+
+        <Canvas x:Name="eneCanvas" Grid.Column="0" Grid.Row="1">
+            <Image  Canvas.Left="10"
+                  Canvas.Top="95" 
+                  Height="50"
+                  Width="40"
+                  Source="images/mdi_events.png"/>
+            <TextBlock Canvas.Left="65" Canvas.Top="101" FontSize="25">
+                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000">
+            Події
+                    </Hyperlink>
+            </TextBlock>
+        </Canvas>
+
+        <Canvas x:Name="recipesCanvas" Grid.Column="0" Grid.Row="1">
+            <Image  Canvas.Left="10"
+                  Canvas.Top="165" 
+                  Height="50"
+                  Width="40"
+                  Source="images/Mask group1.png"/>
+            <TextBlock Canvas.Left="65" Canvas.Top="172" FontSize="25">
+                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000">
+            Рецепти
+                    </Hyperlink>
+            </TextBlock>
+        </Canvas>
+
+        <Canvas x:Name="guestsCanvas" Grid.Column="0" Grid.Row="1">
+            <Rectangle Canvas.Top="235" Width="198" Height="50" Fill="#FFFFFF" />
+            <Image  Canvas.Left="10"
+                  Canvas.Top="235" 
+                  Height="50"
+                  Width="40"
+                  Source="images/fluent_guest-add-20-filled.png"/>
+            <TextBlock Canvas.Left="65" Canvas.Top="242" FontSize="25">
+                <Hyperlink NavigateUri="GuestListWindow.xaml" TextDecorations="None" Foreground="#000000">
+            Гості
+                    </Hyperlink>
+            </TextBlock>
+        </Canvas>
+
+        <Canvas Grid.Column="1" Grid.Row="1">
+            <TextBlock Canvas.Left="260" Canvas.Top="50" FontSize="25">
+                Інформація про гостя
+            </TextBlock>
+            
+            <TextBox x:Name="FirstLastNameInput"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Ім'я та прізвище"
+                     Width="230"
+                     Height="50"
+                     Canvas.Left="80"
+                     Canvas.Top="130"
+                     FontSize="17"
+                     BorderThickness="0 0 0 1.5" 
+                     BorderBrush="#565A7B" 
+                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+
+            <TextBox x:Name="PhoneNumberInput"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Номер телефону"
+                     Width="230"
+                     Height="50"
+                     Canvas.Left="470"
+                     Canvas.Top="130"
+                     FontSize="17"
+                     BorderThickness="0 0 0 1.5" 
+                     BorderBrush="#565A7B" 
+                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+
+            <TextBox x:Name="EmailInput"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Електронна пошта"
+                     Width="230"
+                     Height="50"
+                     Canvas.Left="80"
+                     Canvas.Top="230"
+                     FontSize="17"
+                     BorderThickness="0 0 0 1.5" 
+                     BorderBrush="#565A7B" 
+                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+
+            <ComboBox 
+                x:Name="SexInput"
+                Style="{StaticResource MaterialDesignComboBox}"
+                Width="230"
+                Height="50"
+                Canvas.Left="470"
+                Canvas.Top="230"
+                FontSize="17"
+                BorderThickness="0 0 0 1.5" 
+                BorderBrush="#565A7B"
+                materialDesign:HintAssist.FloatingOffset="0,-18"
+                materialDesign:HintAssist.Hint="Стать"
+                >
+                <ComboBoxItem>Чоловік</ComboBoxItem>
+                <ComboBoxItem>Жінка</ComboBoxItem>
+            </ComboBox>
+
+            <TextBox x:Name="FeaturesOfNutritionInput"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Особливості харчування"
+                     Width="340"
+                     Height="50"
+                     Canvas.Left="220"
+                     Canvas.Top="330"
+                     FontSize="17"
+                     BorderThickness="0 0 0 1.5" 
+                     BorderBrush="#565A7B" 
+                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+
+            <Button x:Name="AddGuest"
+                    Width="60" 
+                    Height="60" 
+                    Background="#565A7B"
+                    FontSize="19"
+                    Foreground="White"
+                    Canvas.Left="350"
+                    Canvas.Top="450"
+                    >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="7"></Setter>
+                    </Style>
+                </Button.Resources>
+                <Image Source="images/plus.png"/>
+            </Button>
+
+        </Canvas>
+
+
+    </Grid>
+</Window>

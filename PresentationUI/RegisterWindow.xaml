@@ -122,9 +122,10 @@
                 BorderBrush="#565A7B"
                 materialDesign:HintAssist.FloatingOffset="0,-18"
                 materialDesign:HintAssist.Hint="Sex"
+                Panel.ZIndex="1"
                 >
-                <ComboBoxItem>Male</ComboBoxItem>
-                <ComboBoxItem>Female</ComboBoxItem>
+                <ComboBoxItem Panel.ZIndex="1">Чоловік</ComboBoxItem>
+                <ComboBoxItem Panel.ZIndex="1">Жінка</ComboBoxItem>
             </ComboBox>
 
             <Button x:Name="Register"
@@ -136,6 +137,7 @@
                     Foreground="White"
                     Canvas.Left="145"
                     Canvas.Top="310"
+                    Panel.ZIndex="0"
                     Click="Register_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
