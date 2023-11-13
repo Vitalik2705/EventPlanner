@@ -23,8 +23,8 @@ namespace PresentationUI
     public partial class RegisterWindow : Window
     {
         private readonly IUserService _userService;
-        private readonly ILogger<RegisterWindow> _registerLogger;
-        public RegisterWindow(IUserService userService, ILogger<RegisterWindow> registerLogger)
+        private readonly ILogger _registerLogger;
+        public RegisterWindow(IUserService userService, ILogger registerLogger)
         {
             _userService = userService;
             _registerLogger = registerLogger;
@@ -33,7 +33,7 @@ namespace PresentationUI
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow secondWindow = new LoginWindow(_userService, _loginLogger);
+            LoginWindow secondWindow = new LoginWindow(_userService, _registerLogger);
             secondWindow.Show();
             this.Close();
         }
