@@ -38,7 +38,7 @@ namespace BLL.Services.Repositories
         {
             User user = new ()
             {
-                //UserId = 3,
+                // UserId = 3,
                 Surname = "Божена",
                 Name = "Сальнікова",
                 PhoneNumber = "8432652",
