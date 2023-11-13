@@ -14,12 +14,15 @@ namespace PresentationUI
     using BLL.Services.Repositories;
     using DAL.Data;
     using DAL.Models;
+    using Microsoft.Extensions.Logging;
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1601:Partial elements should be documented", Justification = "<Pending>")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1404:Code analysis suppression should have justification", Justification = "<Pending>")]
     public partial class MainWindow : Window
     {
         private readonly IUserService _userService;
+
+        private readonly ILogger _loginLogger;
 
         public MainWindow()
         {
@@ -34,7 +37,7 @@ namespace PresentationUI
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow secondWindow = new LoginWindow(this._userService);
+            LoginWindow secondWindow = new LoginWindow(this._userService, _loginLogger);
             secondWindow.Show();
             this.Hide();
         }
