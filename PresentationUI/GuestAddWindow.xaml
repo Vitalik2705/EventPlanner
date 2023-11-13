@@ -1,26 +1,24 @@
-﻿<Window x:Class="PresentationUI.AccountWindow"
+﻿<Window x:Class="PresentationUI.GuestAddWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PresentationUI"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:PresentationUI"
         mc:Ignorable="d"
-        Title="AccountWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
-    <Grid x:Name="Account_Page">
+        Title="GuestAddWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="4*" />
+            <RowDefinition Height="9*" />
         </Grid.RowDefinitions>
 
         <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Fill="#8B92D0" />
-        <Rectangle Grid.Row="1" Grid.Column="0" Grid.RowSpan="3" Fill="#CBCBCB" />
+        <Rectangle Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Fill="#CBCBCB" />
 
         <Canvas Grid.Column="0" Grid.Row="0">
             <Image  Canvas.Left="10"
@@ -34,7 +32,7 @@
         </Canvas>
 
         <Canvas x:Name="accountCanvas" Grid.Column="0" Grid.Row="1">
-            <Rectangle Canvas.Top="25" Width="198" Height="50" Fill="#FFFFFF" />
+
             <Image  Canvas.Left="10"
                   Canvas.Top="25" 
                   Height="50"
@@ -74,120 +72,108 @@
         </Canvas>
 
         <Canvas x:Name="guestsCanvas" Grid.Column="0" Grid.Row="1">
+            <Rectangle Canvas.Top="235" Width="198" Height="50" Fill="#FFFFFF" />
             <Image  Canvas.Left="10"
                   Canvas.Top="235" 
                   Height="50"
                   Width="40"
                   Source="images/fluent_guest-add-20-filled.png"/>
             <TextBlock Canvas.Left="65" Canvas.Top="242" FontSize="25">
-                <Hyperlink NavigateUri="GuestListWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Guest_Page">
+                <Hyperlink NavigateUri="GuestListWindow.xaml" TextDecorations="None" Foreground="#000000">
             Гості
                     </Hyperlink>
             </TextBlock>
         </Canvas>
 
         <Canvas Grid.Column="1" Grid.Row="1">
-            <Image Height="150" Width="150" Canvas.Left="30"
-                  Canvas.Top="30"  Source="images/Ellipse 1.png"/>
-        </Canvas>
-
-
-        <Canvas Grid.Column="1" Grid.Row="1">
-            <TextBlock x:Name="UserName"  Canvas.Left="215" Canvas.Top="50" FontWeight="SemiBold"  FontSize="35">
+            <TextBlock Canvas.Left="260" Canvas.Top="50" FontSize="25">
+                Інформація про гостя
             </TextBlock>
-        </Canvas>
-
-
-        <Canvas Grid.Column="1" Grid.Row="1">
-            <TextBlock x:Name="Email" Canvas.Left="215" Canvas.Top="100" FontSize="25">
-            </TextBlock>
-        </Canvas>
-
-        <Canvas Grid.Column="1" Grid.Row="1">
-            <TextBlock x:Name="Phone" Canvas.Left="215" Canvas.Top="150" FontSize="25">
-            </TextBlock>
-        </Canvas>
-
-        <Canvas Grid.Column="1" Grid.Row="2">
-            <TextBlock Canvas.Left="50" Canvas.Top="30" FontSize="25">
-                Змінити Емейл
-            </TextBlock>
-        </Canvas>
-
-        <Canvas Grid.Column="1" Grid.Row="2">
-            <TextBlock Canvas.Left="400" Canvas.Top="30" FontSize="25">
-                Змінити пароль
-            </TextBlock>
-        </Canvas>
-
-        <Canvas Grid.Column="1" Grid.Row="3">
-            <TextBlock Canvas.Left="50" Canvas.Top="10" FontSize="25">
-                Мова
-            </TextBlock>
-        </Canvas>
-
-        <Canvas Grid.Column="1" Grid.Row="2">
-            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     materialDesign:HintAssist.Hint="Email"
+            
+            <TextBox x:Name="FirstLastNameInput"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Ім'я та прізвище"
                      Width="230"
                      Height="50"
-                     Canvas.Left="50"
-                     Canvas.Top="60"
+                     Canvas.Left="80"
+                     Canvas.Top="130"
                      FontSize="17"
                      BorderThickness="0 0 0 1.5" 
                      BorderBrush="#565A7B" 
                      materialDesign:HintAssist.FloatingOffset="0,-18" />
-        </Canvas>
 
-        <Canvas Grid.Column="1" Grid.Row="2">
-            <PasswordBox 
-                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
-                materialDesign:HintAssist.Hint="Password"
-                Width="230"
-                Height="50"
-                Canvas.Left="400"
-                Canvas.Top="60"
-                FontSize="17"
-                BorderThickness="0 0 0 1.5" 
-                BorderBrush="#565A7B"
-                materialDesign:HintAssist.FloatingOffset="0,-18" />
-        </Canvas>
+            <TextBox x:Name="PhoneNumberInput"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Номер телефону"
+                     Width="230"
+                     Height="50"
+                     Canvas.Left="470"
+                     Canvas.Top="130"
+                     FontSize="17"
+                     BorderThickness="0 0 0 1.5" 
+                     BorderBrush="#565A7B" 
+                     materialDesign:HintAssist.FloatingOffset="0,-18" />
 
+            <TextBox x:Name="EmailInput"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Електронна пошта"
+                     Width="230"
+                     Height="50"
+                     Canvas.Left="80"
+                     Canvas.Top="230"
+                     FontSize="17"
+                     BorderThickness="0 0 0 1.5" 
+                     BorderBrush="#565A7B" 
+                     materialDesign:HintAssist.FloatingOffset="0,-18" />
 
-        <Canvas Grid.Column="1" Grid.Row="3">
             <ComboBox 
+                x:Name="SexInput"
                 Style="{StaticResource MaterialDesignComboBox}"
                 Width="230"
                 Height="50"
-                Canvas.Left="50"
-                Canvas.Top="40"
+                Canvas.Left="470"
+                Canvas.Top="230"
                 FontSize="17"
                 BorderThickness="0 0 0 1.5" 
                 BorderBrush="#565A7B"
                 materialDesign:HintAssist.FloatingOffset="0,-18"
-                SelectedIndex="0"
+                materialDesign:HintAssist.Hint="Стать"
                 >
-                <ComboBoxItem>Українська</ComboBoxItem>
-                <ComboBoxItem>Англійська</ComboBoxItem>
+                <ComboBoxItem>Чоловік</ComboBoxItem>
+                <ComboBoxItem>Жінка</ComboBoxItem>
             </ComboBox>
-        </Canvas>
 
-        <Canvas Grid.Column="1" Grid.Row="3">
-            <Button x:Name="Save"
-                        Content="Зберегти"
-                        Width="200" 
-                        Height="35" 
-                        Background="#565A7B"
-                        FontSize="19"
-                        Foreground="White"
-                        Canvas.Left="290"
-                        Canvas.Top="170">
+            <TextBox x:Name="FeaturesOfNutritionInput"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Особливості харчування"
+                     Width="340"
+                     Height="50"
+                     Canvas.Left="220"
+                     Canvas.Top="330"
+                     FontSize="17"
+                     BorderThickness="0 0 0 1.5" 
+                     BorderBrush="#565A7B" 
+                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+
+            <Button x:Name="AddGuest"
+                    Width="60" 
+                    Height="60" 
+                    Background="#565A7B"
+                    FontSize="19"
+                    Foreground="White"
+                    Canvas.Left="350"
+                    Canvas.Top="450"
+                    >
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="7"></Setter>
                     </Style>
                 </Button.Resources>
+                <Image Source="images/plus.png"/>
             </Button>
+
         </Canvas>
+
+
     </Grid>
 </Window>

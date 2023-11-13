@@ -41,12 +41,9 @@ namespace PresentationUI
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            // List<IngredientUnit> GetIngredients = _ingredients.GetAll().ToList();
-            // Label Ingred = new Label();
-            // Ingred.Content = $"Інгредієнт: {GetIngredients[0].Ingredient}. Одиниця виміру: {GetIngredients[0].Unit}. Кількість: {GetIngredients[0].Amount}\n";
-            // Ingred.FontSize = 30;
-            // var thickness = new Thickness(30, 100, 0, 0);
-            // Ingred.Margin = thickness;
+            GuestListWindow secondWindow = new GuestListWindow();
+            secondWindow.Show();
+            this.Hide();
         }
     }
 }
