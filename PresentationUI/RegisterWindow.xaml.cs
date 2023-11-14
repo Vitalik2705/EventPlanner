@@ -24,15 +24,18 @@ namespace PresentationUI
     {
         private readonly IUserService _userService;
         private readonly ILogger<LoginWindow> _loginLogger;
-        public RegisterWindow(IUserService userService)
+        private readonly ILogger<RegisterWindow> _registerLogger;
+        public RegisterWindow(IUserService userService, ILogger<RegisterWindow> registerLogger, ILogger<LoginWindow> loginLogger)
         {
             _userService = userService;
+            _registerLogger = registerLogger;
+            _loginLogger = loginLogger;
             InitializeComponent();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow secondWindow = new LoginWindow(_userService, _loginLogger);
+            LoginWindow secondWindow = new LoginWindow(_userService, _loginLogger, _registerLogger);
             secondWindow.Show();
             this.Close();
         }
@@ -40,6 +43,8 @@ namespace PresentationUI
 
         private async void Register_Click(object sender, RoutedEventArgs e)
         {
+            _registerLogger.LogInformation("Attempting to register the account.");
+
             var email = EmailInput.Text;
             var password = PasswordInput.Password;
 
@@ -48,20 +53,20 @@ namespace PresentationUI
                 Email = email,
                 Password = password,
             };
-
-            var userReg = await _userService.Register(user);
-            //User user = null;
-
-            if (user != null)
+            try
             {
+                var userReg = await _userService.Register(user);
+
+                _registerLogger.LogInformation("Successfully register the account.");
 
                 AccountWindow secondWindow = new AccountWindow(userReg);
                 secondWindow.Show();
                 this.Close();
             }
-            else
-            {
 
+            catch (Exception ex)
+            {
+                _registerLogger.LogError("Failed to register the account.");
             }
         }
     }

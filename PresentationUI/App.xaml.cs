@@ -38,14 +38,14 @@ namespace PresentationUI
             AppHost = Host.CreateDefaultBuilder()
                 .UseSerilog((host, loggerConfiguration) =>
                 {
-                    loggerConfiguration.WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
-                        .WriteTo.Debug();
-                        //.MinimumLevel.Error()
-                        //.MinimumLevel.Override("LoggingDemo.Commands", Serilog.Events.LogEventLevel.Debug);
+                    loggerConfiguration.WriteTo.File("C:/Users/Юля/source/repos/EventPlanner/EventPlanner/PresentationUI/logs/log.txt", rollingInterval: RollingInterval.Day)
+                        .WriteTo.Debug()
+                        .MinimumLevel.Information()
+                        .MinimumLevel.Override("INF", Serilog.Events.LogEventLevel.Information);
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddSingleton<ILogger<LoginWindow>, Logger<LoginWindow>>();
+                    //services.AddSingleton<ILogger<LoginWindow>, Logger<LoginWindow>>();
                     services.AddSingleton<MainWindow>();
                     services.AddTransient<IUserRepository, UserRepository>();
                     services.AddTransient<IUserService, UserService>();

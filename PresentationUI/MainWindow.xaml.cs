@@ -21,12 +21,11 @@ namespace PresentationUI
     public partial class MainWindow : Window
     {
         private readonly IUserService _userService;
-
         private readonly ILogger<LoginWindow> _loginLogger;
+        private readonly ILogger<RegisterWindow> _registerLogger;
 
         public MainWindow()
         {
-            ILogger<LoginWindow> _loginLogger;
             this.InitializeComponent();
         }
 
@@ -39,7 +38,7 @@ namespace PresentationUI
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow secondWindow = new LoginWindow(this._userService, _loginLogger);
+            LoginWindow secondWindow = new LoginWindow(this._userService, _loginLogger, _registerLogger);
             secondWindow.Show();
             this.Hide();
         }

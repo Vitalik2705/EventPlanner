@@ -19,16 +19,18 @@ namespace PresentationUI
     {
         private readonly IUserService _userService;
         private readonly ILogger<LoginWindow> _loginLogger;
-        public LoginWindow(IUserService userService, ILogger<LoginWindow> loginLogger)
+        private readonly ILogger<RegisterWindow> _registerLogger;
+        public LoginWindow(IUserService userService, ILogger<LoginWindow> loginLogger, ILogger<RegisterWindow> registerLogger)
         {
             _userService = userService;
             _loginLogger = loginLogger;
+            _registerLogger = registerLogger;
             InitializeComponent();
         }
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWindow secondWindow = new RegisterWindow(_userService);
+            RegisterWindow secondWindow = new RegisterWindow(_userService, _registerLogger, _loginLogger);
             secondWindow.Show();
             this.Close();
         }
@@ -40,18 +42,18 @@ namespace PresentationUI
             var email = EmailInput.Text;
             var password = PasswordInput.Password;
 
-            var user = await _userService.Login(password, email);
-            //User user = null;
-
-            if (user != null)
+            try
             {
+                var user = await _userService.Login(password, email);
+
                 _loginLogger.LogInformation("Successfully logged into the account.");
 
                 AccountWindow secondWindow = new AccountWindow(user);
                 secondWindow.Show();
                 this.Close();
             }
-            else
+
+            catch (Exception ex)
             {
                 _loginLogger.LogError("Failed to log into the account.");
             }
