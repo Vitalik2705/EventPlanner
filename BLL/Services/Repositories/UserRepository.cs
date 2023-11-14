@@ -23,8 +23,8 @@ namespace BLL.Services.Repositories
 
         public async Task<User> Login(string password, string email)
         {
-            // var user = _context.User.FirstOrDefault(u => u.Password == password && u.Email == email);
-            var user = this._context.User.FirstOrDefault();
+            var user = _context.User.FirstOrDefault(u => u.Password == password && u.Email == email);
+            //var user = this._context.User.FirstOrDefault();
 
             if (user == null)
             {

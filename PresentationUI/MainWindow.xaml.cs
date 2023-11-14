@@ -29,10 +29,11 @@ namespace PresentationUI
             this.InitializeComponent();
         }
 
-        public MainWindow(IUserService userService, ILogger<LoginWindow> loginLogger)
+        public MainWindow(IUserService userService, ILogger<LoginWindow> loginLogger, ILogger<RegisterWindow> registerLogger)
         {
             this._userService = userService;
             this._loginLogger = loginLogger;
+            this._registerLogger = registerLogger;
             this.InitializeComponent();
         }
 
