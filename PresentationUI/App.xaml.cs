@@ -39,11 +39,13 @@ namespace PresentationUI
                 .UseSerilog((host, loggerConfiguration) =>
                 {
                     loggerConfiguration.WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)
-                        .MinimumLevel.Error()
-                        .MinimumLevel.Override("LoggingDemo.Commands", Serilog.Events.LogEventLevel.Debug);
+                        .WriteTo.Debug();
+                        //.MinimumLevel.Error()
+                        //.MinimumLevel.Override("LoggingDemo.Commands", Serilog.Events.LogEventLevel.Debug);
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddSingleton<ILogger<LoginWindow>, Logger<LoginWindow>>();
                     services.AddSingleton<MainWindow>();
                     services.AddTransient<IUserRepository, UserRepository>();
                     services.AddTransient<IUserService, UserService>();

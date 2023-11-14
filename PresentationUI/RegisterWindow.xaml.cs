@@ -23,7 +23,7 @@ namespace PresentationUI
     public partial class RegisterWindow : Window
     {
         private readonly IUserService _userService;
-        private readonly ILogger _loginLogger;
+        private readonly ILogger<LoginWindow> _loginLogger;
         public RegisterWindow(IUserService userService)
         {
             _userService = userService;

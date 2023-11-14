@@ -18,8 +18,8 @@ namespace PresentationUI
     public partial class LoginWindow : Window
     {
         private readonly IUserService _userService;
-        private readonly ILogger _loginLogger;
-        public LoginWindow(IUserService userService, ILogger loginLogger)
+        private readonly ILogger<LoginWindow> _loginLogger;
+        public LoginWindow(IUserService userService, ILogger<LoginWindow> loginLogger)
         {
             _userService = userService;
             _loginLogger = loginLogger;

@@ -22,16 +22,18 @@ namespace PresentationUI
     {
         private readonly IUserService _userService;
 
-        private readonly ILogger _loginLogger;
+        private readonly ILogger<LoginWindow> _loginLogger;
 
         public MainWindow()
         {
+            ILogger<LoginWindow> _loginLogger;
             this.InitializeComponent();
         }
 
-        public MainWindow(IUserService userService)
+        public MainWindow(IUserService userService, ILogger<LoginWindow> loginLogger)
         {
             this._userService = userService;
+            this._loginLogger = loginLogger;
             this.InitializeComponent();
         }
 
