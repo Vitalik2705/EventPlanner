@@ -23,12 +23,11 @@ namespace PresentationUI
         private readonly IUserService _userService;
         private readonly ILogger<LoginWindow> _loginLogger;
        private readonly ILogger<RegisterWindow> _registerLogger;
-        private MainWindow mainWindow;
 
-        //public MainWindow()
-        //{
-        //    //this.InitializeComponent();
-        //}
+        public MainWindow()
+        {
+            //this.InitializeComponent();
+        }
 
         public MainWindow(IUserService userService/*, ILogger<LoginWindow> loginLogger, ILogger<RegisterWindow> registerLogger*/)
         {
@@ -38,10 +37,7 @@ namespace PresentationUI
             this.InitializeComponent();
         }
 
-        public MainWindow(MainWindow mainWindow)
-        {
-            this.mainWindow = mainWindow;
-        }
+      
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
