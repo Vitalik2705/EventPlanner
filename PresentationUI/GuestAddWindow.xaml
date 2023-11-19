@@ -65,7 +65,7 @@
                   Width="40"
                   Source="images/Mask group1.png"/>
             <TextBlock Canvas.Left="65" Canvas.Top="172" FontSize="25">
-                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000">
+                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000" Click="Recipes_Click">
             Рецепти
                     </Hyperlink>
             </TextBlock>

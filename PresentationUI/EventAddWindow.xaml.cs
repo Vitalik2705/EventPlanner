@@ -37,5 +37,12 @@ namespace PresentationUI
             secondWindow.Show();
             this.Close();
         }
+
+        private void Recipes_Click(object sender, RoutedEventArgs e)
+        {
+            RecipeListWindow secondWindow = new RecipeListWindow();
+            secondWindow.Show();
+            this.Close();
+        }
     }
 }

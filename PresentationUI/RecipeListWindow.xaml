@@ -1,4 +1,4 @@
-﻿<Window x:Class="PresentationUI.EventListWindow"
+﻿<Window x:Class="PresentationUI.RecipeListWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PresentationUI"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="GuestListWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
+        Title="RecipeListWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -47,20 +47,20 @@
         </Canvas>
 
         <Canvas x:Name="eneCanvas" Grid.Column="0" Grid.Row="1">
-            <Rectangle Canvas.Top="95" Width="198" Height="50" Fill="#FFFFFF" />
             <Image  Canvas.Left="10"
                   Canvas.Top="95" 
                   Height="50"
                   Width="40"
                   Source="images/mdi_events.png"/>
             <TextBlock Canvas.Left="65" Canvas.Top="101" FontSize="25">
-                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000">
+                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000" Click="Events_Click">
             Події
                     </Hyperlink>
             </TextBlock>
         </Canvas>
 
         <Canvas x:Name="recipesCanvas" Grid.Column="0" Grid.Row="1">
+            <Rectangle Canvas.Top="165" Width="198" Height="50" Fill="#FFFFFF" />
             <Image  Canvas.Left="10"
                   Canvas.Top="165" 
                   Height="50"
@@ -87,9 +87,9 @@
         </Canvas>
 
         <Canvas Grid.Column="1" Grid.Row="1">
-            <TextBox x:Name="searchTextBoxEvents"
+            <TextBox x:Name="searchTextBoxRecipes"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     materialDesign:HintAssist.Hint="Пошук подій"
+                     materialDesign:HintAssist.Hint="Пошук рецептів"
                      Width="230"
                      Height="60"
                      Canvas.Left="250"
@@ -113,105 +113,105 @@
                          Canvas.Top="30"
                          Width="600"
                          Height="350"
-                         x:Name="itemListBoxEvents"
+                         x:Name="itemListBoxRecipes"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
                      >
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
                     <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">День народження</TextBlock>
+                        <TextBlock Margin="10 6 0 0" FontSize="25">Сирник</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
                     <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Випускний</TextBlock>
+                        <TextBlock Margin="10 6 0 0" FontSize="25">Цезар</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
                     <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Весілля</TextBlock>
+                        <TextBlock Margin="10 6 0 0" FontSize="25">Олів'є</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
                     <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Концерт</TextBlock>
+                        <TextBlock Margin="10 6 0 0" FontSize="25">Грецький</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
                     <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">День міста</TextBlock>
+                        <TextBlock Margin="10 6 0 0" FontSize="25">Паста Болоньєзе</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
                     <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Весілля</TextBlock>
+                        <TextBlock Margin="10 6 0 0" FontSize="25">Піца 4 сири</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
                     <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">День народження</TextBlock>
+                        <TextBlock Margin="10 6 0 0" FontSize="25">Картопля по-селянськи</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
                     <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">День народження</TextBlock>
+                        <TextBlock Margin="10 6 0 0" FontSize="25">Капрічіоза</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
                     <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">День народження</TextBlock>
+                        <TextBlock Margin="10 6 0 0" FontSize="25">Studente Aldente</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
                     <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">День народження</TextBlock>
+                        <TextBlock Margin="10 6 0 0" FontSize="25">Піца Маргарита</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
                     <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">День народження</TextBlock>
+                        <TextBlock Margin="10 6 0 0" FontSize="25">Піца Цезаріо</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
                     <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">День народження</TextBlock>
+                        <TextBlock Margin="10 6 0 0" FontSize="25">Піца Байрактар</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
             </ListBox>
         </Canvas>
 
-        <Canvas Grid.Column="1" Grid.Row="2">
+        <Canvas Grid.Column="1" Grid.Row="1">
             <Button x:Name="AddGuest"
-                    Width="60" 
-                    Height="60" 
+                    Width="56" 
+                    Height="44" 
                     Background="#565A7B"
                     FontSize="19"
                     Foreground="White"
-                    Canvas.Left="650"
-                    Canvas.Top="400"
-                    Click="Add_Event_Click">
+                    Canvas.Left="555"
+                    Canvas.Top="16"
+                    Click="Add_Recipe_Click" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="7"></Setter>
                     </Style>
                 </Button.Resources>
-                <Image Source="images/plus.png"/>
+                <Image Source="images/plus.png" Height="23" Width="29"/>
             </Button>
 
-            <TextBlock Foreground="Black" Canvas.Left="620" Canvas.Top="460" FontSize="20">
-            Додати подію
+            <TextBlock Foreground="Black" Canvas.Left="630" Canvas.Top="23" FontSize="20">
+            Додати рецепт
             </TextBlock>
         </Canvas>
     </Grid>

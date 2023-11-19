@@ -66,7 +66,7 @@
                   Width="40"
                   Source="images/Mask group1.png"/>
             <TextBlock Canvas.Left="65" Canvas.Top="172" FontSize="25">
-                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000">
+                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000" Click="Recipes_Click">
             Рецепти
                     </Hyperlink>
             </TextBlock>
@@ -118,73 +118,73 @@
                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
                      >
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#C9C9C9" Orientation="Horizontal">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
                         <TextBlock Margin="10 6 0 0" FontSize="25">Яцків Віталій</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#C9C9C9" Orientation="Horizontal">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
                         <TextBlock Margin="10 6 0 0" FontSize="25">Божена Сальнікова</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#C9C9C9" Orientation="Horizontal">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
                         <TextBlock Margin="10 6 0 0" FontSize="25">Вікторія Макух</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#C9C9C9" Orientation="Horizontal">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
                         <TextBlock Margin="10 6 0 0" FontSize="25">Камінська Юлія</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#C9C9C9" Orientation="Horizontal">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
                         <TextBlock Margin="10 6 0 0" FontSize="25">Яцків Віталій</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#C9C9C9" Orientation="Horizontal">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
                         <TextBlock Margin="10 6 0 0" FontSize="25">Божена Сальнікова</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#C9C9C9" Orientation="Horizontal">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
                         <TextBlock Margin="10 6 0 0" FontSize="25">Вікторія Макух</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#C9C9C9" Orientation="Horizontal">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
                         <TextBlock Margin="10 6 0 0" FontSize="25">Камінська Юлія</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#C9C9C9" Orientation="Horizontal">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
                         <TextBlock Margin="10 6 0 0" FontSize="25">Яцків Віталій</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#C9C9C9" Orientation="Horizontal">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
                         <TextBlock Margin="10 6 0 0" FontSize="25">Божена Сальнікова</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#C9C9C9" Orientation="Horizontal">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
                         <TextBlock Margin="10 6 0 0" FontSize="25">Вікторія Макух</TextBlock>
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#C9C9C9" Orientation="Horizontal">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
                         <TextBlock Margin="10 6 0 0" FontSize="25">Камінська Юлія</TextBlock>
                     </StackPanel>

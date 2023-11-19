@@ -56,6 +56,13 @@ namespace PresentationUI
             this.Close();
         }
 
+        private void Recipes_Click(object sender, RoutedEventArgs e)
+        {
+            RecipeListWindow secondWindow = new RecipeListWindow();
+            secondWindow.Show();
+            this.Close();
+        }
+
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchText = this.searchTextBox.Text.ToLower();

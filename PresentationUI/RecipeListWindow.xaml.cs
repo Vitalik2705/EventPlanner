@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace PresentationUI
 {
     /// <summary>
-    /// Interaction logic for EventListWindow.xaml
+    /// Interaction logic for RecipeListWindow.xaml
     /// </summary>
-    public partial class EventListWindow : Window
+    public partial class RecipeListWindow : Window
     {
-        public EventListWindow()
+        public RecipeListWindow()
         {
             InitializeComponent();
         }
@@ -38,6 +38,20 @@ namespace PresentationUI
             // this.Close();
         }
 
+        private void Add_Recipe_Click(object sender, RoutedEventArgs e)
+        {
+            GuestAddWindow secondWindow = new GuestAddWindow();
+            secondWindow.Show();
+            this.Close();
+        }
+
+        private void Events_Click(object sender, RoutedEventArgs e)
+        {
+            EventListWindow secondWindow = new EventListWindow();
+            secondWindow.Show();
+            this.Close();
+        }
+
         private void Guests_Click(object sender, RoutedEventArgs e)
         {
             GuestListWindow secondWindow = new GuestListWindow();
@@ -52,17 +66,10 @@ namespace PresentationUI
             this.Close();
         }
 
-        private void Add_Event_Click(object sender, RoutedEventArgs e)
-        {
-            EventAddWindow secondWindow = new EventAddWindow();
-            secondWindow.Show();
-            this.Close();
-        }
-
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string searchText = this.searchTextBoxEvents.Text.ToLower();
-            foreach (var item in this.itemListBoxEvents.Items)
+            string searchText = this.searchTextBoxRecipes.Text.ToLower();
+            foreach (var item in this.itemListBoxRecipes.Items)
             {
                 if (item is ListBoxItem listBoxItem)
                 {
@@ -116,4 +123,3 @@ namespace PresentationUI
         }
     }
 }
-
