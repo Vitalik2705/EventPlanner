@@ -34,7 +34,7 @@ namespace BLL.Services.Repositories
 
         async public Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? fillter = null)
         {
-            IQueryable<T> query = _table;
+            IQueryable<T> query = this._table;
             if (fillter != null)
             {
                 query.Where(fillter);

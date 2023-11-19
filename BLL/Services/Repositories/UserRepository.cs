@@ -11,24 +11,29 @@ namespace BLL.Services.Repositories
     using System.Threading.Tasks;
     using DAL.Data;
     using DAL.Models;
+    using Microsoft.EntityFrameworkCore;
 
     public class UserRepository : IUserRepository
     {
         private EventPlannerContext _context;
+        private DbSet<User> _table;
 
         public UserRepository(EventPlannerContext context)
         {
             this._context = context;
+            this._table = this._context.Set<User>();
         }
 
         public async Task<User> Login(string password, string email)
         {
-            // var user = _context.User.FirstOrDefault(u => u.Password == password && u.Email == email);
-            var user = this._context.User.FirstOrDefault();
+            IQueryable<User> query = this._table.Where(x => x.Email == email && x.Password == password);
+            // var user = this._context.User.FirstOrDefaultAsync(u => u.Password == password && u.Email == email);
+            
+            var user = await query.FirstOrDefaultAsync();
 
             if (user == null)
             {
-                return null;
+                throw new ArgumentNullException(nameof(user), "Parameter 'name' cannot be null.");
             }
 
             return user;
@@ -44,11 +49,11 @@ namespace BLL.Services.Repositories
                 PhoneNumber = "8432652",
                 Email = user1.Email,
                 Password = user1.Password,
-                Events = new List<Event>(),
-                Gender = Gender.Female,
-                CreatedDate = DateTime.UtcNow,
-                ModifiedDate = DateTime.UtcNow,
-                UserImage = new byte[6],
+                //Events = new List<Event>(),
+                //Gender = Gender.Female,
+                //CreatedDate = DateTime.UtcNow,
+                //ModifiedDate = DateTime.UtcNow,
+                //UserImage = new byte[6],
             };
 
             await this._context.AddAsync(user);

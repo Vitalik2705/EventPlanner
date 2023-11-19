@@ -1,33 +1,17 @@
-﻿//using DAL.Data;
-//using DAL.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using BLL.Services.Interfaces;
-using BLL.Services.Repositories;
-using DAL.Data;
-using Serilog;
-using Microsoft.Extensions.Logging;
-
-namespace PresentationUI
+﻿namespace PresentationUI
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    /// 
-
-
-
+    using System.Windows;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.DependencyInjection;
+    using BLL.Services.Interfaces;
+    using BLL.Services.Repositories;
+    using DAL.Data;
+    using Serilog;
+    using Microsoft.EntityFrameworkCore.Design;
+    using Microsoft.Extensions.Logging;
 
     public partial class App : Application
     {
@@ -36,23 +20,21 @@ namespace PresentationUI
         public App()
         {
             AppHost = Host.CreateDefaultBuilder()
-                .UseSerilog((host, loggerConfiguration) =>
-                {
-                    loggerConfiguration.WriteTo.File("C:/Users/Юля/source/repos/EventPlanner/EventPlanner/PresentationUI/logs/log.txt", rollingInterval: RollingInterval.Day)
-                        .WriteTo.Debug()
-                        .MinimumLevel.Information()
-                        .MinimumLevel.Override("INF", Serilog.Events.LogEventLevel.Information);
-                })
+                //.UseSerilog((host, loggerConfiguration) =>
+                //{
+                //    loggerConfiguration.WriteTo.File("C:/Users/bozen/Documents/Програмна інженерія/EventPlanner/PresentationUI/logs/log.txt", rollingInterval: RollingInterval.Day)
+                //        .WriteTo.Debug()
+                //        .MinimumLevel.Information()
+                //        .MinimumLevel.Override("INF", Serilog.Events.LogEventLevel.Information);
+                //})
                 .ConfigureServices((hostContext, services) =>
                 {
-                    //services.AddSingleton<ILogger<LoginWindow>, Logger<LoginWindow>>();
                     services.AddSingleton<MainWindow>();
                     services.AddTransient<IUserRepository, UserRepository>();
                     services.AddTransient<IUserService, UserService>();
-                    //services.AddTransient<IGenericRepository, GenericRepository>();
-                    services.AddTransient<IDesignTimeDbContextFactory<EventPlannerContext>, EventPlannerContextFactory>();
+                    services.AddSingleton<IDesignTimeDbContextFactory<EventPlannerContext>, EventPlannerContextFactory>();
                     services.AddTransient<EventPlannerContext>();
-                    //services.AddTransient<ILogger<LoginWindow>, Logger<LoginWindow>>();
+                    services.AddTransient<ILogger<LoginWindow>, Logger<LoginWindow>>();
                     //services.AddTransient<ILogger<RegisterWindow>, Logger<RegisterWindow>>();
                 })
                 .Build();

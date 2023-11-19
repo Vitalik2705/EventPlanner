@@ -27,18 +27,18 @@ namespace DAL.Data
         public EventPlannerContext(DbContextOptions<EventPlannerContext> options)
             : base(options)
         {
-            this.Database.Migrate();
+           // this.Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var connectionString = this._configuration?.GetConnectionString("EventPlannerDbConnectionString");
-                if (connectionString != null)
-                {
-                    optionsBuilder.UseNpgsql(connectionString);
-                }
+                //var connectionString = this._configuration?.GetConnectionString("Host=localhost;Port=5432;Username=postgres;Password=Yuiwerghjsdf21;Database=EventPlanner");
+                //if (connectionString != null)
+                //{
+                    optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=Yuiwerghjsdf21;Database=EventPlanner");
+                //}
             }
         }
 
@@ -56,9 +56,24 @@ namespace DAL.Data
             {
                 annotation.Annotate();
             }
+
+            //modelBuilder.Entity<User>().HasData(
+            //    new User
+            //    {
+            //        Surname = "Сальнікова",
+            //        Name = "Божена",
+            //        PhoneNumber = "8432652",
+            //        Email = "1111",
+            //        Password = "1111",
+            //        Events = new List<Event>(),
+            //        Gender = Gender.Female,
+            //        CreatedDate = DateTime.UtcNow,
+            //        ModifiedDate = DateTime.UtcNow,
+            //        UserImage = new byte[6],
+            //    });
         }
 
-        public DbSet<User> User { get; set; } = default!;
+        public DbSet<User> User { get; set; }
 
         public DbSet<Recipe> Recipe { get; set; }
 

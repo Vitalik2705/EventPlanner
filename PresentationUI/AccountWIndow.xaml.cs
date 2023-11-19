@@ -1,4 +1,8 @@
-﻿namespace PresentationUI
+﻿// <copyright file="AccountWIndow.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace PresentationUI
 {
     using System.Windows;
     using DAL.Models;

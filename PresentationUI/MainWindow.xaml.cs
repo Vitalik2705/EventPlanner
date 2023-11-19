@@ -22,18 +22,25 @@ namespace PresentationUI
     {
         private readonly IUserService _userService;
         private readonly ILogger<LoginWindow> _loginLogger;
-        private readonly ILogger<RegisterWindow> _registerLogger;
+       private readonly ILogger<RegisterWindow> _registerLogger;
+        private MainWindow mainWindow;
 
-        public MainWindow()
+        //public MainWindow()
+        //{
+        //    //this.InitializeComponent();
+        //}
+
+        public MainWindow(IUserService userService/*, ILogger<LoginWindow> loginLogger, ILogger<RegisterWindow> registerLogger*/)
         {
+            this._userService = userService;
+            //this._loginLogger = loginLogger;
+            //this._registerLogger = registerLogger;
             this.InitializeComponent();
         }
 
-        public MainWindow(IUserService userService, ILogger<LoginWindow> loginLogger)
+        public MainWindow(MainWindow mainWindow)
         {
-            this._userService = userService;
-            this._loginLogger = loginLogger;
-            this.InitializeComponent();
+            this.mainWindow = mainWindow;
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)

@@ -13,7 +13,7 @@ namespace BLL.Services.Interfaces
 
         public UserService(IUserRepository repository)
         {
-            _userRepository = repository;
+            this._userRepository = repository;
         }
 
         //public async Task<IEnumerable<User>> GetAll(Expression<Func<User, bool>>? filter = null)
@@ -41,15 +41,19 @@ namespace BLL.Services.Interfaces
         //    await _userRepository.DeleteAsync(id);
         //}
 
+
+        /// <inheritdoc/>
         public async Task<User> Login(string password, string email)
         {
-            var user = await _userRepository.Login(password, email);
+            var user = await this._userRepository.Login(password, email);
 
             return user;
         }
+
+        /// <inheritdoc/>
         public async Task<User> Register(User user)
         {
-            var regUser = await _userRepository.Register(user);
+            var regUser = await this._userRepository.Register(user);
 
             return regUser;
         }
