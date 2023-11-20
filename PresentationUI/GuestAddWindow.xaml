@@ -90,9 +90,9 @@
                 Інформація про гостя
             </TextBlock>
             
-            <TextBox x:Name="FirstLastNameInput"
+            <TextBox x:Name="FirstNameInput"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     materialDesign:HintAssist.Hint="Ім'я та прізвище"
+                     materialDesign:HintAssist.Hint="Ім'я"
                      Width="230"
                      Height="50"
                      Canvas.Left="80"
@@ -102,9 +102,9 @@
                      BorderBrush="#565A7B" 
                      materialDesign:HintAssist.FloatingOffset="0,-18" />
 
-            <TextBox x:Name="PhoneNumberInput"
+            <TextBox x:Name="LastNameInput"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     materialDesign:HintAssist.Hint="Номер телефону"
+                     materialDesign:HintAssist.Hint="Прізвище"
                      Width="230"
                      Height="50"
                      Canvas.Left="470"
@@ -114,7 +114,7 @@
                      BorderBrush="#565A7B" 
                      materialDesign:HintAssist.FloatingOffset="0,-18" />
 
-            <TextBox x:Name="EmailInput"
+            <!--<TextBox x:Name="EmailInput"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      materialDesign:HintAssist.Hint="Електронна пошта"
                      Width="230"
@@ -124,14 +124,14 @@
                      FontSize="17"
                      BorderThickness="0 0 0 1.5" 
                      BorderBrush="#565A7B" 
-                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+                     materialDesign:HintAssist.FloatingOffset="0,-18" />-->
 
             <ComboBox 
                 x:Name="SexInput"
                 Style="{StaticResource MaterialDesignComboBox}"
                 Width="230"
                 Height="50"
-                Canvas.Left="470"
+                Canvas.Left="250"
                 Canvas.Top="230"
                 FontSize="17"
                 BorderThickness="0 0 0 1.5" 
@@ -143,7 +143,7 @@
                 <ComboBoxItem>Жінка</ComboBoxItem>
             </ComboBox>
 
-            <TextBox x:Name="FeaturesOfNutritionInput"
+            <!--<TextBox x:Name="FeaturesOfNutritionInput"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      materialDesign:HintAssist.Hint="Особливості харчування"
                      Width="340"
@@ -153,7 +153,7 @@
                      FontSize="17"
                      BorderThickness="0 0 0 1.5" 
                      BorderBrush="#565A7B" 
-                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+                     materialDesign:HintAssist.FloatingOffset="0,-18" />-->
 
             <Button x:Name="AddGuest"
                     Width="60" 
@@ -163,6 +163,7 @@
                     Foreground="White"
                     Canvas.Left="350"
                     Canvas.Top="450"
+                    Click="AddGuest_Click"
                     >
                 <Button.Resources>
                     <Style TargetType="Border">

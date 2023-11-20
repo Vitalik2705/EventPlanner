@@ -27,8 +27,9 @@ namespace BLL.Services.Repositories
         public async Task<User> Login(string password, string email)
         {
             IQueryable<User> query = this._table.Where(x => x.Email == email && x.Password == password);
+
             // var user = this._context.User.FirstOrDefaultAsync(u => u.Password == password && u.Email == email);
-            
+
             var user = await query.FirstOrDefaultAsync();
 
             if (user == null)
@@ -39,24 +40,9 @@ namespace BLL.Services.Repositories
             return user;
         }
 
-        public async Task<User> Register(User user1)
+        public async Task<User> Register(User user)
         {
-            User user = new ()
-            {
-                //UserId = 3,
-                Surname = "Божена",
-                Name = "Сальнікова",
-                PhoneNumber = "8432652",
-                Email = user1.Email,
-                Password = user1.Password,
-                //Events = new List<Event>(),
-                //Gender = Gender.Female,
-                //CreatedDate = DateTime.UtcNow,
-                //ModifiedDate = DateTime.UtcNow,
-                //UserImage = new byte[6],
-            };
-
-            await this._context.AddAsync(user);
+            await this._table.AddAsync(user);
             await this._context.SaveChangesAsync();
 
             return user;

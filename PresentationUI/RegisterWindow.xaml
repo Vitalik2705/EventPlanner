@@ -111,7 +111,7 @@
                      BorderBrush="#565A7B" 
                      materialDesign:HintAssist.FloatingOffset="0,-18" />
 
-            <ComboBox 
+            <ComboBox x:Name="GenderItem"
                 Style="{StaticResource MaterialDesignComboBox}"
                 Width="115"
                 Height="50"

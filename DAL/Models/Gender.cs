@@ -1,4 +1,6 @@
-﻿
+﻿// <copyright file="Gender.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace DAL.Models
 {

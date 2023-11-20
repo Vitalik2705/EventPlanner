@@ -12,25 +12,26 @@ namespace PresentationUI
     /// <summary>
     /// Interaction logic for LoginWindow.xaml.
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class LoginWindow : Window, ILoginWindow
     {
         private readonly IUserService _userService;
-        private readonly ILogger<LoginWindow> _loginLogger;
-        private readonly ILogger<RegisterWindow> _registerLogger;
+        private readonly INavigationService _navigationService;
+        //private readonly ILogger<LoginWindow> _loginLogger;
+        //private readonly ILogger<RegisterWindow> _registerLogger;
 
 
-        public LoginWindow(IUserService userService, ILogger<LoginWindow> loginLogger, ILogger<RegisterWindow> registerLogger)
+        public LoginWindow(IUserService userService, INavigationService navigationService/*, ILogger<LoginWindow> loginLogger, ILogger<RegisterWindow> registerLogger*/)
         {
+            _navigationService = navigationService;
             this._userService = userService;
-            this._loginLogger = loginLogger;
-            this._registerLogger = registerLogger;
+            // this._loginLogger = loginLogger;
+            // this._registerLogger = registerLogger;
             this.InitializeComponent();
         }
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWindow secondWindow = new RegisterWindow(this._userService, this._registerLogger, this._loginLogger);
-            secondWindow.Show();
+            _navigationService.NavigateTo<IRegisterWindow>();
             this.Close();
         }
 
@@ -47,7 +48,7 @@ namespace PresentationUI
 
                 //this._loginLogger.LogInformation("Successfully logged into the account.");
 
-                AccountWindow secondWindow = new AccountWindow(user);
+                AccountWindow secondWindow = new AccountWindow(user, _navigationService);
                 secondWindow.Show();
                 this.Close();
             }

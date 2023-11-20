@@ -20,15 +20,15 @@ namespace DAL.Models
 
         public string Password { get; set; }
 
-        //public virtual ICollection<Event>? Events { get; set; }
+        public virtual ICollection<Event>? Events { get; set; }
 
-        //public Gender Gender { get; set; }
+        public Gender Gender { get; set; }
 
-        //public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
-        //public DateTime? ModifiedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
 
-        //public byte[]? UserImage { get; set; }
+        public byte[]? UserImage { get; set; }
 
     }
 }

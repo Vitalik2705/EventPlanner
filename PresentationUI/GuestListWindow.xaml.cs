@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,10 +18,15 @@ namespace PresentationUI
     /// <summary>
     /// Interaction logic for GuestListWindow.xaml
     /// </summary>
-    public partial class GuestListWindow : Window
+    public partial class GuestListWindow : Window, IGuestListWindow
     {
-        public GuestListWindow()
+        //private readonly IGuestService _guestService;
+        private readonly INavigationService _navigationService;
+
+        public GuestListWindow(INavigationService navigationService)
         {
+            //_guestService = guestService;
+            _navigationService = navigationService;
             InitializeComponent();
         }
 
@@ -40,8 +46,7 @@ namespace PresentationUI
 
         private void Add_Guest_Click(object sender, RoutedEventArgs e)
         {
-            GuestAddWindow secondWindow = new GuestAddWindow();
-            secondWindow.Show();
+            _navigationService.NavigateTo<IGuestAddWindow>();
             this.Close();
         }
 

@@ -1,12 +1,10 @@
-﻿using DAL.Models;
-using BLL.Services.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq.Expressions;
+﻿
 
 namespace BLL.Services.Interfaces
 {
+    using DAL.Models;
+    using BLL.Services.Repositories;
+
     public class UserService : IUserService
     {
         private IUserRepository _userRepository;

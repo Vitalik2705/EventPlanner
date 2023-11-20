@@ -4,12 +4,7 @@
 
 namespace DAL.Data
 {
-    using System;
     using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using DAL.Annotation;
     using DAL.Models;
     using Microsoft.EntityFrameworkCore;
@@ -34,11 +29,7 @@ namespace DAL.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //var connectionString = this._configuration?.GetConnectionString("Host=localhost;Port=5432;Username=postgres;Password=Yuiwerghjsdf21;Database=EventPlanner");
-                //if (connectionString != null)
-                //{
-                    optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=Yuiwerghjsdf21;Database=EventPlanner");
-                //}
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=Yuiwerghjsdf21;Database=EventPlanner");
             }
         }
 
@@ -56,21 +47,6 @@ namespace DAL.Data
             {
                 annotation.Annotate();
             }
-
-            //modelBuilder.Entity<User>().HasData(
-            //    new User
-            //    {
-            //        Surname = "Сальнікова",
-            //        Name = "Божена",
-            //        PhoneNumber = "8432652",
-            //        Email = "1111",
-            //        Password = "1111",
-            //        Events = new List<Event>(),
-            //        Gender = Gender.Female,
-            //        CreatedDate = DateTime.UtcNow,
-            //        ModifiedDate = DateTime.UtcNow,
-            //        UserImage = new byte[6],
-            //    });
         }
 
         public DbSet<User> User { get; set; }
