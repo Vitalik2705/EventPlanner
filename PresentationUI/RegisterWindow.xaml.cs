@@ -16,8 +16,7 @@ namespace PresentationUI
     {
         private readonly IUserService _userService;
         private readonly INavigationService _navigationService;
-        //private readonly ILogger<LoginWindow> _loginLogger;
-        //private readonly ILogger<RegisterWindow> _registerLogger;
+        private readonly ILogger<RegisterWindow> _registerLogger;
 
 
 #pragma warning disable SA1614 // Element parameter documentation should have text
@@ -25,13 +24,12 @@ namespace PresentationUI
         /// Initializes a new instance of the <see cref="RegisterWindow"/> class.
         /// </summary>
         /// <param name="userService"></param>
-        public RegisterWindow(IUserService userService, INavigationService navigationService/*, ILogger<RegisterWindow> registerLogger, ILogger<LoginWindow> loginLogger*/)
+        public RegisterWindow(IUserService userService, INavigationService navigationService, ILogger<RegisterWindow> registerLogger)
 #pragma warning restore SA1614 // Element parameter documentation should have text
         {
             _navigationService = navigationService;
             this._userService = userService;
-            //this._registerLogger = registerLogger;
-            //this._loginLogger = loginLogger;
+            this._registerLogger = registerLogger;
             this.InitializeComponent();
         }
 
@@ -44,7 +42,7 @@ namespace PresentationUI
 
         private async void Register_Click(object sender, RoutedEventArgs e)
         {
-            // this._registerLogger.LogInformation("Attempting to register the account.");
+            this._registerLogger.LogInformation("Attempting to register the account.");
 
             var email = this.EmailInput.Text;
             var password = this.PasswordInput.Password;
@@ -71,7 +69,7 @@ namespace PresentationUI
             {
                 var userReg = await this._userService.Register(user);
 
-                //this._registerLogger.LogInformation("Successfully register the account.");
+                this._registerLogger.LogInformation("Successfully register the account.");
 
                 AccountWindow secondWindow = new AccountWindow(user, _navigationService);
                 secondWindow.Show();
@@ -79,7 +77,7 @@ namespace PresentationUI
             }
             catch (Exception ex)
             {
-                //this._registerLogger.LogError("Failed to register the account.");
+                this._registerLogger.LogError("Failed to register the account.");
             }
         }
     }

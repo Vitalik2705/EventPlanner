@@ -22,20 +22,16 @@ namespace PresentationUI
     {
         private readonly IUserService _userService;
         private readonly INavigationService _navigationService;
-        //private readonly ILogger<LoginWindow> _loginLogger;
-        //private readonly ILogger<RegisterWindow> _registerLogger;
 
         public MainWindow()
         {
-            //this.InitializeComponent();
+            this.InitializeComponent();
         }
 
-        public MainWindow(IUserService userService, INavigationService navigationService/*, ILogger<LoginWindow> loginLogger, ILogger<RegisterWindow> registerLogger*/)
+        public MainWindow(IUserService userService, INavigationService navigationService)
         {
             _navigationService = navigationService;
             this._userService = userService;
-            //this._loginLogger = loginLogger;
-            //this._registerLogger = registerLogger;
             this.InitializeComponent();
         }
 
@@ -43,7 +39,7 @@ namespace PresentationUI
         {
             _navigationService.NavigateTo<ILoginWindow>();
 
-            //LoginWindow secondWindow = new LoginWindow(this._userService/*, _loginLogger, _registerLogger*/);
+            //LoginWindow secondWindow = new LoginWindow(this._userService, _navigationService, _loginLogger);
             //secondWindow.Show();
             this.Hide();
         }

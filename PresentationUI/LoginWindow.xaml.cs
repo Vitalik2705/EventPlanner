@@ -16,16 +16,14 @@ namespace PresentationUI
     {
         private readonly IUserService _userService;
         private readonly INavigationService _navigationService;
-        //private readonly ILogger<LoginWindow> _loginLogger;
-        //private readonly ILogger<RegisterWindow> _registerLogger;
+        private readonly ILogger<LoginWindow> _loginLogger;
 
 
-        public LoginWindow(IUserService userService, INavigationService navigationService/*, ILogger<LoginWindow> loginLogger, ILogger<RegisterWindow> registerLogger*/)
+        public LoginWindow(IUserService userService, INavigationService navigationService, ILogger<LoginWindow> loginLogger)
         {
             _navigationService = navigationService;
             this._userService = userService;
-            // this._loginLogger = loginLogger;
-            // this._registerLogger = registerLogger;
+            this._loginLogger = loginLogger;
             this.InitializeComponent();
         }
 
@@ -37,7 +35,7 @@ namespace PresentationUI
 
         private async void Login_Click(object sender, RoutedEventArgs e)
         {
-            //this._loginLogger.LogInformation("Attempting to log into the account.");
+            this._loginLogger.LogInformation("Attempting to log into the account.");
 
             var email = this.EmailInput.Text;
             var password = this.PasswordInput.Password;
@@ -46,7 +44,7 @@ namespace PresentationUI
             {
                 var user = await this._userService.Login(password, email);
 
-                //this._loginLogger.LogInformation("Successfully logged into the account.");
+                this._loginLogger.LogInformation("Successfully logged into the account.");
 
                 AccountWindow secondWindow = new AccountWindow(user, _navigationService);
                 secondWindow.Show();
@@ -54,8 +52,9 @@ namespace PresentationUI
             }
             catch (Exception ex)
             {
-                //this._loginLogger.LogError($"Failed to log into the account. {ex}");
+                this._loginLogger.LogError("Failed to log into the account.");
             }
+
         }
     }
 }

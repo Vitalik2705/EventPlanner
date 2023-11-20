@@ -1,5 +1,6 @@
 ﻿using BLL.Services.Interfaces;
 using DAL.Models;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,16 +24,19 @@ namespace PresentationUI
     {
         private readonly INavigationService _navigationService;
         private readonly IGuestService _guestService;
+        private readonly ILogger<GuestAddWindow> _guestLogger;
 
-        public GuestAddWindow(IGuestService guestService, INavigationService navigationService)
+        public GuestAddWindow(IGuestService guestService, INavigationService navigationService, ILogger<GuestAddWindow> guestLogger)
         {
             _navigationService = navigationService;
             _guestService = guestService;
+            _guestLogger = guestLogger;
             InitializeComponent();
         }
 
         private async void AddGuest_Click(object sender, RoutedEventArgs e)
         {
+            this._guestLogger.LogInformation("Attempting to add the guest.");
 
             var name = this.FirstNameInput.Text;
             var surname = this.LastNameInput.Text;
@@ -48,6 +52,8 @@ namespace PresentationUI
             {
                 await _guestService.AddGuest(guest);
 
+                this._guestLogger.LogInformation("Successfully added the guest.");
+
                 //AccountWindow secondWindow = new AccountWindow(userReg);
 
                 _navigationService.NavigateTo<IGuestListWindow>();
@@ -55,7 +61,7 @@ namespace PresentationUI
             }
             catch (Exception ex)
             {
-                
+                this._guestLogger.LogError("Failed to add the guest.");
             }
         }
     }
