@@ -4,12 +4,7 @@
 
 namespace DAL.Data
 {
-    using System;
     using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using DAL.Annotation;
     using DAL.Models;
     using Microsoft.EntityFrameworkCore;
@@ -27,18 +22,14 @@ namespace DAL.Data
         public EventPlannerContext(DbContextOptions<EventPlannerContext> options)
             : base(options)
         {
-            this.Database.Migrate();
+           // this.Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var connectionString = this._configuration?.GetConnectionString("EventPlannerDbConnectionString");
-                if (connectionString != null)
-                {
-                    optionsBuilder.UseNpgsql(connectionString);
-                }
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=123456;Database=EventPlanner");
             }
         }
 
@@ -58,7 +49,7 @@ namespace DAL.Data
             }
         }
 
-        public DbSet<User> User { get; set; } = default!;
+        public DbSet<User> User { get; set; }
 
         public DbSet<Recipe> Recipe { get; set; }
 

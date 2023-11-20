@@ -12,23 +12,26 @@ namespace PresentationUI
     /// </summary>
     public partial class AccountWindow : Window
     {
+        private readonly INavigationService _navigationService;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountWindow"/> class.
         /// </summary>
         /// <param name="user">name.</param>
-        public AccountWindow(User user)
+        public AccountWindow(User user, INavigationService navigationService)
         {
+            _navigationService = navigationService;
             this.InitializeComponent();
             string userName = $"{user.Surname} {user.Name}";
             this.UserName.Text = userName;
             this.Email.Text = user.Email;
             this.Phone.Text = user.PhoneNumber;
+            _navigationService = navigationService;
         }
 
         private void Guest_Page(object sender, RoutedEventArgs e)
         {
-            GuestListWindow secondWindow = new GuestListWindow();
-            secondWindow.Show();
+            _navigationService.NavigateTo<IGuestListWindow>();
             this.Close();
         }
     }

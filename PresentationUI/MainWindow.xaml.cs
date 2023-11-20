@@ -14,35 +14,39 @@ namespace PresentationUI
     using BLL.Services.Repositories;
     using DAL.Data;
     using DAL.Models;
+    using Microsoft.Extensions.Logging;
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1601:Partial elements should be documented", Justification = "<Pending>")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1404:Code analysis suppression should have justification", Justification = "<Pending>")]
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IMainWindow
     {
         private readonly IUserService _userService;
+        private readonly INavigationService _navigationService;
 
         public MainWindow()
         {
             this.InitializeComponent();
         }
 
-        public MainWindow(IUserService userService)
+        public MainWindow(IUserService userService, INavigationService navigationService)
         {
+            _navigationService = navigationService;
             this._userService = userService;
             this.InitializeComponent();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow secondWindow = new LoginWindow(this._userService);
-            secondWindow.Show();
+            _navigationService.NavigateTo<ILoginWindow>();
+
+            //LoginWindow secondWindow = new LoginWindow(this._userService, _navigationService, _loginLogger);
+            //secondWindow.Show();
             this.Hide();
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            GuestListWindow secondWindow = new GuestListWindow();
-            secondWindow.Show();
+            _navigationService.NavigateTo<IGuestListWindow>(); ;
             this.Hide();
         }
     }

@@ -31,27 +31,41 @@ namespace PresentationUI
         public App()
         {
             AppHost = Host.CreateDefaultBuilder()
+                .UseSerilog((host, loggerConfiguration) =>
+                {
+                    loggerConfiguration.WriteTo.File("C:/Users/Юля/source/repos/EventPlanner/EventPlanner/PresentationUI/logs/log.txt", rollingInterval: RollingInterval.Day)
+                        .WriteTo.Debug();
+                })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddSingleton<MainWindow>();
-                    services.AddTransient<IUserRepository, UserRepository>();
-                    services.AddTransient<IUserService, UserService>();
-
-                    // services.AddTransient<IGenericRepository, GenericRepository>();
-                    services.AddTransient<IDesignTimeDbContextFactory<EventPlannerContext>, EventPlannerContextFactory>();
+                    services.AddTransient<INavigationService, NavigationService>();
+                    services.AddSingleton<IDesignTimeDbContextFactory<EventPlannerContext>, EventPlannerContextFactory>();
                     services.AddTransient<EventPlannerContext>();
+                    services.AddTransient<IUserRepository, UserRepository>();
+                    services.AddTransient<IGenericRepository<Guest>, GenericRepository<Guest>>();
+                    services.AddScoped<IUserService, UserService>();
+                    services.AddScoped<IGuestService, GuestService>();
+                    services.AddTransient<IMainWindow, MainWindow>();
+                    services.AddTransient<ILoginWindow, LoginWindow>();
+                    services.AddTransient<IRegisterWindow, RegisterWindow>();
+                    services.AddTransient<IGuestListWindow, GuestListWindow>();
+                    services.AddTransient<IGuestAddWindow, GuestAddWindow>();
+                    //services.AddTransient<ILogger<LoginWindow>, Logger<LoginWindow>>();
+                    //services.AddTransient<ILogger<RegisterWindow>, Logger<RegisterWindow>>();
                 })
                 .Build();
         }
 
         protected override async void OnStartup(StartupEventArgs e)
         {
+            base.OnStartup(e);
+
             await AppHost!.StartAsync();
 
-            var startupForm = AppHost.Services.GetRequiredService<MainWindow>();
+            var startupForm = AppHost.Services.GetRequiredService<IMainWindow>();
             startupForm.Show();
 
-            base.OnStartup(e);
+            
         }
 
         protected override async void OnExit(ExitEventArgs e)

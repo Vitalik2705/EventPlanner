@@ -19,12 +19,15 @@ namespace BLL.Services.Repositories
             this._context = _context;
             _table = _context.Set<T>();
         }
-        async public Task AddAsync(T model)
+
+        /// <inheritdoc/>
+        public async Task AddAsync(T model)
         {
             await _table.AddAsync(model);
             await SaveAsync();
         }
 
+        /// <inheritdoc/>
         async public Task DeleteAsync(int id)
         {
             T existing = await _table.FindAsync(id);
@@ -32,9 +35,10 @@ namespace BLL.Services.Repositories
             await SaveAsync();
         }
 
-        async public Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? fillter = null)
+        /// <inheritdoc/>
+        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? fillter = null)
         {
-            IQueryable<T> query = _table;
+            IQueryable<T> query = this._table;
             if (fillter != null)
             {
                 query.Where(fillter);
@@ -43,10 +47,12 @@ namespace BLL.Services.Repositories
             return await query.ToListAsync();
         }
 
-        async public Task<T> GetAsync(Expression<Func<T, bool>>? fillter = null)
+        /// <inheritdoc/>
+        public async Task<T> GetAsync(Expression<Func<T, bool>>? fillter = null)
         {
             IQueryable<T> query = _table;
-            if(fillter != null)
+
+            if (fillter != null)
             {
                 query.Where(fillter);
             }
@@ -54,16 +60,18 @@ namespace BLL.Services.Repositories
             return await query.FirstOrDefaultAsync();
         }
 
-        async public Task UpdateAsync(T model)
+        /// <inheritdoc/>
+        public async Task UpdateAsync(T model)
         {
-            _table.Attach(model);
-            _context.Entry(model).State = EntityState.Modified;
-            await SaveAsync();
+            this._table.Attach(model);
+            this._context.Entry(model).State = EntityState.Modified;
+            await this.SaveAsync();
         }
-        async public Task SaveAsync()
+
+        /// <inheritdoc/>
+        public async Task SaveAsync()
         {
-            await _context.SaveChangesAsync();
-            
+            await this._context.SaveChangesAsync();
         }
     }
 }
