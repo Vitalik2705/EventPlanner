@@ -1,31 +1,27 @@
-﻿// <copyright file="GuestListWindow.xaml.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace PresentationUI
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
-    using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-    using System.Windows.Shapes;
-
     /// <summary>
-    /// Interaction logic for GuestListWindow.xaml.
+    /// Interaction logic for RecipeListWindow.xaml
     /// </summary>
-    public partial class GuestListWindow : Window
+    public partial class RecipeListWindow : Window
     {
-        public GuestListWindow()
+        public RecipeListWindow()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void Account_Page(object sender, RoutedEventArgs e)
@@ -42,7 +38,7 @@ namespace PresentationUI
             // this.Close();
         }
 
-        private void Add_Guest_Click(object sender, RoutedEventArgs e)
+        private void Add_Recipe_Click(object sender, RoutedEventArgs e)
         {
             GuestAddWindow secondWindow = new GuestAddWindow();
             secondWindow.Show();
@@ -56,6 +52,13 @@ namespace PresentationUI
             this.Close();
         }
 
+        private void Guests_Click(object sender, RoutedEventArgs e)
+        {
+            GuestListWindow secondWindow = new GuestListWindow();
+            secondWindow.Show();
+            this.Close();
+        }
+
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
             RecipeListWindow secondWindow = new RecipeListWindow();
@@ -65,8 +68,8 @@ namespace PresentationUI
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string searchText = this.searchTextBox.Text.ToLower();
-            foreach (var item in this.itemListBox.Items)
+            string searchText = this.searchTextBoxRecipes.Text.ToLower();
+            foreach (var item in this.itemListBoxRecipes.Items)
             {
                 if (item is ListBoxItem listBoxItem)
                 {

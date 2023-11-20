@@ -27,5 +27,26 @@ namespace PresentationUI
         {
             this.InitializeComponent();
         }
+
+        private void Guests_Click(object sender, RoutedEventArgs e)
+        {
+            GuestListWindow secondWindow = new GuestListWindow();
+            secondWindow.Show();
+            this.Close();
+        }
+
+        private void Events_Click(object sender, RoutedEventArgs e)
+        {
+            EventListWindow secondWindow = new EventListWindow();
+            secondWindow.Show();
+            this.Close();
+        }
+
+        private void Recipes_Click(object sender, RoutedEventArgs e)
+        {
+            RecipeListWindow secondWindow = new RecipeListWindow();
+            secondWindow.Show();
+            this.Close();
+        }
     }
 }
