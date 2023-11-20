@@ -8,6 +8,13 @@ namespace PresentationUI
     using System.Windows;
     using BLL.Services.Interfaces;
     using Microsoft.Extensions.Logging;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+    using BLL.Services.Repositories;
+    using DAL.Data;
+    using DAL.Models;
 
     /// <summary>
     /// Interaction logic for LoginWindow.xaml.
@@ -29,7 +36,9 @@ namespace PresentationUI
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
+
             _navigationService.NavigateTo<IRegisterWindow>();
+
             this.Close();
         }
 

@@ -42,7 +42,9 @@ namespace BLL.Services.Repositories
 
         public async Task<User> Register(User user)
         {
+
             await this._table.AddAsync(user);
+
             await this._context.SaveChangesAsync();
 
             return user;

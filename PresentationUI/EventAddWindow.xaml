@@ -1,4 +1,4 @@
-﻿<Window x:Class="PresentationUI.GuestAddWindow"
+﻿<Window x:Class="PresentationUI.EventAddWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PresentationUI"
         mc:Ignorable="d"
-        Title="GuestAddWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
+        Title="EventAddWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -46,6 +46,7 @@
         </Canvas>
 
         <Canvas x:Name="eneCanvas" Grid.Column="0" Grid.Row="1">
+            <Rectangle Canvas.Top="95" Width="198" Height="50" Fill="#FFFFFF" />
             <Image  Canvas.Left="10"
                   Canvas.Top="95" 
                   Height="50"
@@ -72,7 +73,6 @@
         </Canvas>
 
         <Canvas x:Name="guestsCanvas" Grid.Column="0" Grid.Row="1">
-            <Rectangle Canvas.Top="235" Width="198" Height="50" Fill="#FFFFFF" />
             <Image  Canvas.Left="10"
                   Canvas.Top="235" 
                   Height="50"
@@ -85,77 +85,99 @@
             </TextBlock>
         </Canvas>
 
-        <Canvas Grid.Column="1" Grid.Row="1">
-            <TextBlock Canvas.Left="260" Canvas.Top="50" FontSize="25">
-                Інформація про гостя
-            </TextBlock>
-            
-            <TextBox x:Name="FirstNameInput"
+
+            <Canvas x:Name="MyCanvas" Grid.Column="1" Grid.Row="1">
+                <TextBlock Canvas.Left="260" Canvas.Top="50" FontSize="25">
+                Інформація про подію
+                </TextBlock>
+
+                <TextBox x:Name="EventNameInput"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     materialDesign:HintAssist.Hint="Ім'я"
+                     materialDesign:HintAssist.Hint="Назва події"
                      Width="230"
                      Height="50"
-                     Canvas.Left="80"
+                     Canvas.Left="275"
                      Canvas.Top="130"
                      FontSize="17"
                      BorderThickness="0 0 0 1.5" 
                      BorderBrush="#565A7B" 
                      materialDesign:HintAssist.FloatingOffset="0,-18" />
 
-            <TextBox x:Name="LastNameInput"
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     materialDesign:HintAssist.Hint="Прізвище"
-                     Width="230"
-                     Height="50"
-                     Canvas.Left="470"
-                     Canvas.Top="130"
-                     FontSize="17"
-                     BorderThickness="0 0 0 1.5" 
-                     BorderBrush="#565A7B" 
-                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+                <ComboBox x:Name="GuestsInput"
+                  Style="{StaticResource MaterialDesignComboBox}"
+                  Width="230" Height="50"
+                  Canvas.Left="80" Canvas.Top="230"
+                  FontSize="17" BorderThickness="0 0 0 1.5" 
+                  BorderBrush="#565A7B"
+                  materialDesign:HintAssist.FloatingOffset="0,-18"
+                  materialDesign:HintAssist.Hint="Гості"
+                  >
+                    <ComboBoxItem>Eminem</ComboBoxItem>
+                    <ComboBoxItem>50 Cent</ComboBoxItem>
+                </ComboBox>
 
-            <!--<TextBox x:Name="EmailInput"
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     materialDesign:HintAssist.Hint="Електронна пошта"
-                     Width="230"
-                     Height="50"
-                     Canvas.Left="80"
-                     Canvas.Top="230"
-                     FontSize="17"
-                     BorderThickness="0 0 0 1.5" 
-                     BorderBrush="#565A7B" 
-                     materialDesign:HintAssist.FloatingOffset="0,-18" />-->
+                <TextBlock x:Name="GuestsInputTextBlock"
+                       Canvas.Left="80"
+                       Canvas.Top="350"
+                       FontSize="20"
+                       Text="{Binding ElementName=GuestsInput, Path=SelectedItem.Content}">
+                </TextBlock>
 
-            <ComboBox 
-                x:Name="SexInput"
+                <ComboBox 
+                x:Name="DishesInput"
                 Style="{StaticResource MaterialDesignComboBox}"
                 Width="230"
                 Height="50"
-                Canvas.Left="250"
+                Canvas.Left="470"
                 Canvas.Top="230"
                 FontSize="17"
                 BorderThickness="0 0 0 1.5" 
                 BorderBrush="#565A7B"
                 materialDesign:HintAssist.FloatingOffset="0,-18"
-                materialDesign:HintAssist.Hint="Стать"
+                materialDesign:HintAssist.Hint="Страви"
                 >
-                <ComboBoxItem>Чоловік</ComboBoxItem>
-                <ComboBoxItem>Жінка</ComboBoxItem>
-            </ComboBox>
+                    <ComboBoxItem>Піца Байрактар</ComboBoxItem>
+                    <ComboBoxItem>Паста болньєзе</ComboBoxItem>
+                </ComboBox>
 
-            <!--<TextBox x:Name="FeaturesOfNutritionInput"
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     materialDesign:HintAssist.Hint="Особливості харчування"
-                     Width="340"
-                     Height="50"
-                     Canvas.Left="220"
-                     Canvas.Top="330"
-                     FontSize="17"
-                     BorderThickness="0 0 0 1.5" 
-                     BorderBrush="#565A7B" 
-                     materialDesign:HintAssist.FloatingOffset="0,-18" />-->
+                <Button
+                    x:Name="AddGuestsButton"
+                    Width="55" 
+                    Height="35" 
+                    Background="#565A7B"
+                    Foreground="White"
+                    Canvas.Left="330"
+                    Canvas.Top="247"
+                    Click="AddGuestsButton_Click"
+                    >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="7"></Setter>
+                        </Style>
+                    </Button.Resources>
+                    <Image Width="23" 
+                    Height="19" Source="images/plus (1).png"/>
+                </Button>
 
-            <Button x:Name="AddGuestButton"
+                <Button x:Name="AddDishesButton"
+                    Width="55" 
+                    Height="35" 
+                    Background="#565A7B"
+                    Foreground="White"
+                    Canvas.Left="720"
+                    Canvas.Top="247"
+                    Click="AddDishesButton_Click"
+                    >
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="7"></Setter>
+                        </Style>
+                    </Button.Resources>
+                    <Image Width="23" 
+                    Height="19" Source="images/plus (1).png"/>
+                </Button>
+
+                <Button x:Name="AddEventButton"
                     Width="60" 
                     Height="60" 
                     Background="#565A7B"
@@ -163,17 +185,16 @@
                     Foreground="White"
                     Canvas.Left="350"
                     Canvas.Top="450"
-                    Click="AddGuest_Click"
                     >
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="7"></Setter>
-                    </Style>
-                </Button.Resources>
-                <Image Source="images/plus.png"/>
-            </Button>
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="7"></Setter>
+                        </Style>
+                    </Button.Resources>
+                    <Image Source="images/plus.png"/>
+                </Button>
 
-        </Canvas>
+            </Canvas>
 
 
     </Grid>
