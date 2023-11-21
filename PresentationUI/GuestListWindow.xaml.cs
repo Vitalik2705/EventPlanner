@@ -4,6 +4,7 @@
 
 namespace PresentationUI
 {
+    using BLL.Services.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -25,11 +26,13 @@ namespace PresentationUI
     {
         //private readonly IGuestService _guestService;
         private readonly INavigationService _navigationService;
+        private readonly IGuestService _guestService;
 
-        public GuestListWindow(INavigationService navigationService)
+        public GuestListWindow(IGuestService guestService, INavigationService navigationService)
         {
-            //_guestService = guestService;
+            _guestService = guestService;
             _navigationService = navigationService;
+            //LoadGuests();
 
             this.InitializeComponent();
         }
@@ -56,14 +59,14 @@ namespace PresentationUI
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow();
+            EventListWindow secondWindow = new EventListWindow(_navigationService);
             secondWindow.Show();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow();
+            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
             secondWindow.Show();
             this.Close();
         }
@@ -97,6 +100,62 @@ namespace PresentationUI
                     }
                 }
             }
+        }
+        private async void LoadGuests()
+        {
+            try
+            {
+                var guests = await _guestService.GetGuestsAsync();
+
+                // Clear existing items in the ListBox
+                itemListBox.Items.Clear();
+
+                foreach (var guest in guests)
+                {
+                    ListBoxItem listBoxItem = new ListBoxItem
+                    {
+                        Height = 50,
+                        Margin = new Thickness(0, 0, 0, 15),
+                        Style = FindResource("MaterialDesignCardsListBoxItem") as Style // Use the appropriate resource key
+                    };
+
+                    StackPanel stackPanel = new StackPanel
+                    {
+                        Background = Brushes.White,
+                        Orientation = Orientation.Horizontal
+                    };
+
+                    Image image = new Image
+                    {
+                        Width = 50,
+                        Height = 40,
+                        Source = new BitmapImage(new Uri("images/Ellipse 1.png", UriKind.RelativeOrAbsolute))
+                    };
+
+                    TextBlock textBlock = new TextBlock
+                    {
+                        Margin = new Thickness(10, 6, 0, 0),
+                        FontSize = 25,
+                        Text = $"{guest.Name} {guest.Surname}"
+                    };
+
+                    stackPanel.Children.Add(image);
+                    stackPanel.Children.Add(textBlock);
+                    listBoxItem.Content = stackPanel;
+
+                    itemListBox.Items.Add(listBoxItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception
+            }
+        }
+
+        // Call this method in the constructor or when needed to load guests
+        private void LoadGuests_Click(object sender, RoutedEventArgs e)
+        {
+            LoadGuests();
         }
 
         private T FindVisualChild<T>(DependencyObject parent)

@@ -19,16 +19,17 @@ namespace PresentationUI
     /// </summary>
     public partial class RecipeListWindow : Window
     {
-        public RecipeListWindow()
+        private readonly INavigationService _navigationService;
+        public RecipeListWindow(INavigationService navigationService)
         {
+            _navigationService = navigationService;
             InitializeComponent();
         }
 
         private void Account_Page(object sender, RoutedEventArgs e)
         {
-            // AccountWindow secondWindow = new AccountWindow();
-            // secondWindow.Show();
-            // this.Close();
+            _navigationService.NavigateTo<IAccountWindow>();
+            this.Close();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -40,28 +41,27 @@ namespace PresentationUI
 
         private void Add_Recipe_Click(object sender, RoutedEventArgs e)
         {
-            GuestAddWindow secondWindow = new GuestAddWindow();
-            secondWindow.Show();
+            //GuestAddWindow secondWindow = new GuestAddWindow();
+            //secondWindow.Show();
             this.Close();
         }
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow();
+            EventListWindow secondWindow = new EventListWindow(_navigationService);
             secondWindow.Show();
             this.Close();
         }
 
         private void Guests_Click(object sender, RoutedEventArgs e)
         {
-            GuestListWindow secondWindow = new GuestListWindow();
-            secondWindow.Show();
+            _navigationService.NavigateTo<IGuestListWindow>();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow();
+            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
             secondWindow.Show();
             this.Close();
         }

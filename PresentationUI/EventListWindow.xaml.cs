@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace PresentationUI
 {
     /// <summary>
@@ -19,8 +20,10 @@ namespace PresentationUI
     /// </summary>
     public partial class EventListWindow : Window
     {
-        public EventListWindow()
+        private readonly INavigationService _navigationService;
+        public EventListWindow(INavigationService navigationService)
         {
+            _navigationService = navigationService;
             InitializeComponent();
         }
 
@@ -40,21 +43,20 @@ namespace PresentationUI
 
         private void Guests_Click(object sender, RoutedEventArgs e)
         {
-            GuestListWindow secondWindow = new GuestListWindow();
-            secondWindow.Show();
+            _navigationService.NavigateTo<IGuestListWindow>();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow();
+            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
             secondWindow.Show();
             this.Close();
         }
 
         private void Add_Event_Click(object sender, RoutedEventArgs e)
         {
-            EventAddWindow secondWindow = new EventAddWindow();
+            EventAddWindow secondWindow = new EventAddWindow(_navigationService);
             secondWindow.Show();
             this.Close();
         }

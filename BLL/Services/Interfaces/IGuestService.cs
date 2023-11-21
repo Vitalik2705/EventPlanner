@@ -15,5 +15,6 @@ namespace BLL.Services.Interfaces
         Task AddGuest(Guest _guest);
         Task UpdateGuest(Guest _guest);
         Task DeleteGuest(int id);
+        Task<List<Guest>> GetGuestsAsync(Expression<Func<Guest, bool>>? filter = null);
     }
 }

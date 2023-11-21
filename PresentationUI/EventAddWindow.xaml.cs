@@ -20,28 +20,29 @@ namespace PresentationUI
     /// </summary>
     public partial class EventAddWindow : Window
     {
-        public EventAddWindow()
+        private readonly INavigationService _navigationService;
+        public EventAddWindow(INavigationService navigationService)
         {
+            _navigationService = navigationService;
             InitializeComponent();
         }
 
         private void Guests_Click(object sender, RoutedEventArgs e)
         {
-            GuestListWindow secondWindow = new GuestListWindow();
-            secondWindow.Show();
+            _navigationService.NavigateTo<IGuestListWindow>();
             this.Close();
         }
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow();
+            EventListWindow secondWindow = new EventListWindow(_navigationService);
             secondWindow.Show();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow();
+            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
             secondWindow.Show();
             this.Close();
         }

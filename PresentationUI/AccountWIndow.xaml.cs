@@ -10,7 +10,7 @@ namespace PresentationUI
     /// <summary>
     /// Interaction logic for AccountWIndow.xaml.
     /// </summary>
-    public partial class AccountWindow : Window
+    public partial class AccountWindow : Window, IAccountWindow
     {
         private readonly INavigationService _navigationService;
 
@@ -26,12 +26,24 @@ namespace PresentationUI
             this.UserName.Text = userName;
             this.Email.Text = user.Email;
             this.Phone.Text = user.PhoneNumber;
-            _navigationService = navigationService;
         }
 
         private void Guest_Page(object sender, RoutedEventArgs e)
         {
             _navigationService.NavigateTo<IGuestListWindow>();
+            this.Close();
+        }
+        private void Events_Page(object sender, RoutedEventArgs e)
+        {
+            EventListWindow secondWindow = new EventListWindow(_navigationService);
+            secondWindow.Show();
+            this.Close();
+        }
+
+        private void Recipes_Page(object sender, RoutedEventArgs e)
+        {
+            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
+            secondWindow.Show();
             this.Close();
         }
     }
