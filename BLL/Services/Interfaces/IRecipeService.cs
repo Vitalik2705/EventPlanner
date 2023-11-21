@@ -15,5 +15,6 @@ namespace BLL.Services.Interfaces
         Task AddRecipe(Recipe _recipe);
         Task UpdateRecipe(Recipe _recipe);
         Task DeleteRecipe(int id);
+        Task<List<Recipe>> GetRecipesAsync(Expression<Func<Recipe, bool>>? filter = null);
     }
 }

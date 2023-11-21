@@ -109,14 +109,14 @@
 
         <Canvas Grid.Column="1" Grid.Row="2">
             <ListBox Style="{StaticResource MaterialDesignListBox}"
-         Canvas.Left="90"
-         Canvas.Top="30"
-         Width="600"
-         Height="350"
-         x:Name="itemListBox"
-         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-         ScrollViewer.VerticalScrollBarVisibility="Disabled"
-         Loaded="LoadGuests_Click">
+                     Canvas.Left="90"
+                     Canvas.Top="30"
+                     Width="600"
+                     Height="350"
+                     x:Name="itemListBox"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                     Loaded="LoadGuests_Click">     
                 <!-- The ListBox items will be added dynamically in code-behind -->
             </ListBox>
         </Canvas>

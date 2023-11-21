@@ -42,8 +42,9 @@ namespace PresentationUI
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
-            secondWindow.Show();
+            //RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
+            //secondWindow.Show();
+            _navigationService.NavigateTo<IRecipeListWindow>();
             this.Close();
         }
 

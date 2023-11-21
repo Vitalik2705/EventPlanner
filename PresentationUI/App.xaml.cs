@@ -46,14 +46,17 @@ namespace PresentationUI
                     services.AddTransient<EventPlannerContext>();
                     services.AddTransient<IUserRepository, UserRepository>();
                     services.AddTransient<IGenericRepository<Guest>, GenericRepository<Guest>>();
+                    services.AddTransient<IGenericRepository<Recipe>, GenericRepository<Recipe>>();
                     services.AddScoped<IUserService, UserService>();
                     services.AddScoped<IGuestService, GuestService>();
+                    services.AddScoped<IRecipeService, RecipeService>();
                     services.AddTransient<IMainWindow, MainWindow>();
                     services.AddTransient<ILoginWindow, LoginWindow>();
                     services.AddTransient<IRegisterWindow, RegisterWindow>();
                     services.AddTransient<IGuestListWindow, GuestListWindow>();
                     services.AddTransient<IGuestAddWindow, GuestAddWindow>();
                     services.AddTransient<IAccountWindow, AccountWindow>();
+                    services.AddTransient<IRecipeListWindow, RecipeListWindow>();
                     //services.AddTransient<User>();
                     //services.AddTransient<ILogger<LoginWindow>, Logger<LoginWindow>>();
                     //services.AddTransient<ILogger<RegisterWindow>, Logger<RegisterWindow>>();

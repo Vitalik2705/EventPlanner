@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL.Services.Interfaces;
+using DAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +19,17 @@ namespace PresentationUI
     /// <summary>
     /// Interaction logic for RecipeListWindow.xaml
     /// </summary>
-    public partial class RecipeListWindow : Window
+    public partial class RecipeListWindow : Window, IRecipeListWindow
     {
         private readonly INavigationService _navigationService;
-        public RecipeListWindow(INavigationService navigationService)
+        private readonly IRecipeService _recipeService;
+        public RecipeListWindow(INavigationService navigationService, IRecipeService recipeService)
         {
             _navigationService = navigationService;
+            _recipeService = recipeService;
             InitializeComponent();
         }
+
 
         private void Account_Page(object sender, RoutedEventArgs e)
         {
@@ -61,15 +66,16 @@ namespace PresentationUI
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
-            secondWindow.Show();
+            //RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
+            //secondWindow.Show();
+            _navigationService.NavigateTo<IRecipeListWindow>();
             this.Close();
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             string searchText = this.searchTextBoxRecipes.Text.ToLower();
-            foreach (var item in this.itemListBoxRecipes.Items)
+            foreach (var item in this.itemListBox.Items)
             {
                 if (item is ListBoxItem listBoxItem)
                 {
@@ -96,7 +102,62 @@ namespace PresentationUI
                 }
             }
         }
+        private async void LoadRecipes()
+        {
+            try
+            {
+                var recipes = await _recipeService.GetRecipesAsync();
 
+                // Clear existing items in the ListBox
+                itemListBox.Items.Clear();
+
+                foreach (var recipe in recipes)
+                {
+                    ListBoxItem listBoxItem = new ListBoxItem
+                    {
+                        Height = 50,
+                        Margin = new Thickness(0, 0, 0, 15),
+                        Style = FindResource("MaterialDesignCardsListBoxItem") as Style // Use the appropriate resource key
+                    };
+
+                    StackPanel stackPanel = new StackPanel
+                    {
+                        Background = Brushes.White,
+                        Orientation = Orientation.Horizontal
+                    };
+
+                    Image image = new Image
+                    {
+                        Width = 50,
+                        Height = 40,
+                        Source = new BitmapImage(new Uri("images/Ellipse 1.png", UriKind.RelativeOrAbsolute))
+                    };
+
+                    TextBlock textBlock = new TextBlock
+                    {
+                        Margin = new Thickness(10, 6, 0, 0),
+                        FontSize = 25,
+                        Text = $"{recipe.Name}"
+                    };
+
+                    stackPanel.Children.Add(image);
+                    stackPanel.Children.Add(textBlock);
+                    listBoxItem.Content = stackPanel;
+
+                    itemListBox.Items.Add(listBoxItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception
+            }
+        }
+
+        // Call this method in the constructor or when needed to load guests
+        private void LoadRecipes_Click(object sender, RoutedEventArgs e)
+        {
+            LoadRecipes();
+        }
         private T FindVisualChild<T>(DependencyObject parent)
             where T : DependencyObject
         {

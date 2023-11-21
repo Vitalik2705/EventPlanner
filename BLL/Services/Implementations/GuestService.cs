@@ -40,6 +40,7 @@ namespace BLL.Services.Interfaces
         {
             await _guestRepository.DeleteAsync(id);
         }
+
         public async Task<List<Guest>> GetGuestsAsync(Expression<Func<Guest, bool>>? filter = null)
         {
             return (await _guestRepository.GetAllAsync(filter)).ToList();

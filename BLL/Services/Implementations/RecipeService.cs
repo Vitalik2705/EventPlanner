@@ -40,5 +40,9 @@ namespace BLL.Services.Interfaces
         {
             await _recipeRepository.DeleteAsync(id);
         }
+        public async Task<List<Recipe>> GetRecipesAsync(Expression<Func<Recipe, bool>>? filter = null)
+        {
+            return (await _recipeRepository.GetAllAsync(filter)).ToList();
+        }
     }
 }

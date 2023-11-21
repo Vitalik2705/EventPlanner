@@ -109,86 +109,15 @@
 
         <Canvas Grid.Column="1" Grid.Row="2">
             <ListBox Style="{StaticResource MaterialDesignListBox}"
-                         Canvas.Left="90"
-                         Canvas.Top="30"
-                         Width="600"
-                         Height="350"
-                         x:Name="itemListBoxRecipes"
-                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                     >
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Сирник</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Цезар</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Олів'є</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Грецький</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Паста Болоньєзе</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Піца 4 сири</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Картопля по-селянськи</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Капрічіоза</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Studente Aldente</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Піца Маргарита</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Піца Цезаріо</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Піца Байрактар</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
+                     Canvas.Left="90"
+                     Canvas.Top="30"
+                     Width="600"
+                     Height="350"
+                     x:Name="itemListBox"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                     Loaded="LoadRecipes_Click">
+                <!-- The ListBox items will be added dynamically in code-behind -->
             </ListBox>
         </Canvas>
 
