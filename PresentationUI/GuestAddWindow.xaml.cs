@@ -18,6 +18,9 @@ namespace PresentationUI
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using System.Windows.Shapes;
+    using BLL.Services.Interfaces;
+    using DAL.Models;
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Interaction logic for GuestAddWindow.xaml
@@ -40,21 +43,20 @@ namespace PresentationUI
 
         private void Guests_Click(object sender, RoutedEventArgs e)
         {
-            GuestListWindow secondWindow = new GuestListWindow();
-            secondWindow.Show();
+            _navigationService.NavigateTo<IGuestListWindow>();
             this.Close();
         }
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow();
+            EventListWindow secondWindow = new EventListWindow(_navigationService);
             secondWindow.Show();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow();
+            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
             secondWindow.Show();
             this.Close();
         }

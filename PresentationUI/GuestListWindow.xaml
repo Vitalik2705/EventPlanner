@@ -109,86 +109,15 @@
 
         <Canvas Grid.Column="1" Grid.Row="2">
             <ListBox Style="{StaticResource MaterialDesignListBox}"
-                         Canvas.Left="90"
-                         Canvas.Top="30"
-                         Width="600"
-                         Height="350"
-                         x:Name="itemListBox"
-                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                     >
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Яцків Віталій</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Божена Сальнікова</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Вікторія Макух</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Камінська Юлія</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Яцків Віталій</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Божена Сальнікова</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Вікторія Макух</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Камінська Юлія</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Яцків Віталій</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Божена Сальнікова</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Вікторія Макух</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Камінська Юлія</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
+         Canvas.Left="90"
+         Canvas.Top="30"
+         Width="600"
+         Height="350"
+         x:Name="itemListBox"
+         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+         ScrollViewer.VerticalScrollBarVisibility="Disabled"
+         Loaded="LoadGuests_Click">
+                <!-- The ListBox items will be added dynamically in code-behind -->
             </ListBox>
         </Canvas>
 

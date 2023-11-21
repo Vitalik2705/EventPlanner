@@ -15,11 +15,14 @@ namespace PresentationUI
     using BLL.Services.Interfaces;
     using BLL.Services.Repositories;
     using DAL.Data;
+    using DAL.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Design;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Serilog;
+
 
     /// <summary>
     /// Interaction logic for App.xaml.
@@ -50,6 +53,8 @@ namespace PresentationUI
                     services.AddTransient<IRegisterWindow, RegisterWindow>();
                     services.AddTransient<IGuestListWindow, GuestListWindow>();
                     services.AddTransient<IGuestAddWindow, GuestAddWindow>();
+                    services.AddTransient<IAccountWindow, AccountWindow>();
+                    //services.AddTransient<User>();
                     //services.AddTransient<ILogger<LoginWindow>, Logger<LoginWindow>>();
                     //services.AddTransient<ILogger<RegisterWindow>, Logger<RegisterWindow>>();
                 })
