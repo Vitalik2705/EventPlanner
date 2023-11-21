@@ -59,8 +59,7 @@ namespace PresentationUI
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(_navigationService);
-            secondWindow.Show();
+            _navigationService.NavigateTo<IEventListWindow>();
             this.Close();
         }
 

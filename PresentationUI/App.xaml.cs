@@ -47,9 +47,11 @@ namespace PresentationUI
                     services.AddTransient<IUserRepository, UserRepository>();
                     services.AddTransient<IGenericRepository<Guest>, GenericRepository<Guest>>();
                     services.AddTransient<IGenericRepository<Recipe>, GenericRepository<Recipe>>();
+                    services.AddTransient<IGenericRepository<Event>, GenericRepository<Event>>();
                     services.AddScoped<IUserService, UserService>();
                     services.AddScoped<IGuestService, GuestService>();
                     services.AddScoped<IRecipeService, RecipeService>();
+                    services.AddScoped<IEventService, EventService>();
                     services.AddTransient<IMainWindow, MainWindow>();
                     services.AddTransient<ILoginWindow, LoginWindow>();
                     services.AddTransient<IRegisterWindow, RegisterWindow>();
@@ -57,6 +59,7 @@ namespace PresentationUI
                     services.AddTransient<IGuestAddWindow, GuestAddWindow>();
                     services.AddTransient<IAccountWindow, AccountWindow>();
                     services.AddTransient<IRecipeListWindow, RecipeListWindow>();
+                    services.AddTransient<IEventListWindow, EventListWindow>();
                     //services.AddTransient<User>();
                     //services.AddTransient<ILogger<LoginWindow>, Logger<LoginWindow>>();
                     //services.AddTransient<ILogger<RegisterWindow>, Logger<RegisterWindow>>();

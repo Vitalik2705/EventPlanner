@@ -40,5 +40,9 @@ namespace BLL.Services.Interfaces
         {
             await _eventRepository.DeleteAsync(id);
         }
+        public async Task<List<Event>> GetEventsAsync(Expression<Func<Event, bool>>? filter = null)
+        {
+            return (await _eventRepository.GetAllAsync(filter)).ToList();
+        }
     }
 }

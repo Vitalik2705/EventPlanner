@@ -15,5 +15,6 @@ namespace BLL.Services.Interfaces
         Task AddEvent(Event _event);
         Task UpdateEvent(Event _event);
         Task DeleteEvent(int id);
+        Task<List<Event>> GetEventsAsync(Expression<Func<Event, bool>>? filter = null);
     }
 }

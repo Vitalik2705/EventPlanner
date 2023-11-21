@@ -35,8 +35,7 @@ namespace PresentationUI
         }
         private void Events_Page(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(_navigationService);
-            secondWindow.Show();
+            _navigationService.NavigateTo<IEventListWindow>();
             this.Close();
         }
 
