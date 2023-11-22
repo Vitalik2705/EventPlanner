@@ -41,8 +41,8 @@ namespace PresentationUI
 
         private void Add_Recipe_Click(object sender, RoutedEventArgs e)
         {
-            //GuestAddWindow secondWindow = new GuestAddWindow();
-            //secondWindow.Show();
+            RecipeAddWindow secondWindow = new RecipeAddWindow(_navigationService);
+            secondWindow.Show();
             this.Close();
         }
 
@@ -62,6 +62,13 @@ namespace PresentationUI
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
             RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
+            secondWindow.Show();
+            this.Close();
+        }
+
+        private void Item_Click(object sender, RoutedEventArgs e)
+        {
+            RecipeInfoWindow secondWindow = new RecipeInfoWindow(_navigationService);
             secondWindow.Show();
             this.Close();
         }

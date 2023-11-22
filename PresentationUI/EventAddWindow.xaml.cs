@@ -120,7 +120,7 @@ namespace PresentationUI
         {
             ComboBox newComboBox = new ComboBox
             {
-                Name = "GuestsInput" + comboBoxDishesList.Count,
+                Name = "DishesInput" + comboBoxDishesList.Count,
                 Style = (Style)FindResource("MaterialDesignComboBox"),
                 Width = 230,
                 Height = 50,
