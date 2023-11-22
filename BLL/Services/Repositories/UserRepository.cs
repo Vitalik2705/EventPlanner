@@ -29,7 +29,6 @@ namespace BLL.Services.Repositories
             IQueryable<User> query = this._table.Where(x => x.Email == email && x.Password == password);
 
             // var user = this._context.User.FirstOrDefaultAsync(u => u.Password == password && u.Email == email);
-
             var user = await query.FirstOrDefaultAsync();
 
             if (user == null)
@@ -42,7 +41,6 @@ namespace BLL.Services.Repositories
 
         public async Task<User> Register(User user)
         {
-
             await this._table.AddAsync(user);
 
             await this._context.SaveChangesAsync();

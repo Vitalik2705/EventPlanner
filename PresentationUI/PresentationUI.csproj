@@ -8,6 +8,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\agenda %284%29 1.png" />
+    <None Remove="images\Arrow1.png" />
+    <None Remove="images\Ellipse 1.png" />
+    <None Remove="images\fluent_guest-add-20-filled.png" />
+    <None Remove="images\google.png" />
+    <None Remove="images\image 1.png" />
+    <None Remove="images\image2.png" />
+    <None Remove="images\mainWindow.jpg" />
+    <None Remove="images\Mask group1.png" />
+    <None Remove="images\Maskgroup.png" />
+    <None Remove="images\mdi_account-outline.png" />
+    <None Remove="images\mdi_events.png" />
+    <None Remove="images\plus %281%29.png" />
+    <None Remove="images\plus.png" />
+    <None Remove="images\registerWindow.png" />
+    <None Remove="images\search %281%29.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\image2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
@@ -35,6 +58,24 @@
 
   <ItemGroup>
     <Folder Include="logs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\agenda (4) 1.png" />
+    <Resource Include="images\Arrow1.png" />
+    <Resource Include="images\Ellipse 1.png" />
+    <Resource Include="images\fluent_guest-add-20-filled.png" />
+    <Resource Include="images\google.png" />
+    <Resource Include="images\image 1.png" />
+    <Resource Include="images\mainWindow.jpg" />
+    <Resource Include="images\Mask group1.png" />
+    <Resource Include="images\Maskgroup.png" />
+    <Resource Include="images\mdi_account-outline.png" />
+    <Resource Include="images\mdi_events.png" />
+    <Resource Include="images\plus (1).png" />
+    <Resource Include="images\plus.png" />
+    <Resource Include="images\registerWindow.png" />
+    <Resource Include="images\search (1).png" />
   </ItemGroup>
 
 </Project>

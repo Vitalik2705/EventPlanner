@@ -4,36 +4,33 @@
 
 namespace PresentationUI
 {
-    using BLL.Services.Interfaces;
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
-    using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
-    using System.Windows.Shapes;
+    using BLL.Services.Interfaces;
 
     /// <summary>
     /// Interaction logic for GuestListWindow.xaml.
     /// </summary>
     public partial class GuestListWindow : Window, IGuestListWindow
     {
-        //private readonly IGuestService _guestService;
+        // private readonly IGuestService _guestService;
         private readonly INavigationService _navigationService;
         private readonly IGuestService _guestService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GuestListWindow"/> class.
+        /// </summary>
+        /// <param name="guestService"></param>
+        /// <param name="navigationService"></param>
         public GuestListWindow(IGuestService guestService, INavigationService navigationService)
         {
-            _guestService = guestService;
-            _navigationService = navigationService;
-            //LoadGuests();
+            this._guestService = guestService;
+            this._navigationService = navigationService;
 
+            // LoadGuests();
             this.InitializeComponent();
         }
 
@@ -53,20 +50,20 @@ namespace PresentationUI
 
         private void Add_Guest_Click(object sender, RoutedEventArgs e)
         {
-            _navigationService.NavigateTo<IGuestAddWindow>();
+            this._navigationService.NavigateTo<IGuestAddWindow>();
             this.Close();
         }
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(_navigationService);
+            EventListWindow secondWindow = new EventListWindow(this._navigationService);
             secondWindow.Show();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
+            RecipeListWindow secondWindow = new RecipeListWindow(this._navigationService);
             secondWindow.Show();
             this.Close();
         }
@@ -101,14 +98,15 @@ namespace PresentationUI
                 }
             }
         }
+
         private async void LoadGuests()
         {
             try
             {
-                var guests = await _guestService.GetGuestsAsync();
+                var guests = await this._guestService.GetGuestsAsync();
 
                 // Clear existing items in the ListBox
-                itemListBox.Items.Clear();
+                this.itemListBox.Items.Clear();
 
                 foreach (var guest in guests)
                 {
@@ -116,46 +114,46 @@ namespace PresentationUI
                     {
                         Height = 50,
                         Margin = new Thickness(0, 0, 0, 15),
-                        Style = FindResource("MaterialDesignCardsListBoxItem") as Style // Use the appropriate resource key
+                        Style = this.FindResource("MaterialDesignCardsListBoxItem") as Style, // Use the appropriate resource key
                     };
 
                     StackPanel stackPanel = new StackPanel
                     {
                         Background = Brushes.White,
-                        Orientation = Orientation.Horizontal
+                        Orientation = Orientation.Horizontal,
                     };
 
                     Image image = new Image
                     {
                         Width = 50,
                         Height = 40,
-                        Source = new BitmapImage(new Uri("images/Ellipse 1.png", UriKind.RelativeOrAbsolute))
+                        Source = new BitmapImage(new Uri("images/Ellipse 1.png", UriKind.RelativeOrAbsolute)),
                     };
 
                     TextBlock textBlock = new TextBlock
                     {
                         Margin = new Thickness(10, 6, 0, 0),
                         FontSize = 25,
-                        Text = $"{guest.Name} {guest.Surname}"
+                        Text = $"{guest.Name} {guest.Surname}",
                     };
 
                     stackPanel.Children.Add(image);
                     stackPanel.Children.Add(textBlock);
                     listBoxItem.Content = stackPanel;
 
-                    itemListBox.Items.Add(listBoxItem);
+                    this.itemListBox.Items.Add(listBoxItem);
                 }
             }
             catch (Exception ex)
             {
-                // Handle exception
+                string exc = $"{ex}";
             }
         }
 
         // Call this method in the constructor or when needed to load guests
         private void LoadGuests_Click(object sender, RoutedEventArgs e)
         {
-            LoadGuests();
+            this.LoadGuests();
         }
 
         private T FindVisualChild<T>(DependencyObject parent)

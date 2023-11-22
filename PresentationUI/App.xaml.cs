@@ -23,7 +23,6 @@ namespace PresentationUI
     using Microsoft.Extensions.Hosting;
     using Serilog;
 
-
     /// <summary>
     /// Interaction logic for App.xaml.
     /// </summary>
@@ -36,7 +35,7 @@ namespace PresentationUI
             AppHost = Host.CreateDefaultBuilder()
                 .UseSerilog((host, loggerConfiguration) =>
                 {
-                    loggerConfiguration.WriteTo.File("C:/Users/Юля/source/repos/EventPlanner/EventPlanner/PresentationUI/logs/log.txt", rollingInterval: RollingInterval.Day)
+                    loggerConfiguration.WriteTo.File("C:/Users/bozen/Documents/Програмна інженерія/EventPlanner/PresentationUI/logs/log.txt", rollingInterval: RollingInterval.Day)
                         .WriteTo.Debug();
                 })
                 .ConfigureServices((hostContext, services) =>
@@ -54,9 +53,6 @@ namespace PresentationUI
                     services.AddTransient<IGuestListWindow, GuestListWindow>();
                     services.AddTransient<IGuestAddWindow, GuestAddWindow>();
                     services.AddTransient<IAccountWindow, AccountWindow>();
-                    //services.AddTransient<User>();
-                    //services.AddTransient<ILogger<LoginWindow>, Logger<LoginWindow>>();
-                    //services.AddTransient<ILogger<RegisterWindow>, Logger<RegisterWindow>>();
                 })
                 .Build();
         }
@@ -69,8 +65,6 @@ namespace PresentationUI
 
             var startupForm = AppHost.Services.GetRequiredService<IMainWindow>();
             startupForm.Show();
-
-            
         }
 
         protected override async void OnExit(ExitEventArgs e)

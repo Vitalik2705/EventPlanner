@@ -1,53 +1,62 @@
-﻿using MaterialDesignThemes.Wpf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿// <copyright file="EventAddWindow.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace PresentationUI
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Shapes;
+    using MaterialDesignThemes.Wpf;
+
     /// <summary>
-    /// Interaction logic for EventAddWindow.xaml
+    /// Interaction logic for EventAddWindow.xaml.
     /// </summary>
     public partial class EventAddWindow : Window
     {
         private readonly INavigationService _navigationService;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventAddWindow"/> class.
+        /// </summary>
+        /// <param name="navigationService"></param>
         public EventAddWindow(INavigationService navigationService)
         {
-            _navigationService = navigationService;
-            InitializeComponent();
+            this._navigationService = navigationService;
+            this.InitializeComponent();
         }
 
         private void Guests_Click(object sender, RoutedEventArgs e)
         {
-            _navigationService.NavigateTo<IGuestListWindow>();
+            this._navigationService.NavigateTo<IGuestListWindow>();
             this.Close();
         }
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(_navigationService);
+            EventListWindow secondWindow = new EventListWindow(this._navigationService);
             secondWindow.Show();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
+            RecipeListWindow secondWindow = new RecipeListWindow(this._navigationService);
             secondWindow.Show();
             this.Close();
         }
 
-        private List<ComboBox> comboBoxList = new List<ComboBox>();
+        private readonly List<ComboBox> comboBoxList = new List<ComboBox>();
         private List<Button> deleteButtonList = new List<Button>();
         private double verticalOffset = 300;
 
@@ -55,8 +64,8 @@ namespace PresentationUI
         {
             ComboBox newComboBox = new ComboBox
             {
-                Name = "GuestsInput" + comboBoxList.Count,
-                Style = (Style)FindResource("MaterialDesignComboBox"),
+                Name = "GuestsInput" + this.comboBoxList.Count,
+                Style = (Style)this.FindResource("MaterialDesignComboBox"),
                 Width = 230,
                 Height = 50,
                 FontSize = 17,
@@ -77,42 +86,42 @@ namespace PresentationUI
                 {
                     Width = 23,
                     Height = 19,
-                    Source = new BitmapImage(new Uri("images/plus (1).png", UriKind.Relative))
+                    Source = new BitmapImage(new Uri("images/plus (1).png", UriKind.Relative)),
                 },
             };
 
             deleteButton.Click += (s, args) =>
             {
-                if (comboBoxList.Count > 0)
+                if (this.comboBoxList.Count > 0)
                 {
-                    int index = comboBoxList.Count - 1;
-                    MyCanvas.Children.Remove(comboBoxList[index]);
-                    MyCanvas.Children.Remove(deleteButtonList[index]);
-                    comboBoxList.RemoveAt(index);
-                    deleteButtonList.RemoveAt(index);
+                    int index = this.comboBoxList.Count - 1;
+                    this.MyCanvas.Children.Remove(this.comboBoxList[index]);
+                    this.MyCanvas.Children.Remove(this.deleteButtonList[index]);
+                    this.comboBoxList.RemoveAt(index);
+                    this.deleteButtonList.RemoveAt(index);
 
-                    if (index < verticalOffset)
+                    if (index < this.verticalOffset)
                     {
-                        verticalOffset -= 70;
+                        this.verticalOffset -= 70;
                     }
                 }
             };
 
             Canvas.SetLeft(newComboBox, 80);
-            Canvas.SetTop(newComboBox, verticalOffset);
-            MyCanvas.Children.Add(newComboBox);
+            Canvas.SetTop(newComboBox, this.verticalOffset);
+            this.MyCanvas.Children.Add(newComboBox);
 
             Canvas.SetLeft(deleteButton, 25);
-            Canvas.SetTop(deleteButton, verticalOffset + 20);
-            MyCanvas.Children.Add(deleteButton);
+            Canvas.SetTop(deleteButton, this.verticalOffset + 20);
+            this.MyCanvas.Children.Add(deleteButton);
 
-            verticalOffset += 70;
+            this.verticalOffset += 70;
 
-            comboBoxList.Add(newComboBox);
-            deleteButtonList.Add(deleteButton);
+            this.comboBoxList.Add(newComboBox);
+            this.deleteButtonList.Add(deleteButton);
         }
 
-        private List<ComboBox> comboBoxDishesList = new List<ComboBox>();
+        private readonly List<ComboBox> comboBoxDishesList = new List<ComboBox>();
         private List<Button> deleteButtonDishesList = new List<Button>();
         private double verticalOffsetDishes = 300;
 
@@ -120,8 +129,8 @@ namespace PresentationUI
         {
             ComboBox newComboBox = new ComboBox
             {
-                Name = "GuestsInput" + comboBoxDishesList.Count,
-                Style = (Style)FindResource("MaterialDesignComboBox"),
+                Name = "GuestsInput" + this.comboBoxDishesList.Count,
+                Style = (Style)this.FindResource("MaterialDesignComboBox"),
                 Width = 230,
                 Height = 50,
                 FontSize = 17,
@@ -145,39 +154,39 @@ namespace PresentationUI
                 {
                     Width = 23,
                     Height = 19,
-                    Source = new BitmapImage(new Uri("images/plus (1).png", UriKind.Relative))
+                    Source = new BitmapImage(new Uri("images/plus (1).png", UriKind.Relative)),
                 },
             };
 
             deleteButton.Click += (s, args) =>
             {
-                if (comboBoxDishesList.Count > 0)
+                if (this.comboBoxDishesList.Count > 0)
                 {
-                    int index = comboBoxDishesList.Count - 1;
-                    MyCanvas.Children.Remove(comboBoxDishesList[index]);
-                    MyCanvas.Children.Remove(deleteButtonDishesList[index]);
-                    comboBoxDishesList.RemoveAt(index);
-                    deleteButtonDishesList.RemoveAt(index);
+                    int index = this.comboBoxDishesList.Count - 1;
+                    this.MyCanvas.Children.Remove(this.comboBoxDishesList[index]);
+                    this.MyCanvas.Children.Remove(this.deleteButtonDishesList[index]);
+                    this.comboBoxDishesList.RemoveAt(index);
+                    this.deleteButtonDishesList.RemoveAt(index);
 
-                    if (index < verticalOffsetDishes)
+                    if (index < this.verticalOffsetDishes)
                     {
-                        verticalOffsetDishes -= 70;
+                        this.verticalOffsetDishes -= 70;
                     }
                 }
             };
 
             Canvas.SetLeft(newComboBox, 470);
-            Canvas.SetTop(newComboBox, verticalOffsetDishes);
-            MyCanvas.Children.Add(newComboBox);
+            Canvas.SetTop(newComboBox, this.verticalOffsetDishes);
+            this.MyCanvas.Children.Add(newComboBox);
 
             Canvas.SetLeft(deleteButton, 415);
-            Canvas.SetTop(deleteButton, verticalOffsetDishes + 20);
-            MyCanvas.Children.Add(deleteButton);
+            Canvas.SetTop(deleteButton, this.verticalOffsetDishes + 20);
+            this.MyCanvas.Children.Add(deleteButton);
 
-            verticalOffsetDishes += 70;
+            this.verticalOffsetDishes += 70;
 
-            comboBoxDishesList.Add(newComboBox);
-            deleteButtonDishesList.Add(deleteButton);
+            this.comboBoxDishesList.Add(newComboBox);
+            this.deleteButtonDishesList.Add(deleteButton);
         }
     }
 }
