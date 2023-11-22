@@ -117,7 +117,7 @@
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
                      >
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
+                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}" MouseDoubleClick="Item_Click">
                     <StackPanel Background="#F9F9F9" Orientation="Horizontal">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
                         <TextBlock Margin="10 6 0 0" FontSize="25">Сирник</TextBlock>
