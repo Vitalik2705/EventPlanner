@@ -5,6 +5,7 @@
 namespace DAL.Models
 {
     using System.ComponentModel;
+
     public enum Ingredient
     {
         [Description("Бамія")]
@@ -2582,6 +2583,6 @@ namespace DAL.Models
         [Description("херес")]
         Sherry,
         [Description("шампанське")]
-        Champagne
+        Champagne,
     }
 }

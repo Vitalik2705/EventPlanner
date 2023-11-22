@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <Canvas Grid.Column="1" Grid.Row="1">
-            <Image Height="400" Width="400" Source="images/image 1.png"/>
+            <Image Height="400" Width="400" Source="/images/image 1.png"/>
         </Canvas>
 
         <Canvas Grid.Column="0" Grid.Row="0">
@@ -44,7 +44,7 @@
             </TextBlock>
             <Button Background="White" Canvas.Left="145" Canvas.Top="110" Width="230" Height="35" BorderBrush="Gray" BorderThickness="1">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Image Source="images/google.png" Width="20" Height="20" Margin="0,0,0,0" />
+                    <Image Source="/images/google.png" Width="20" Height="20" Margin="0,0,0,0" />
                     <TextBlock FontSize="15" Text="Login with Google" Margin="10,0,0,0"/>
                 </StackPanel>
             </Button>

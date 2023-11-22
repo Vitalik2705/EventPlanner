@@ -8,13 +8,6 @@ namespace PresentationUI
     using System.Windows;
     using BLL.Services.Interfaces;
     using Microsoft.Extensions.Logging;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows.Controls;
-    using System.Windows.Media;
-    using BLL.Services.Repositories;
-    using DAL.Data;
-    using DAL.Models;
 
     /// <summary>
     /// Interaction logic for LoginWindow.xaml.
@@ -25,10 +18,15 @@ namespace PresentationUI
         private readonly INavigationService _navigationService;
         private readonly ILogger<LoginWindow> _loginLogger;
 
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginWindow"/> class.
+        /// </summary>
+        /// <param name="userService"></param>
+        /// <param name="navigationService"></param>
+        /// <param name="loginLogger"></param>
         public LoginWindow(IUserService userService, INavigationService navigationService, ILogger<LoginWindow> loginLogger)
         {
-            _navigationService = navigationService;
+            this._navigationService = navigationService;
             this._userService = userService;
             this._loginLogger = loginLogger;
             this.InitializeComponent();
@@ -36,8 +34,7 @@ namespace PresentationUI
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-
-            _navigationService.NavigateTo<IRegisterWindow>();
+            this._navigationService.NavigateTo<IRegisterWindow>();
 
             this.Close();
         }
@@ -55,15 +52,14 @@ namespace PresentationUI
 
                 this._loginLogger.LogInformation("Successfully logged into the account.");
 
-                AccountWindow secondWindow = new AccountWindow(user, _navigationService);
+                AccountWindow secondWindow = new AccountWindow(user, this._navigationService);
                 secondWindow.Show();
                 this.Close();
             }
             catch (Exception ex)
             {
-                this._loginLogger.LogError("Failed to log into the account.");
+                this._loginLogger.LogError($"Failed to log into the account.{ex}");
             }
-
         }
     }
 }

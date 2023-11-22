@@ -20,7 +20,7 @@ namespace PresentationUI
         /// <param name="user">name.</param>
         public AccountWindow(User user, INavigationService navigationService)
         {
-            _navigationService = navigationService;
+            this._navigationService = navigationService;
             this.InitializeComponent();
             string userName = $"{user.Surname} {user.Name}";
             this.UserName.Text = userName;
@@ -30,19 +30,20 @@ namespace PresentationUI
 
         private void Guest_Page(object sender, RoutedEventArgs e)
         {
-            _navigationService.NavigateTo<IGuestListWindow>();
+            this._navigationService.NavigateTo<IGuestListWindow>();
             this.Close();
         }
+
         private void Events_Page(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(_navigationService);
+            EventListWindow secondWindow = new EventListWindow(this._navigationService);
             secondWindow.Show();
             this.Close();
         }
 
         private void Recipes_Page(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
+            RecipeListWindow secondWindow = new RecipeListWindow(this._navigationService);
             secondWindow.Show();
             this.Close();
         }
