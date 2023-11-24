@@ -30,8 +30,8 @@ namespace PresentationUI
 
         public GuestListWindow(IGuestService guestService, INavigationService navigationService)
         {
-            _guestService = guestService;
-            _navigationService = navigationService;
+            this._guestService = guestService;
+            this._navigationService = navigationService;
             //LoadGuests();
 
             this.InitializeComponent();
@@ -39,9 +39,8 @@ namespace PresentationUI
 
         private void Account_Page(object sender, RoutedEventArgs e)
         {
-            // AccountWindow secondWindow = new AccountWindow();
-            // secondWindow.Show();
-            // this.Close();
+            this._navigationService.NavigateTo<IAccountWindow>();
+            this.Close();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -53,21 +52,19 @@ namespace PresentationUI
 
         private void Add_Guest_Click(object sender, RoutedEventArgs e)
         {
-            _navigationService.NavigateTo<IGuestAddWindow>();
+            this._navigationService.NavigateTo<IGuestAddWindow>();
             this.Close();
         }
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(_navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<EventListWindow>();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<RecipeListWindow>();
             this.Close();
         }
 

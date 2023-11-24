@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PresentationUI.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace PresentationUI
     /// <summary>
     /// Interaction logic for EventListWindow.xaml
     /// </summary>
-    public partial class EventListWindow : Window
+    public partial class EventListWindow : Window, IEventListWindow
     {
         private readonly INavigationService _navigationService;
         public EventListWindow(INavigationService navigationService)
@@ -29,9 +30,8 @@ namespace PresentationUI
 
         private void Account_Page(object sender, RoutedEventArgs e)
         {
-            // AccountWindow secondWindow = new AccountWindow();
-            // secondWindow.Show();
-            // this.Close();
+            this._navigationService.NavigateTo<IAccountWindow>();
+            this.Close();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -43,21 +43,19 @@ namespace PresentationUI
 
         private void Guests_Click(object sender, RoutedEventArgs e)
         {
-            _navigationService.NavigateTo<IGuestListWindow>();
+            this._navigationService.NavigateTo<IGuestListWindow>();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<RecipeListWindow>();
             this.Close();
         }
 
         private void Add_Event_Click(object sender, RoutedEventArgs e)
         {
-            EventAddWindow secondWindow = new EventAddWindow(_navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<EventAddWindow>();
             this.Close();
         }
 

@@ -43,21 +43,19 @@ namespace PresentationUI
 
         private void Guests_Click(object sender, RoutedEventArgs e)
         {
-            _navigationService.NavigateTo<IGuestListWindow>();
+            this._navigationService.NavigateTo<IGuestListWindow>();
             this.Close();
         }
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(_navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<EventListWindow>();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<RecipeListWindow>();
             this.Close();
         }
 

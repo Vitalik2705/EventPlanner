@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PresentationUI
+namespace PresentationUI.Interfaces
 {
-    public interface IGuestAddWindow : IWindow
+    internal interface IEventListWindow : IWindow
     {
     }
 }

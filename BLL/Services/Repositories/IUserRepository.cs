@@ -10,13 +10,16 @@ namespace BLL.Services.Repositories
 {
     public interface IUserRepository
     {
+        public enum RegistrationResult
+        {
+            Success,
+            PasswordsDoNotMatch,
+            EmailAlreadyExists,
+            UsernameAlreadyExists
+        }
+
         Task<User> Login(string password, string email);
-        Task<User> Register(User user);
-        //Task AddAsync(User model);
-        //Task UpdateAsync(User model);
-        //Task<User> GetAsync(Expression<Func<User, bool>>? filter = null);
-        //Task<IEnumerable<User>> GetAllAsync(Expression<Func<User, bool>>? filter = null);
-        //Task DeleteAsync(int id);
-        //Task SaveAsync();
+
+        Task<RegistrationResult> Register(User user);
     }
 }

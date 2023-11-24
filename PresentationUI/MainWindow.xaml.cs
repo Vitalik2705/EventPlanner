@@ -38,15 +38,12 @@ namespace PresentationUI
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             _navigationService.NavigateTo<ILoginWindow>();
-
-            //LoginWindow secondWindow = new LoginWindow(this._userService, _navigationService, _loginLogger);
-            //secondWindow.Show();
             this.Hide();
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            _navigationService.NavigateTo<IGuestListWindow>(); ;
+            this._navigationService.NavigateTo<IGuestListWindow>(); ;
             this.Hide();
         }
     }

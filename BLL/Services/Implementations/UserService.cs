@@ -4,6 +4,7 @@ namespace BLL.Services.Interfaces
 {
     using DAL.Models;
     using BLL.Services.Repositories;
+    using static BLL.Services.Repositories.IUserRepository;
 
     public class UserService : IUserService
     {
@@ -49,7 +50,7 @@ namespace BLL.Services.Interfaces
         }
 
         /// <inheritdoc/>
-        public async Task<User> Register(User user)
+        public async Task<RegistrationResult> Register(User user)
         {
             var regUser = await this._userRepository.Register(user);
 

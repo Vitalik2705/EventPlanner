@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PresentationUI"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:local="clr-namespace:PresentationUI.Validation"
         mc:Ignorable="d"
         Title="RegisterWindow"
         Height="660"
@@ -97,7 +97,8 @@
                      FontSize="17"
                      BorderThickness="0 0 0 1.5" 
                      BorderBrush="#565A7B" 
-                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+                     materialDesign:HintAssist.FloatingOffset="0,-18">
+            </TextBox>
 
             <TextBox x:Name="PhoneNumberInput"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"

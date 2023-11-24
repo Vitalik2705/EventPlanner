@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PresentationUI.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PresentationUI
 {
-    public interface IRegisterWindow : IWindow
+    public interface IGuestListWindow : IWindow
     {
     }
 }

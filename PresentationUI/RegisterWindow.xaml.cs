@@ -7,19 +7,10 @@ namespace PresentationUI
     using System;
     using System.Collections.Generic;
     using Microsoft.Extensions.Logging;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
-    using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-    using System.Windows.Shapes;
     using BLL.Services.Interfaces;
     using DAL.Models;
+    using DAL.State.Authenticator;
 
 
     /// <summary>
@@ -27,7 +18,7 @@ namespace PresentationUI
     /// </summary>
     public partial class RegisterWindow : Window, IRegisterWindow
     {
-        private readonly IUserService _userService;
+        private readonly IAuthenticator _authenticator;
         private readonly INavigationService _navigationService;
         private readonly ILogger<RegisterWindow> _registerLogger;
 
@@ -37,32 +28,31 @@ namespace PresentationUI
         /// Initializes a new instance of the <see cref="RegisterWindow"/> class.
         /// </summary>
         /// <param name="userService"></param>
-        public RegisterWindow(IUserService userService, INavigationService navigationService, ILogger<RegisterWindow> registerLogger)
+        public RegisterWindow(IAuthenticator authenticator, INavigationService navigationService, ILogger<RegisterWindow> registerLogger)
 #pragma warning restore SA1614 // Element parameter documentation should have text
         {
             this._navigationService = navigationService;
-            this._userService = userService;
+            this._authenticator = authenticator;
             this._registerLogger = registerLogger;
-            
+
             this.InitializeComponent();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-
-            _navigationService.NavigateTo<ILoginWindow>();
+            this._navigationService.NavigateTo<ILoginWindow>();
             this.Close();
         }
 
         private async void Register_Click(object sender, RoutedEventArgs e)
         {
-
             this._registerLogger.LogInformation("Attempting to register the account.");
+
+            var surname = this.LastnameInput.Text;
 
             var email = this.EmailInput.Text;
             var password = this.PasswordInput.Password;
             var name = this.FirstnameInput.Text;
-            var surname = this.LastnameInput.Text;
             var phoneNumber = this.PhoneNumberInput.Text;
             var gender = this.GenderItem.SelectedItem != "Чоловік" ? Gender.Female : Gender.Male;
 
@@ -81,18 +71,35 @@ namespace PresentationUI
             };
             try
             {
-                var userReg = await this._userService.Register(user);
+                var userReg = await this._authenticator.Register(user);
 
-                this._registerLogger.LogInformation("Successfully register the account.");
+                if (userReg == BLL.Services.Repositories.IUserRepository.RegistrationResult.Success)
+                {
+                    this._registerLogger.LogInformation("Successfully register the account.");
 
-                AccountWindow secondWindow = new AccountWindow(user, _navigationService);
-                secondWindow.Show();
-                this.Close();
+                    this._navigationService.NavigateTo<ILoginWindow>();
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
-                this._registerLogger.LogError("Failed to register the account.");
+                this._registerLogger.LogError($"Failed to register the account. {ex}");
             }
+        }
+
+        private bool CheckEmpty(string str)
+        {
+            return string.IsNullOrEmpty(str);
+        }
+
+        private string? CheckSurname(string surname, string errors)
+        {
+            if (this.CheckEmpty(surname))
+            {
+                return errors + "Surname mustn't be null,";
+            }
+
+            return null;
         }
     }
 }

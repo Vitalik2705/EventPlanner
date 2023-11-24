@@ -19,7 +19,7 @@ namespace PresentationUI
 
         public void NavigateTo<T>() where T : class
         {
-            var page = _serviceProvider.GetRequiredService<T>() as Window;
+            var page = this._serviceProvider.GetRequiredService<T>() as Window;
             page?.Show();
         }
     }

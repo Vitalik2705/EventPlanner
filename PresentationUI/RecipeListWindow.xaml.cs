@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PresentationUI.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,26 +18,24 @@ namespace PresentationUI
     /// <summary>
     /// Interaction logic for RecipeListWindow.xaml
     /// </summary>
-    public partial class RecipeListWindow : Window
+    public partial class RecipeListWindow : Window, IRecipeListWindow
     {
         private readonly INavigationService _navigationService;
+
         public RecipeListWindow(INavigationService navigationService)
         {
-            _navigationService = navigationService;
-            InitializeComponent();
+            this._navigationService = navigationService;
+            this.InitializeComponent();
         }
 
         private void Account_Page(object sender, RoutedEventArgs e)
         {
-            _navigationService.NavigateTo<IAccountWindow>();
+            this._navigationService.NavigateTo<IAccountWindow>();
             this.Close();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            // AccountWindow secondWindow = new AccountWindow();
-            // secondWindow.Show();
-            // this.Close();
         }
 
         private void Add_Recipe_Click(object sender, RoutedEventArgs e)
@@ -48,22 +47,20 @@ namespace PresentationUI
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(_navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<EventListWindow>();
             this.Close();
         }
 
         private void Guests_Click(object sender, RoutedEventArgs e)
         {
-            _navigationService.NavigateTo<IGuestListWindow>();
+            this._navigationService.NavigateTo<IGuestListWindow>();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
-            secondWindow.Show();
-            this.Close();
+            //this._navigationService.NavigateTo<RecipeListWindow>();
+            //this.Close();
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
