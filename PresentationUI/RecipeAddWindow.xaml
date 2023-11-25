@@ -187,6 +187,36 @@
                     Height="19" Source="images/plus (1).png"/>
             </Button>
 
+            <ComboBox 
+                x:Name="UnitsInput"
+                Style="{StaticResource MaterialDesignComboBox}"
+                Width="105"
+                Height="50"
+                Canvas.Left="470"
+                Canvas.Top="250"
+                FontSize="17"
+                BorderThickness="0 0 0 1.5" 
+                BorderBrush="#565A7B"
+                materialDesign:HintAssist.FloatingOffset="0,-18"
+                materialDesign:HintAssist.Hint="Одиниця"
+                >
+                <ComboBoxItem>кг</ComboBoxItem>
+                <ComboBoxItem>шт</ComboBoxItem>
+                <ComboBoxItem>г</ComboBoxItem>
+            </ComboBox>
+
+            <TextBox x:Name="AmountOfUnitInput"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     materialDesign:HintAssist.Hint="Кількість"
+                     Width="105"
+                     Height="50"
+                     Canvas.Left="600"
+                     Canvas.Top="250"
+                     FontSize="17"
+                     BorderThickness="0 0 0 1.5" 
+                     BorderBrush="#565A7B" 
+                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+
             <TextBox
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 Width="300"

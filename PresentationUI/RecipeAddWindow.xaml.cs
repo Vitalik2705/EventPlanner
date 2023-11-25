@@ -1,52 +1,51 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-namespace PresentationUI
+﻿namespace PresentationUI
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using Microsoft.Win32;
+
     /// <summary>
-    /// Interaction logic for RecipeAddWindow.xaml
+    /// Interaction logic for RecipeAddWindow.xaml.
     /// </summary>
     public partial class RecipeAddWindow : Window
     {
         private readonly INavigationService _navigationService;
         private List<ComboBox> comboBoxIngredientsList = new List<ComboBox>();
+        private List<ComboBox> comboBoxUnitsList = new List<ComboBox>();
+        private List<TextBox> textBoxAmountOfUnitList = new List<TextBox>();
         private List<Button> deleteButtonIngredientsList = new List<Button>();
-        private double verticalOffsetIngredients = 255;
+        private double verticalOffsetIngredients = 310;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RecipeAddWindow"/> class.
+        /// </summary>
+        /// <param name="navigationService">navigationService.</param>
         public RecipeAddWindow(INavigationService navigationService)
         {
-            _navigationService = navigationService;
-            InitializeComponent();
+            this._navigationService = navigationService;
+            this.InitializeComponent();
         }
 
         private void Guests_Click(object sender, RoutedEventArgs e)
         {
-            _navigationService.NavigateTo<IGuestListWindow>();
+            this._navigationService.NavigateTo<IGuestListWindow>();
             this.Close();
         }
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(_navigationService);
+            EventListWindow secondWindow = new EventListWindow(this._navigationService);
             secondWindow.Show();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
+            RecipeListWindow secondWindow = new RecipeListWindow(this._navigationService);
             secondWindow.Show();
             this.Close();
         }
@@ -55,8 +54,8 @@ namespace PresentationUI
         {
             ComboBox newComboBox = new ComboBox
             {
-                Name = "GuestsInput" + comboBoxIngredientsList.Count,
-                Style = (Style)FindResource("MaterialDesignComboBox"),
+                Name = "GuestsInput" + this.comboBoxIngredientsList.Count,
+                Style = (Style)this.FindResource("MaterialDesignComboBox"),
                 Width = 230,
                 Height = 50,
                 FontSize = 17,
@@ -79,39 +78,79 @@ namespace PresentationUI
                 {
                     Width = 23,
                     Height = 19,
-                    Source = new BitmapImage(new Uri("images/plus (1).png", UriKind.Relative))
+                    Source = new BitmapImage(new Uri("images/plus (1).png", UriKind.Relative)),
                 },
+            };
+
+            ComboBox newComboBoxUnit = new ComboBox
+            {
+                Name = "UnitsInput" + this.comboBoxIngredientsList.Count,
+                Style = (Style)this.FindResource("MaterialDesignComboBox"),
+                Width = 105,
+                Height = 50,
+                FontSize = 17,
+                BorderThickness = new Thickness(0, 0, 0, 1.5),
+                BorderBrush = new SolidColorBrush(Color.FromRgb(86, 90, 123)),
+            };
+
+            newComboBoxUnit.Items.Add(new ComboBoxItem { Content = "кг" });
+            newComboBoxUnit.Items.Add(new ComboBoxItem { Content = "шт" });
+            newComboBoxUnit.Items.Add(new ComboBoxItem { Content = "г" });
+
+            TextBox newTextBoxAmount = new TextBox
+            {
+                Name = "AmountOfUnitInput" + this.comboBoxIngredientsList.Count,
+                Style = (Style)this.FindResource("MaterialDesignFloatingHintTextBox"),
+                Width = 105,
+                Height = 50,
+                FontSize = 17,
+                BorderThickness = new Thickness(0, 0, 0, 1.5),
+                BorderBrush = new SolidColorBrush(Color.FromRgb(86, 90, 123)),
             };
 
             deleteButton.Click += (s, args) =>
             {
-                if (comboBoxIngredientsList.Count > 0)
+                if (this.comboBoxIngredientsList.Count > 0)
                 {
-                    int index = comboBoxIngredientsList.Count - 1;
-                    MyCanvas.Children.Remove(comboBoxIngredientsList[index]);
-                    MyCanvas.Children.Remove(deleteButtonIngredientsList[index]);
-                    comboBoxIngredientsList.RemoveAt(index);
-                    deleteButtonIngredientsList.RemoveAt(index);
+                    int index = this.comboBoxIngredientsList.Count - 1;
+                    this.MyCanvas.Children.Remove(this.comboBoxIngredientsList[index]);
+                    this.MyCanvas.Children.Remove(this.deleteButtonIngredientsList[index]);
+                    this.MyCanvas.Children.Remove(this.comboBoxUnitsList[index]);
+                    this.MyCanvas.Children.Remove(this.textBoxAmountOfUnitList[index]);
+                    this.comboBoxIngredientsList.RemoveAt(index);
+                    this.deleteButtonIngredientsList.RemoveAt(index);
+                    this.comboBoxUnitsList.RemoveAt(index);
+                    this.textBoxAmountOfUnitList.RemoveAt(index);
 
-                    if (index < verticalOffsetIngredients)
+                    if (index < this.verticalOffsetIngredients)
                     {
-                        verticalOffsetIngredients -= 70;
+                        this.verticalOffsetIngredients -= 120;
                     }
                 }
             };
 
             Canvas.SetLeft(newComboBox, 470);
-            Canvas.SetTop(newComboBox, verticalOffsetIngredients);
-            MyCanvas.Children.Add(newComboBox);
+            Canvas.SetTop(newComboBox, this.verticalOffsetIngredients);
+            this.MyCanvas.Children.Add(newComboBox);
 
             Canvas.SetLeft(deleteButton, 415);
-            Canvas.SetTop(deleteButton, verticalOffsetIngredients + 20);
-            MyCanvas.Children.Add(deleteButton);
+            Canvas.SetTop(deleteButton, this.verticalOffsetIngredients + 20);
+            this.MyCanvas.Children.Add(deleteButton);
 
-            verticalOffsetIngredients += 70;
+            Canvas.SetLeft(newComboBoxUnit, 470);
+            Canvas.SetTop(newComboBoxUnit, this.verticalOffsetIngredients + 60);
+            this.MyCanvas.Children.Add(newComboBoxUnit);
 
-            comboBoxIngredientsList.Add(newComboBox);
-            deleteButtonIngredientsList.Add(deleteButton);
+            Canvas.SetLeft(newTextBoxAmount, 600);
+            Canvas.SetTop(newTextBoxAmount, this.verticalOffsetIngredients + 60);
+            this.MyCanvas.Children.Add(newTextBoxAmount);
+
+            this.verticalOffsetIngredients += 120;
+
+            this.comboBoxIngredientsList.Add(newComboBox);
+            this.deleteButtonIngredientsList.Add(deleteButton);
+            this.comboBoxUnitsList.Add(newComboBoxUnit);
+            this.textBoxAmountOfUnitList.Add(newTextBoxAmount);
         }
 
         private void SelectImage_Click(object sender, RoutedEventArgs e)
@@ -125,7 +164,7 @@ namespace PresentationUI
                 string selectedImagePath = openFileDialog.FileName;
 
                 // Відображення зображення в елементі Image
-                SelectedImage.Source = new BitmapImage(new Uri(selectedImagePath));
+                this.SelectedImage.Source = new BitmapImage(new Uri(selectedImagePath));
             }
         }
     }
