@@ -29,7 +29,7 @@ namespace PresentationUI
 
         public LoginWindow(IAuthenticator authenticator, INavigationService navigationService, ILogger<LoginWindow> loginLogger)
         {
-            this._navigationService = navigationService;
+            _navigationService = navigationService;
             this._authenticator = authenticator;
             this._loginLogger = loginLogger;
             this.InitializeComponent();
