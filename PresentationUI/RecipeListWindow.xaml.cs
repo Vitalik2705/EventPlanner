@@ -1,34 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿// <copyright file="RecipeListWindow.xaml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace PresentationUI
 {
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media;
+
     /// <summary>
-    /// Interaction logic for RecipeListWindow.xaml
+    /// Interaction logic for RecipeListWindow.xaml.
     /// </summary>
     public partial class RecipeListWindow : Window
     {
         private readonly INavigationService _navigationService;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RecipeListWindow"/> class.
+        /// </summary>
+        /// <param name="navigationService"></param>
         public RecipeListWindow(INavigationService navigationService)
         {
-            _navigationService = navigationService;
-            InitializeComponent();
+            this._navigationService = navigationService;
+            this.InitializeComponent();
         }
 
         private void Account_Page(object sender, RoutedEventArgs e)
         {
-            _navigationService.NavigateTo<IAccountWindow>();
+            this._navigationService.NavigateTo<IAccountWindow>();
             this.Close();
         }
 
@@ -41,27 +40,35 @@ namespace PresentationUI
 
         private void Add_Recipe_Click(object sender, RoutedEventArgs e)
         {
-            //GuestAddWindow secondWindow = new GuestAddWindow();
-            //secondWindow.Show();
+            RecipeAddWindow secondWindow = new RecipeAddWindow(_navigationService);
+            secondWindow.Show();
+            
             this.Close();
         }
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(_navigationService);
+            EventListWindow secondWindow = new EventListWindow(this._navigationService);
             secondWindow.Show();
             this.Close();
         }
 
         private void Guests_Click(object sender, RoutedEventArgs e)
         {
-            _navigationService.NavigateTo<IGuestListWindow>();
+            this._navigationService.NavigateTo<IGuestListWindow>();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(_navigationService);
+            RecipeListWindow secondWindow = new RecipeListWindow(this._navigationService);
+            secondWindow.Show();
+            this.Close();
+        }
+
+        private void Item_Click(object sender, RoutedEventArgs e)
+        {
+            RecipeInfoWindow secondWindow = new RecipeInfoWindow(_navigationService);
             secondWindow.Show();
             this.Close();
         }
@@ -97,7 +104,7 @@ namespace PresentationUI
             }
         }
 
-        private T FindVisualChild<T>(DependencyObject parent)
+        private T? FindVisualChild<T>(DependencyObject parent)
             where T : DependencyObject
         {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)

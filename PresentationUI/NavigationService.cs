@@ -1,25 +1,31 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿// <copyright file="NavigationService.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace PresentationUI
 {
+    using System;
+    using System.Windows;
+    using Microsoft.Extensions.DependencyInjection;
+
     public class NavigationService : INavigationService
     {
         private readonly IServiceProvider _serviceProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NavigationService"/> class.
+        /// </summary>
+        /// <param name="serviceProvider"></param>
         public NavigationService(IServiceProvider serviceProvider)
         {
-            _serviceProvider = serviceProvider;
+            this._serviceProvider = serviceProvider;
         }
 
-        public void NavigateTo<T>() where T : class
+        /// <inheritdoc/>
+        public void NavigateTo<T>()
+            where T : class
         {
-            var page = _serviceProvider.GetRequiredService<T>() as Window;
+            var page = this._serviceProvider.GetRequiredService<T>() as Window;
             page?.Show();
         }
     }

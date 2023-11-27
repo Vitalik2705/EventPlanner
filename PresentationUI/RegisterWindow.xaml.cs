@@ -50,7 +50,7 @@ namespace PresentationUI
             var name = this.FirstnameInput.Text;
             var surname = this.LastnameInput.Text;
             var phoneNumber = this.PhoneNumberInput.Text;
-            var gender = this.GenderItem.SelectedItem != "Чоловік" ? Gender.Female : Gender.Male;
+            var gender = this.GenderItem.SelectedItem.ToString() != "Чоловік" ? Gender.Female : Gender.Male;
 
             User user = new User()
             {
@@ -79,7 +79,7 @@ namespace PresentationUI
             }
             catch (Exception)
             {
-                this._registerLogger.LogError("Failed to register the account.");
+                this._registerLogger.LogError($"Failed to register the account. {ex}");
             }
         }
     }

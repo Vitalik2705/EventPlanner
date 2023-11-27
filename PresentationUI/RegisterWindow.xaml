@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <Canvas Grid.Column="1" Grid.Row="1">
-            <Image Canvas.Left="30" Canvas.Top="50" Height="400" Width="400" Source="images/4957136 1.png"/>
+            <Image Canvas.Left="30" Canvas.Top="50" Height="400" Width="400" Source="images/registerWindow.png"/>
         </Canvas>
 
         <Canvas Grid.Column="0" Grid.Row="0">
@@ -32,7 +32,7 @@
                   Canvas.Top="5" 
                   Height="50"
                   Width="40"
-                  Source="images/Mask group.png"/>
+                  Source="images/Maskgroup.png"/>
             <TextBlock Canvas.Left="65" Canvas.Top="13" FontSize="25">
             EventPlanner
             </TextBlock>

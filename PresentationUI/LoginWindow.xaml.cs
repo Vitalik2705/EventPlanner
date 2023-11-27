@@ -52,9 +52,8 @@ namespace PresentationUI
             }
             catch (Exception)
             {
-                this._loginLogger.LogError("Failed to log into the account.");
+                this._loginLogger.LogError($"Failed to log into the account.{ex}");
             }
-
         }
     }
 }

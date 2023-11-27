@@ -23,30 +23,35 @@ namespace PresentationUI
         private readonly IUserService _userService;
         private readonly INavigationService _navigationService;
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public MainWindow()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainWindow"/> class.
+        /// </summary>
+        /// <param name="userService"></param>
+        /// <param name="navigationService"></param>
         public MainWindow(IUserService userService, INavigationService navigationService)
         {
-            _navigationService = navigationService;
+            this._navigationService = navigationService;
             this._userService = userService;
             this.InitializeComponent();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            _navigationService.NavigateTo<ILoginWindow>();
+            this._navigationService.NavigateTo<ILoginWindow>();
 
-            //LoginWindow secondWindow = new LoginWindow(this._userService, _navigationService, _loginLogger);
-            //secondWindow.Show();
             this.Hide();
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            _navigationService.NavigateTo<IGuestListWindow>(); ;
+            this._navigationService.NavigateTo<IGuestListWindow>();
             this.Hide();
         }
     }
