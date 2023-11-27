@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
+using BLL.Validation;
 
 namespace BLL.Services.Interfaces
 {
@@ -28,7 +29,15 @@ namespace BLL.Services.Interfaces
 
         public async Task AddGuest(Guest _guest)
         {
-            await _guestRepository.AddAsync(_guest);
+            var validator = new GuestValidation();
+            var validationResult = validator.Validate(_guest);
+
+            if (validationResult.IsValid)
+            {
+                return;
+            }
+
+            await this._guestRepository.AddAsync(_guest);
         }
 
         public async Task UpdateGuest(Guest _guest)

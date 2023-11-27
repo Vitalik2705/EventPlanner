@@ -1,11 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-
-#nullable disable
+﻿#nullable disable
 
 namespace DAL.Migrations
 {
+    using System;
+    using Microsoft.EntityFrameworkCore.Migrations;
+    using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+
     /// <inheritdoc />
     public partial class CreateDataBase : Migration
     {
@@ -20,7 +20,7 @@ namespace DAL.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Ingredient = table.Column<string>(type: "text", nullable: false),
                     Unit = table.Column<string>(type: "text", nullable: false),
-                    Amount = table.Column<int>(type: "integer", nullable: false)
+                    Amount = table.Column<int>(type: "integer", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -37,7 +37,7 @@ namespace DAL.Migrations
                     Calories = table.Column<int>(type: "integer", nullable: false),
                     CookingTime = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -57,7 +57,7 @@ namespace DAL.Migrations
                     Password = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
                     Gender = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -69,7 +69,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     IngredientsUnitsIngredientUnitId = table.Column<int>(type: "integer", nullable: false),
-                    RecipesRecipeId = table.Column<int>(type: "integer", nullable: false)
+                    RecipesRecipeId = table.Column<int>(type: "integer", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -97,7 +97,7 @@ namespace DAL.Migrations
                     Name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -115,7 +115,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     EventsEventId = table.Column<int>(type: "integer", nullable: false),
-                    RecipesRecipeId = table.Column<int>(type: "integer", nullable: false)
+                    RecipesRecipeId = table.Column<int>(type: "integer", nullable: false),
                 },
                 constraints: table =>
                 {
@@ -143,7 +143,7 @@ namespace DAL.Migrations
                     Surname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     Name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     Gender = table.Column<int>(type: "integer", nullable: false),
-                    EventId = table.Column<int>(type: "integer", nullable: true)
+                    EventId = table.Column<int>(type: "integer", nullable: true),
                 },
                 constraints: table =>
                 {

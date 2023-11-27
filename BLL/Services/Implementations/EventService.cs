@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
+using BLL.Validation;
 
 namespace BLL.Services.Interfaces
 {
@@ -28,7 +29,13 @@ namespace BLL.Services.Interfaces
 
         public async Task AddEvent(Event _event)
         {
-            await _eventRepository.AddAsync(_event);
+            var validator = new EventValidation();
+            var validationResult = validator.Validate(_event);
+
+            if (validationResult.IsValid)
+            {
+                return;
+            }
         }
 
         public async Task UpdateEvent(Event _event)

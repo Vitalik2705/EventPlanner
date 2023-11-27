@@ -6,38 +6,29 @@ namespace PresentationUI
 {
     using System;
     using System.Windows;
-    using BLL.Services.Interfaces;
+    using DAL.State.Authenticator;
     using Microsoft.Extensions.Logging;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows.Controls;
-    using System.Windows.Media;
-    using BLL.Services.Repositories;
-    using DAL.Data;
-    using DAL.Models;
 
     /// <summary>
     /// Interaction logic for LoginWindow.xaml.
     /// </summary>
     public partial class LoginWindow : Window, ILoginWindow
     {
-        private readonly IUserService _userService;
+        private readonly IAuthenticator _authenticator;
         private readonly INavigationService _navigationService;
         private readonly ILogger<LoginWindow> _loginLogger;
 
-
-        public LoginWindow(IUserService userService, INavigationService navigationService, ILogger<LoginWindow> loginLogger)
+        public LoginWindow(IAuthenticator authenticator, INavigationService navigationService, ILogger<LoginWindow> loginLogger)
         {
-            _navigationService = navigationService;
-            this._userService = userService;
+            this._navigationService = navigationService;
+            this._authenticator = authenticator;
             this._loginLogger = loginLogger;
             this.InitializeComponent();
         }
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-
-            _navigationService.NavigateTo<IRegisterWindow>();
+            this._navigationService.NavigateTo<IRegisterWindow>();
 
             this.Close();
         }
@@ -51,15 +42,15 @@ namespace PresentationUI
 
             try
             {
-                var user = await this._userService.Login(password, email);
+                var user = await this._authenticator.Login(password, email);
 
                 this._loginLogger.LogInformation("Successfully logged into the account.");
 
-                AccountWindow secondWindow = new AccountWindow(user, _navigationService);
-                secondWindow.Show();
+                this._navigationService.NavigateTo<IAccountWindow>();
+
                 this.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 this._loginLogger.LogError("Failed to log into the account.");
             }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using static BLL.Services.Repositories.IUserRepository;
 
 namespace BLL.Services.Interfaces
 {
@@ -16,6 +17,7 @@ namespace BLL.Services.Interfaces
         //Task UpdateUser(User _User);
         //Task DeleteUser(int id);
         Task<User> Login(string password, string email);
-        Task<User> Register(User user);
+
+        Task<RegistrationResult> Register(User user);
     }
 }

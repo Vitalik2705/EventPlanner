@@ -9,9 +9,11 @@ namespace BLL.Services.Repositories
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using BLL.Validation;
     using DAL.Data;
     using DAL.Models;
     using Microsoft.EntityFrameworkCore;
+    using static BLL.Services.Repositories.IUserRepository;
 
     public class UserRepository : IUserRepository
     {
@@ -40,14 +42,23 @@ namespace BLL.Services.Repositories
             return user;
         }
 
-        public async Task<User> Register(User user)
+        public async Task<RegistrationResult> Register(User user)
         {
+            RegistrationResult result = RegistrationResult.Success;
+
+            var validator = new RegisterValidation();
+            var validationResult = validator.Validate(user);
+
+            if (!validationResult.IsValid)
+            {
+                return RegistrationResult.PasswordsDoNotMatch;
+            }
 
             await this._table.AddAsync(user);
 
             await this._context.SaveChangesAsync();
 
-            return user;
+            return result;
         }
     }
 }

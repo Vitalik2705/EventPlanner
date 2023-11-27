@@ -5,7 +5,7 @@ namespace DAL.Migrations
     using Microsoft.EntityFrameworkCore.Migrations;
 
     /// <inheritdoc />
-    public partial class UpdateIdColumn : Migration
+    public partial class AddNewnullFields : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

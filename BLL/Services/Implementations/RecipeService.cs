@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
+using BLL.Validation;
 
 namespace BLL.Services.Interfaces
 {
@@ -28,7 +29,15 @@ namespace BLL.Services.Interfaces
 
         public async Task AddRecipe(Recipe _recipe)
         {
-            await _recipeRepository.AddAsync(_recipe);
+            var validator = new RecipeValidation();
+            var validationResult = validator.Validate(_recipe);
+
+            if (validationResult.IsValid)
+            {
+                return;
+            }
+
+            await this._recipeRepository.AddAsync(_recipe);
         }
 
         public async Task UpdateRecipe(Recipe _recipe)
