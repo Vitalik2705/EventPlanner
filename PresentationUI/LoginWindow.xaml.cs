@@ -50,7 +50,7 @@ namespace PresentationUI
 
                 this.Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 this._loginLogger.LogError($"Failed to log into the account.{ex}");
             }

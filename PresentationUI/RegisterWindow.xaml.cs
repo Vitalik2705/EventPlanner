@@ -77,7 +77,7 @@ namespace PresentationUI
                     this.Close();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 this._registerLogger.LogError($"Failed to register the account. {ex}");
             }
