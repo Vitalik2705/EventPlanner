@@ -29,7 +29,6 @@ namespace PresentationUI
         private void Register_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.NavigateTo<IRegisterWindow>();
-
             this.Close();
         }
 

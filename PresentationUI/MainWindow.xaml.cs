@@ -45,7 +45,6 @@ namespace PresentationUI
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.NavigateTo<ILoginWindow>();
-
             this.Hide();
         }
 

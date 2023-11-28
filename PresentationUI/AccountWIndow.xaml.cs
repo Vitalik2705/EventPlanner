@@ -7,6 +7,7 @@ namespace PresentationUI
     using System.Windows;
     using DAL.Models;
     using DAL.State.Authenticator;
+    using PresentationUI.Interfaces;
 
     /// <summary>
     /// Interaction logic for AccountWIndow.xaml.
@@ -40,15 +41,13 @@ namespace PresentationUI
 
         private void Events_Page(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(this._navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<IEventListWindow>();
             this.Close();
         }
 
         private void Recipes_Page(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(this._navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<IRecipeListWindow>();
             this.Close();
         }
     }

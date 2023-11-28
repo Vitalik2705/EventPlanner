@@ -20,6 +20,7 @@ namespace PresentationUI
     using BLL.Services.Interfaces;
     using DAL.Models;
     using Microsoft.Extensions.Logging;
+    using PresentationUI.Interfaces;
 
     /// <summary>
     /// Interaction logic for GuestAddWindow.xaml.
@@ -53,15 +54,13 @@ namespace PresentationUI
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(this._navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<IEventListWindow>();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(this._navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<IRecipeListWindow>();
             this.Close();
         }
 

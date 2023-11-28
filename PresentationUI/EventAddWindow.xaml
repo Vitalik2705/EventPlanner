@@ -185,6 +185,7 @@
                     Foreground="White"
                     Canvas.Left="350"
                     Canvas.Top="450"
+                    Click="AddEventButton_Click"
                     >
                     <Button.Resources>
                         <Style TargetType="Border">

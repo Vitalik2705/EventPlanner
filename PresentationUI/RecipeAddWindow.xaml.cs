@@ -7,11 +7,12 @@
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using Microsoft.Win32;
+    using PresentationUI.Interfaces;
 
     /// <summary>
     /// Interaction logic for RecipeAddWindow.xaml.
     /// </summary>
-    public partial class RecipeAddWindow : Window
+    public partial class RecipeAddWindow : Window, IRecipeAddWindow
     {
         private readonly INavigationService _navigationService;
         private List<ComboBox> comboBoxIngredientsList = new List<ComboBox>();
@@ -38,15 +39,13 @@
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(this._navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<IEventListWindow>();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(this._navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<IRecipeListWindow>();
             this.Close();
         }
 

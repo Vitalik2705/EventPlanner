@@ -10,6 +10,7 @@ namespace PresentationUI
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using BLL.Services.Interfaces;
+    using PresentationUI.Interfaces;
 
     /// <summary>
     /// Interaction logic for GuestListWindow.xaml.
@@ -36,9 +37,8 @@ namespace PresentationUI
 
         private void Account_Page(object sender, RoutedEventArgs e)
         {
-            // AccountWindow secondWindow = new AccountWindow();
-            // secondWindow.Show();
-            // this.Close();
+            this._navigationService.NavigateTo<IAccountWindow>();
+            this.Close();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
@@ -56,15 +56,13 @@ namespace PresentationUI
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(this._navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<IEventListWindow>();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(this._navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<IRecipeListWindow>();
             this.Close();
         }
 

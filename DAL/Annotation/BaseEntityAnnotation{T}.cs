@@ -13,7 +13,7 @@
     {
         protected BaseEntityAnnotation(ModelBuilder builder)
         {
-            ModelBuilder = builder.Entity<T>();
+            this.ModelBuilder = builder.Entity<T>();
         }
 
         protected EntityTypeBuilder<T> ModelBuilder { get; }

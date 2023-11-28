@@ -15,6 +15,7 @@ namespace PresentationUI
     using Microsoft.EntityFrameworkCore.Design;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using PresentationUI.Interfaces;
     using Serilog;
 
     /// <summary>
@@ -58,8 +59,11 @@ namespace PresentationUI
                     services.AddTransient<IGuestListWindow, GuestListWindow>();
                     services.AddTransient<IGuestAddWindow, GuestAddWindow>();
                     services.AddTransient<IAccountWindow, AccountWindow>();
-                    //services.AddTransient<IRecipeListWindow, RecipeListWindow>();
-                    //services.AddTransient<IEventListWindow, EventListWindow>();
+                    services.AddTransient<IRecipeListWindow, RecipeListWindow>();
+                    services.AddTransient<IRecipeAddWindow, RecipeAddWindow>();
+                    services.AddTransient<IRecipeInfoWindow, RecipeInfoWindow>();
+                    services.AddTransient<IEventAddWindow, EventAddWindow>();
+                    services.AddTransient<IEventListWindow, EventListWindow>();
                 })
                 .Build();
         }

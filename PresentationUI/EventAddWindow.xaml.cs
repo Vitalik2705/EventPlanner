@@ -18,11 +18,12 @@ namespace PresentationUI
     using System.Windows.Media.Imaging;
     using System.Windows.Shapes;
     using MaterialDesignThemes.Wpf;
+    using PresentationUI.Interfaces;
 
     /// <summary>
     /// Interaction logic for EventAddWindow.xaml.
     /// </summary>
-    public partial class EventAddWindow : Window
+    public partial class EventAddWindow : Window, IEventAddWindow
     {
         private readonly INavigationService _navigationService;
 
@@ -44,15 +45,13 @@ namespace PresentationUI
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(this._navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<IEventListWindow>();
             this.Close();
         }
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(this._navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<IRecipeListWindow>();
             this.Close();
         }
 
@@ -187,6 +186,11 @@ namespace PresentationUI
 
             this.comboBoxDishesList.Add(newComboBox);
             this.deleteButtonDishesList.Add(deleteButton);
+        }
+
+        private void AddEventButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

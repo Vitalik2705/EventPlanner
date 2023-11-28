@@ -4,6 +4,7 @@
 
 namespace PresentationUI
 {
+    using PresentationUI.Interfaces;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
@@ -11,7 +12,7 @@ namespace PresentationUI
     /// <summary>
     /// Interaction logic for RecipeListWindow.xaml.
     /// </summary>
-    public partial class RecipeListWindow : Window
+    public partial class RecipeListWindow : Window, IRecipeListWindow
     {
         private readonly INavigationService _navigationService;
 
@@ -40,16 +41,13 @@ namespace PresentationUI
 
         private void Add_Recipe_Click(object sender, RoutedEventArgs e)
         {
-            RecipeAddWindow secondWindow = new RecipeAddWindow(_navigationService);
-            secondWindow.Show();
-            
+            this._navigationService.NavigateTo<IRecipeAddWindow>();
             this.Close();
         }
 
         private void Events_Click(object sender, RoutedEventArgs e)
         {
-            EventListWindow secondWindow = new EventListWindow(this._navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<IEventListWindow>();
             this.Close();
         }
 
@@ -61,15 +59,13 @@ namespace PresentationUI
 
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
-            RecipeListWindow secondWindow = new RecipeListWindow(this._navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<IRecipeListWindow>();
             this.Close();
         }
 
         private void Item_Click(object sender, RoutedEventArgs e)
         {
-            RecipeInfoWindow secondWindow = new RecipeInfoWindow(_navigationService);
-            secondWindow.Show();
+            this._navigationService.NavigateTo<IRecipeInfoWindow>();
             this.Close();
         }
 

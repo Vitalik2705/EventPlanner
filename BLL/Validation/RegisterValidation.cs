@@ -40,28 +40,28 @@ namespace BLL.Validation
             });
             this.RuleFor(u => u.Password).NotNull().Custom((password, context) =>
             {
-                //string patternNumbers = "^[0-9]+$";
-                //string patternUpperLetters = "^[A-Z]+$";
-                //string patternLowerLetters = "^[a-z]+$";
-                //if (password.Length < 8)
-                //{
-                //    context.AddFailure("Password must have at least 8 values");
-                //}
+                string patternNumbers = "[0-9]+";
+                string patternUpperLetters = "[A-Z]+";
+                string patternLowerLetters = "[a-z]+";
+                if (password.Length < 8)
+                {
+                    context.AddFailure("Password must have at least 8 values");
+                }
 
-                //if (!Regex.Match(password, patternNumbers).Success)
-                //{
-                //    context.AddFailure("Password must contain at least one digit");
-                //}
+                if (!Regex.Match(password, patternNumbers).Success)
+                {
+                    context.AddFailure("Password must contain at least one digit");
+                }
 
-                //if (!Regex.Match(password, patternUpperLetters).Success)
-                //{
-                //    context.AddFailure("Password must contain at least one upper letter");
-                //}
+                if (!Regex.Match(password, patternUpperLetters).Success)
+                {
+                    context.AddFailure("Password must contain at least one upper letter");
+                }
 
-                //if (!Regex.Match(password, patternLowerLetters).Success)
-                //{
-                //    context.AddFailure("Password must contain at least one lower letter");
-                //}
+                if (!Regex.Match(password, patternLowerLetters).Success)
+                {
+                    context.AddFailure("Password must contain at least one lower letter");
+                }
             });
             this.RuleFor(u => u.Gender).NotNull().WithMessage("{PropertyName} mustn't be null");
         }
