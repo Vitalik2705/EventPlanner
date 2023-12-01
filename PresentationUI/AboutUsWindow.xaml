@@ -1,0 +1,95 @@
+﻿<Window x:Class="PresentationUI.AboutUsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationUI"
+        mc:Ignorable="d"
+        Title="AboutUsWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="Grid_First_Page">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Image Height="400" Width="990" Source="images/20944999.jpg"/>
+        <Canvas>
+            <Button x:Name="Login"
+                    Content="Увійти"
+                    Width="120" 
+                    Height="45" 
+                    Background="#8B92D0"
+                    FontSize="20"
+                    Foreground="White"
+                    Canvas.Left="820"
+                    Canvas.Top="10"
+                    Click="Login_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <TextBlock Canvas.Left="720"
+                     Canvas.Top="18">
+          <Hyperlink NavigateUri="YourPage.xaml"
+                     FontSize="20"
+                     Foreground="Black"
+                     TextDecorations="None"
+                     Click="AboutUs_Click">Про нас</Hyperlink>
+            </TextBlock>
+            <TextBlock Canvas.Left="500"
+                     Canvas.Top="18">
+            <Hyperlink NavigateUri="YourPage.xaml"
+                       FontSize="20"
+                       Foreground="Black"
+                       TextDecorations="None"
+                       Click="Hyperlink_Click"
+                       >Можливості продукту
+            </Hyperlink>
+
+            </TextBlock>
+            <Image  Canvas.Left="10"
+                  Canvas.Top="5" 
+                  Height="50"
+                  Width="40"
+                  Source="/images/Maskgroup.png"/>
+            <TextBlock Canvas.Left="65" Canvas.Top="13" FontSize="25">
+            EventPlanner
+            </TextBlock>
+            <TextBlock Canvas.Top="68" FontSize="30" FontFamily="Segoe UI" FontWeight="DemiBold" Foreground="#8B92D0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="481" Canvas.Left="48">
+            Хороша подія починається з
+            <LineBreak/>запрошення рідних людей 
+            <LineBreak/>та вибору смачних страв
+            </TextBlock>
+            <TextBlock Canvas.Top="492" FontSize="30" FontFamily="Segoe UI" FontWeight="DemiBold" Foreground="#A5A9D0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="166" Canvas.Left="412">
+              Наша місія
+            </TextBlock>
+            <TextBlock Canvas.Top="536" FontSize="15" FontFamily="Segoe UI" FontWeight="DemiBold" Foreground="#A5A9D0" TextAlignment="Center" VerticalAlignment="Center" Width="516" Canvas.Left="237" HorizontalAlignment="Left">
+            Ми - команда молодих та наполегливих програмістів
+            <LineBreak/>Наша мета - зробити ваш досвід роботи з додатком якомога кращим
+            <LineBreak/>Гарного святкування і дякуємо за ваш вибір та довіру!
+            </TextBlock>
+
+            <TextBlock Canvas.Top="138" Canvas.Left="855">
+                <Hyperlink Click="Gmail_CLick" TextDecorations="None">
+                    <Image Height="50" Width="50" Source="images/gmail-logo.png"/>
+                </Hyperlink>    
+            </TextBlock>
+            <TextBlock Canvas.Top="238" Canvas.Left="855">
+                <Hyperlink Click="Github_CLick" TextDecorations="None">
+                    <Image Height="50" Width="50" Source="images/github.png"/>
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock Canvas.Top="338" Canvas.Left="855">
+                <Hyperlink Click="Instagram_CLick" TextDecorations="None">
+                    <Image Height="50" Width="50" Source="images/instagram.png"/>
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock Canvas.Top="438" Canvas.Left="855">
+                <Hyperlink Click="Telegram_CLick" TextDecorations="None">
+                    <Image Height="50" Width="50" Source="images/telegram.png"/>
+                </Hyperlink>
+            </TextBlock>
+        </Canvas>
+    </Grid>
+</Window>

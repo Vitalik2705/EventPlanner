@@ -8,13 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\20944999.jpg" />
     <None Remove="images\agenda %284%29 1.png" />
     <None Remove="images\Arrow1.png" />
     <None Remove="images\Ellipse 1.png" />
     <None Remove="images\fluent_guest-add-20-filled.png" />
+    <None Remove="images\github.png" />
+    <None Remove="images\gmail-logo.png" />
     <None Remove="images\google.png" />
     <None Remove="images\image 1.png" />
     <None Remove="images\image2.png" />
+    <None Remove="images\instagram.png" />
     <None Remove="images\mainWindow.jpg" />
     <None Remove="images\Mask group1.png" />
     <None Remove="images\Maskgroup.png" />
@@ -24,9 +28,13 @@
     <None Remove="images\plus.png" />
     <None Remove="images\registerWindow.png" />
     <None Remove="images\search %281%29.png" />
+    <None Remove="images\telegram.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\20944999.jpg" />
+    <Resource Include="images\github.png" />
+    <Resource Include="images\gmail-logo.png" />
     <Resource Include="images\image2.png" />
   </ItemGroup>
 
@@ -73,6 +81,7 @@
     <Resource Include="images\fluent_guest-add-20-filled.png" />
     <Resource Include="images\google.png" />
     <Resource Include="images\image 1.png" />
+    <Resource Include="images\instagram.png" />
     <Resource Include="images\mainWindow.jpg" />
     <Resource Include="images\Mask group1.png" />
     <Resource Include="images\Maskgroup.png" />
@@ -82,6 +91,7 @@
     <Resource Include="images\plus.png" />
     <Resource Include="images\registerWindow.png" />
     <Resource Include="images\search (1).png" />
+    <Resource Include="images\telegram.png" />
   </ItemGroup>
 
 </Project>
