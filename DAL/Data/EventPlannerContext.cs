@@ -14,15 +14,19 @@ namespace DAL.Data
     {
         private readonly IConfiguration? _configuration;
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public EventPlannerContext(IConfiguration configuration)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             this._configuration = configuration;
         }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public EventPlannerContext(DbContextOptions<EventPlannerContext> options)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
             : base(options)
         {
-           // this.Database.Migrate();
+             //this.Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -41,6 +45,8 @@ namespace DAL.Data
                 new RecipeAnnotation(modelBuilder),
                 new GuestAnnotation(modelBuilder),
                 new IngredientUnitAnnotation(modelBuilder),
+                new EventGuestAnnotation(modelBuilder),
+                new EventRecipeAnnotaion(modelBuilder),
                 new EventAnnotation(modelBuilder),
             };
             foreach (var annotation in annotationCollection)
@@ -58,5 +64,9 @@ namespace DAL.Data
         public DbSet<IngredientUnit> IngredientUnit { get; set; }
 
         public DbSet<Event> Event { get; set; }
+
+        public DbSet<EventGuest> EventGuest { get; set; }
+
+        public DbSet<EventRecipe> EventRecipe { get; set; }
     }
 }

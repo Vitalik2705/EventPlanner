@@ -103,7 +103,7 @@
                      BorderBrush="#565A7B" 
                      materialDesign:HintAssist.FloatingOffset="0,-18" />
 
-                <ComboBox x:Name="GuestsInput"
+                <!--<ComboBox x:Name="GuestsInput"
                   Style="{StaticResource MaterialDesignComboBox}"
                   Width="230" Height="50"
                   Canvas.Left="80" Canvas.Top="230"
@@ -112,9 +112,9 @@
                   materialDesign:HintAssist.FloatingOffset="0,-18"
                   materialDesign:HintAssist.Hint="Гості"
                   >
-                    <ComboBoxItem>Eminem</ComboBoxItem>
-                    <ComboBoxItem>50 Cent</ComboBoxItem>
-                </ComboBox>
+                    --><!--<ComboBoxItem>Eminem</ComboBoxItem>
+                    <ComboBoxItem>50 Cent</ComboBoxItem>--><!--
+                </ComboBox>-->
 
                 <TextBlock x:Name="GuestsInputTextBlock"
                        Canvas.Left="80"
