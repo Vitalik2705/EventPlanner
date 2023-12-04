@@ -29,7 +29,7 @@ namespace PresentationUI
         }
         private void Main_Click(object sender, RoutedEventArgs e)
         {
-            this._navigationService.NavigateTo<IOpportunitiesWindow>();
+            this._navigationService.NavigateTo<IMainWindow>();
             this.Hide();
         }
     }
