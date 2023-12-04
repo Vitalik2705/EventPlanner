@@ -30,17 +30,17 @@
             EventPlanner
             </TextBlock>
         </Canvas>
-        <TextBlock Canvas.Left="920"
-           Canvas.Top="18"
-           Margin="707,22,-85,0"
-           Grid.Column="1"
-           Foreground="Black">
-    <Hyperlink NavigateUri="YourDestinationPage.xaml">
-        <TextBlock FontSize="18" Foreground="Black">
-            <Run Language="uk-ua" Text="Головна"/>
-        </TextBlock>
+        <TextBlock Canvas.Left="500"
+           Canvas.Top="18" Grid.Column="1" Margin="697,18,-103,46" Grid.RowSpan="2">
+    <Hyperlink NavigateUri="MainWindow.xaml"
+               FontSize="20"
+               Foreground="Black"
+               TextDecorations="None"
+               Click="Main_Click">
+        Головна
     </Hyperlink>
-</TextBlock>
+        </TextBlock>
+
 
 
         <Canvas Grid.Column="1" Grid.Row="1">

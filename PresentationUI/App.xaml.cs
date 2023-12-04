@@ -55,6 +55,7 @@ namespace PresentationUI
 
                     services.AddTransient<IMainWindow, MainWindow>();
                     services.AddTransient<ILoginWindow, LoginWindow>();
+                    services.AddTransient<IOpportunitiesWindow, OpportunitiesWindow>();
                     services.AddTransient<IRegisterWindow, RegisterWindow>();
                     services.AddTransient<IGuestListWindow, GuestListWindow>();
                     services.AddTransient<IGuestAddWindow, GuestAddWindow>();

@@ -19,7 +19,7 @@ namespace PresentationUI
     /// <summary>
     /// Interaction logic for OpportunitiesWindow.xaml
     /// </summary>
-    public partial class OpportunitiesWindow : Window
+    public partial class OpportunitiesWindow : Window, IOpportunitiesWindow
     {
         private readonly INavigationService _navigationService;
         public OpportunitiesWindow(INavigationService navigationService)
@@ -27,7 +27,7 @@ namespace PresentationUI
             this._navigationService = navigationService;
             InitializeComponent();
         }
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        private void Main_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.NavigateTo<IOpportunitiesWindow>();
             this.Hide();
