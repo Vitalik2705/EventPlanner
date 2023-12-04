@@ -110,7 +110,7 @@
 
         <Canvas Grid.Column="1" Grid.Row="2">
             <TextBlock Canvas.Left="50" Canvas.Top="30" FontSize="25">
-                Змінити Емейл
+                Змінити Email
             </TextBlock>
         </Canvas>
 
@@ -127,30 +127,31 @@
         </Canvas>
 
         <Canvas Grid.Column="1" Grid.Row="2">
-            <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     materialDesign:HintAssist.Hint="Email"
-                     Width="230"
-                     Height="50"
-                     Canvas.Left="50"
-                     Canvas.Top="60"
-                     FontSize="17"
-                     BorderThickness="0 0 0 1.5" 
-                     BorderBrush="#565A7B" 
-                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+            <TextBox x:Name="NewEmailInput"
+             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+             materialDesign:HintAssist.Hint="New Email"
+             Width="230"
+             Height="50"
+             Canvas.Left="50"
+             Canvas.Top="60"
+             FontSize="17"
+             BorderThickness="0 0 0 1.5" 
+             BorderBrush="#565A7B" 
+             materialDesign:HintAssist.FloatingOffset="0,-18" />
         </Canvas>
 
         <Canvas Grid.Column="1" Grid.Row="2">
-            <PasswordBox 
-                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
-                materialDesign:HintAssist.Hint="Password"
-                Width="230"
-                Height="50"
-                Canvas.Left="400"
-                Canvas.Top="60"
-                FontSize="17"
-                BorderThickness="0 0 0 1.5" 
-                BorderBrush="#565A7B"
-                materialDesign:HintAssist.FloatingOffset="0,-18" />
+            <PasswordBox x:Name="NewPasswordInput"
+                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                  materialDesign:HintAssist.Hint="New Password"
+                  Width="230"
+                  Height="50"
+                  Canvas.Left="400"
+                  Canvas.Top="60"
+                  FontSize="17"
+                  BorderThickness="0 0 0 1.5" 
+                  BorderBrush="#565A7B"
+                  materialDesign:HintAssist.FloatingOffset="0,-18" />
         </Canvas>
 
 
@@ -173,15 +174,16 @@
         </Canvas>
 
         <Canvas Grid.Column="1" Grid.Row="3">
-            <Button x:Name="Save"
-                        Content="Зберегти"
-                        Width="200" 
-                        Height="35" 
-                        Background="#565A7B"
-                        FontSize="19"
-                        Foreground="White"
-                        Canvas.Left="290"
-                        Canvas.Top="170">
+            <Button x:Name="ChangeCredentials"
+            Content="Зберегти"
+            Width="200" 
+            Height="35" 
+            Background="#565A7B"
+            FontSize="19"
+            Foreground="White"
+            Canvas.Left="290"
+            Canvas.Top="170"
+            Click="ChangeCredentials_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="7"></Setter>

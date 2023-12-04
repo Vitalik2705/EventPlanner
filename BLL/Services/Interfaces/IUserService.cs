@@ -14,7 +14,7 @@ namespace BLL.Services.Interfaces
         //Task<IEnumerable<User>> GetAll(Expression<Func<User, bool>>? filter = null);
         //Task<User> GetUser(Expression<Func<User, bool>>? filter = null);
         //Task AddUser(User _User);
-        //Task UpdateUser(User _User);
+        Task UpdateUser(User _User);
         //Task DeleteUser(int id);
         Task<User> Login(string password, string email);
 

@@ -30,5 +30,9 @@ namespace BLL.Services.Interfaces
 
             return regUser;
         }
+        public async Task UpdateUser(User _user)
+        {
+            await _userRepository.UpdateAsync(_user);
+        }
     }
 }
