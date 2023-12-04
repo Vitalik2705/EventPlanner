@@ -58,8 +58,8 @@ namespace PresentationUI
 
         private async void ChangeCredentials_Click(object sender, RoutedEventArgs e)
         {
-            string newEmail = NewEmailInput.Text;
-            string newPassword = NewPasswordInput.Password;
+            string newEmail = this.NewEmailInput.Text;
+            string newPassword = this.NewPasswordInput.Password;
 
             //var userValidator = new RegisterValidation();
 
@@ -98,14 +98,12 @@ namespace PresentationUI
                 user.Password = newPassword;
             }
 
-            await _userService.UpdateUser(user);
-
-            //MessageBox.Show("Credentials updated successfully!");
+            await this._userService.UpdateUser(user);
 
             this.Email.Text = user.Email;
 
-            NewEmailInput.Clear();
-            NewPasswordInput.Clear();
+            this.NewEmailInput.Clear();
+            this.NewPasswordInput.Clear();
         }
     }
 }
