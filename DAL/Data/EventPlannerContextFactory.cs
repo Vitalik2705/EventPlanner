@@ -16,7 +16,7 @@ namespace DAL.Data
             var optionsBuilder = new DbContextOptionsBuilder<EventPlannerContext>();
 
             optionsBuilder.UseNpgsql(
-                "Host=localhost;Port=5432;Username=postgres;Password=Yuiwerghjsdf21;Database=EventPlanner");
+                "Host=localhost;Port=5432;Username=postgres;Password=123456;Database=EventPlanner");
 
             return new EventPlannerContext(optionsBuilder.Options);
         }

@@ -123,22 +123,13 @@
                        Text="{Binding ElementName=GuestsInput, Path=SelectedItem.Content}">
                 </TextBlock>
 
-                <ComboBox 
-                x:Name="DishesInput"
-                Style="{StaticResource MaterialDesignComboBox}"
-                Width="230"
-                Height="50"
-                Canvas.Left="470"
-                Canvas.Top="230"
-                FontSize="17"
-                BorderThickness="0 0 0 1.5" 
-                BorderBrush="#565A7B"
-                materialDesign:HintAssist.FloatingOffset="0,-18"
-                materialDesign:HintAssist.Hint="Страви"
-                >
-                    <ComboBoxItem>Піца Байрактар</ComboBoxItem>
-                    <ComboBoxItem>Паста болньєзе</ComboBoxItem>
-                </ComboBox>
+            <TextBlock x:Name="DishesInputTextBlock"
+                       Canvas.Left="80"
+                       Canvas.Top="350"
+                       FontSize="20"
+                       Text="{Binding ElementName=DishesInput, Path=SelectedItem.Content}">
+            </TextBlock>
+
 
                 <Button
                     x:Name="AddGuestsButton"

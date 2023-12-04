@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.8.1" />
     <PackageReference Include="JustMock" Version="2023.3.1122.188" />
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
