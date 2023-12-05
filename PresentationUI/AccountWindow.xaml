@@ -171,6 +171,24 @@
                 <ComboBoxItem>Українська</ComboBoxItem>
                 <ComboBoxItem>Англійська</ComboBoxItem>
             </ComboBox>
+
+
+            <Button x:Name="ChangePassword"
+                        Content="Змінити пароль"
+                        Width="150" 
+                        Height="40" 
+                        Background="#565A7B"
+                        FontSize="15"
+                        Foreground="White"
+                        Canvas.Left="440"
+                        Canvas.Top="10"
+                        Click="ChangePasswordPage_click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="7"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </Canvas>
 
         <Canvas Grid.Column="1" Grid.Row="3">
