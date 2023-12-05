@@ -69,6 +69,7 @@ namespace PresentationUI
                     services.AddTransient<IRecipeInfoWindow, RecipeInfoWindow>();
                     services.AddTransient<IEventAddWindow, EventAddWindow>();
                     services.AddTransient<IEventListWindow, EventListWindow>();
+                    services.AddTransient<IAboutUsWindow, AboutUsWindow>();
                 })
                 .Build();
         }

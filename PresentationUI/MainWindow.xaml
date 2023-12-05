@@ -34,7 +34,8 @@
           <Hyperlink NavigateUri="YourPage.xaml"
                      FontSize="20"
                      Foreground="Black"
-                     TextDecorations="None">Про нас</Hyperlink>
+                     TextDecorations="None"
+                     Click="AboutUs_Click">Про нас</Hyperlink>
           </TextBlock>
           <TextBlock Canvas.Left="500"
                      Canvas.Top="18">
