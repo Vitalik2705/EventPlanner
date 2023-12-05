@@ -71,6 +71,7 @@ namespace PresentationUI
                     services.AddTransient<IEventAddWindow, EventAddWindow>();
                     services.AddTransient<IEventListWindow, EventListWindow>();
                     services.AddTransient<IAboutUsWindow, AboutUsWindow>();
+                    services.AddTransient<IChangePasswordWindow, ChangePasswordWindow>();
                 })
                 .Build();
         }
