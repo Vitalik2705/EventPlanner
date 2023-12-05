@@ -16,6 +16,7 @@ namespace BLL.Validation
             this.RuleFor(u => u.Calories).NotNull().WithMessage("{PropertyName} mustn't be null");
             this.RuleFor(u => u.CookingTime).NotNull().WithMessage("{PropertyName} mustn't be null");
             this.RuleFor(u => u.IngredientsUnits).NotNull().WithMessage("{PropertyName} mustn't be null");
+            //this.Rue
         }
     }
 }

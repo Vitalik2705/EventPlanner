@@ -116,79 +116,8 @@
                          x:Name="itemListBoxRecipes"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                         Loaded="itemListBoxRecipes_Loaded"
                      >
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}" MouseDoubleClick="Item_Click">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Сирник</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Цезар</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Олів'є</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Грецький</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Паста Болоньєзе</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Піца 4 сири</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Картопля по-селянськи</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Капрічіоза</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Studente Aldente</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Піца Маргарита</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Піца Цезаріо</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
-                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
-                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
-                        <TextBlock Margin="10 6 0 0" FontSize="25">Піца Байрактар</TextBlock>
-                    </StackPanel>
-                </ListBoxItem>
             </ListBox>
         </Canvas>
 

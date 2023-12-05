@@ -19,12 +19,12 @@ namespace BLL.Services.Interfaces
 
         public async Task<IEnumerable<Event>> GetAll(Expression<Func<Event, bool>>? filter = null)
         {
-            return await _eventRepository.GetAllAsync(filter);
+            return await this._eventRepository.GetAllAsync(filter);
         }
 
         public async Task<Event> GetEvent(Expression<Func<Event, bool>>? filter = null)
         {
-            return await _eventRepository.GetAsync(filter);
+            return await this._eventRepository.GetAsync(filter);
         }
 
         public async Task AddEvent(Event _event)
@@ -32,20 +32,22 @@ namespace BLL.Services.Interfaces
             var validator = new EventValidation();
             var validationResult = validator.Validate(_event);
 
-            if (validationResult.IsValid)
+            if (!validationResult.IsValid)
             {
                 return;
             }
+
+            await this._eventRepository.AddAsync(_event);
         }
 
         public async Task UpdateEvent(Event _event)
         {
-            await _eventRepository.UpdateAsync(_event);
+            await this._eventRepository.UpdateAsync(_event);
         }
 
         public async Task DeleteEvent(int id)
         {
-            await _eventRepository.DeleteAsync(id);
+            await this._eventRepository.DeleteAsync(id);
         }
     }
 }

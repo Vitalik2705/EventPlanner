@@ -59,5 +59,17 @@ namespace BLL.Services.Repositories
 
             return result;
         }
+
+        public async Task UpdateAsync(User user)
+        {
+            this._table.Attach(user);
+            this._context.Entry(user).State = EntityState.Modified;
+            await this.SaveAsync();
+        }
+
+        public async Task SaveAsync()
+        {
+            await this._context.SaveChangesAsync();
+        }
     }
 }

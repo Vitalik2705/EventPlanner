@@ -4,10 +4,13 @@
 
 namespace PresentationUI
 {
+    using BLL.Services.Interfaces;
     using PresentationUI.Interfaces;
+    using System;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
+    using System.Windows.Media.Imaging;
 
     /// <summary>
     /// Interaction logic for RecipeListWindow.xaml.
@@ -15,13 +18,15 @@ namespace PresentationUI
     public partial class RecipeListWindow : Window, IRecipeListWindow
     {
         private readonly INavigationService _navigationService;
+        private readonly IRecipeService _recipeService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeListWindow"/> class.
         /// </summary>
         /// <param name="navigationService"></param>
-        public RecipeListWindow(INavigationService navigationService)
+        public RecipeListWindow(IRecipeService recipeService, INavigationService navigationService)
         {
+            this._recipeService = recipeService;
             this._navigationService = navigationService;
             this.InitializeComponent();
         }
@@ -123,6 +128,62 @@ namespace PresentationUI
             }
 
             return null;
+        }
+
+        private async void LoadRecipes()
+        {
+            try
+            {
+                var recipes = await this._recipeService.GetAll();
+
+                // Clear existing items in the ListBox
+                this.itemListBoxRecipes.Items.Clear();
+
+                foreach (var recipe in recipes)
+                {
+                    ListBoxItem listBoxItem = new ListBoxItem
+                    {
+                        Height = 50,
+                        Margin = new Thickness(0, 0, 0, 15),
+                        Style = this.FindResource("MaterialDesignCardsListBoxItem") as Style, // Use the appropriate resource key
+                    };
+
+                    StackPanel stackPanel = new StackPanel
+                    {
+                        Background = Brushes.White,
+                        Orientation = Orientation.Horizontal,
+                    };
+
+                    Image image = new Image
+                    {
+                        Width = 50,
+                        Height = 40,
+                        Source = new BitmapImage(new Uri("images/Ellipse 1.png", UriKind.RelativeOrAbsolute)),
+                    };
+
+                    TextBlock textBlock = new TextBlock
+                    {
+                        Margin = new Thickness(10, 6, 0, 0),
+                        FontSize = 25,
+                        Text = $"{recipe.Name}",
+                    };
+
+                    stackPanel.Children.Add(image);
+                    stackPanel.Children.Add(textBlock);
+                    listBoxItem.Content = stackPanel;
+
+                    this.itemListBoxRecipes.Items.Add(listBoxItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                string exc = $"{ex}";
+            }
+        }
+
+        private void itemListBoxRecipes_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.LoadRecipes();
         }
     }
 }

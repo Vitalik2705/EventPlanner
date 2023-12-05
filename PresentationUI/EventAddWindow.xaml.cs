@@ -7,6 +7,7 @@ namespace PresentationUI
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows;
@@ -17,6 +18,10 @@ namespace PresentationUI
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using System.Windows.Shapes;
+    using BLL.Services.Interfaces;
+    using BLL.Services.State.Authenticator;
+    using DAL.Models;
+    using DAL.State.Authenticator;
     using MaterialDesignThemes.Wpf;
     using PresentationUI.Interfaces;
 
@@ -26,14 +31,27 @@ namespace PresentationUI
     public partial class EventAddWindow : Window, IEventAddWindow
     {
         private readonly INavigationService _navigationService;
+        private readonly IEventService _eventService;
+        private readonly IGuestService _guestService;
+        private readonly IRecipeService _recipeService;
+        private readonly IEventRecipeService _eventRecipeService;
+        private readonly IEventGuestService _eventGuestService;
+        private readonly IAuthenticator _authenticator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventAddWindow"/> class.
         /// </summary>
         /// <param name="navigationService"></param>
-        public EventAddWindow(INavigationService navigationService)
+        public EventAddWindow(INavigationService navigationService, IEventService eventService, IGuestService guestService,
+            IRecipeService recipeService, IAuthenticator authenticator, IEventRecipeService eventRecipeService, IEventGuestService eventGuestService)
         {
             this._navigationService = navigationService;
+            this._eventService = eventService;
+            this._guestService = guestService;
+            this._recipeService = recipeService;
+            this._eventGuestService = eventGuestService;
+            this._eventRecipeService = eventRecipeService;
+            this._authenticator = authenticator;
             this.InitializeComponent();
         }
 
@@ -59,7 +77,7 @@ namespace PresentationUI
         private List<Button> deleteButtonList = new List<Button>();
         private double verticalOffset = 300;
 
-        private void AddGuestsButton_Click(object sender, RoutedEventArgs e)
+        private async void AddGuestsButton_Click(object sender, RoutedEventArgs e)
         {
             ComboBox newComboBox = new ComboBox
             {
@@ -72,8 +90,11 @@ namespace PresentationUI
                 BorderBrush = new SolidColorBrush(Color.FromRgb(86, 90, 123)),
             };
 
-            newComboBox.Items.Add(new ComboBoxItem { Content = "New Guest 1" });
-            newComboBox.Items.Add(new ComboBoxItem { Content = "New Guest 2" });
+            var guests = await this._guestService.GetGuestsAsync();
+            foreach (var guest in guests)
+            {
+                newComboBox.Items.Add(new ComboBoxItem { Content = $"{guest.Name} {guest.Surname}" });
+            }
 
             Button deleteButton = new Button
             {
@@ -124,7 +145,7 @@ namespace PresentationUI
         private List<Button> deleteButtonDishesList = new List<Button>();
         private double verticalOffsetDishes = 300;
 
-        private void AddDishesButton_Click(object sender, RoutedEventArgs e)
+        private async void AddDishesButton_Click(object sender, RoutedEventArgs e)
         {
             ComboBox newComboBox = new ComboBox
             {
@@ -137,11 +158,11 @@ namespace PresentationUI
                 BorderBrush = new SolidColorBrush(Color.FromRgb(86, 90, 123)),
             };
 
-            newComboBox.Items.Add(new ComboBoxItem { Content = "New Guest 1" });
-            newComboBox.Items.Add(new ComboBoxItem { Content = "New Guest 2" });
-            newComboBox.Items.Add(new ComboBoxItem { Content = "New Guest 2" });
-            newComboBox.Items.Add(new ComboBoxItem { Content = "New Guest 2" });
-            newComboBox.Items.Add(new ComboBoxItem { Content = "New Guest 2" });
+            var recipes = (await this._recipeService.GetAll()).ToList();
+            foreach (var recipe in recipes)
+            {
+                newComboBox.Items.Add(new ComboBoxItem { Content = $"{recipe.Name}" });
+            }
 
             Button deleteButton = new Button
             {
@@ -188,9 +209,61 @@ namespace PresentationUI
             this.deleteButtonDishesList.Add(deleteButton);
         }
 
-        private void AddEventButton_Click(object sender, RoutedEventArgs e)
+        private async void AddEventButton_Click(object sender, RoutedEventArgs e)
         {
+            var nameEvent = this.EventNameInput.Text;
 
+            //var comboBoxGuests = new List<string>();
+            var guests = new List<Guest>();
+            foreach (var comboBoxGuest in this.comboBoxList)
+            {
+                var nameOfGuest = comboBoxGuest.Text.Split(' ')[0];
+                var surnameOfGuest = comboBoxGuest.Text.Split(' ')[1];
+                var guest = await this._guestService.GetGuest(e => e.Name == nameOfGuest && e.Surname == surnameOfGuest);
+
+                guests.Add(guest);
+            }
+
+            var recipes = new List<Recipe>();
+            foreach (var comboBoxRecipe in this.comboBoxDishesList)
+            {
+                var nameOfRecipe = comboBoxRecipe.Text;
+                var recipe = await this._recipeService.GetRecipe(e => e.Name == nameOfRecipe);
+                recipes.Add(recipe);
+            }
+
+            var eventGR = new Event()
+            {
+                Name = nameEvent,
+                UserId = this._authenticator.CurrentUser.UserId,
+                CreatedDate = DateTime.UtcNow,
+            };
+
+            await this._eventService.AddEvent(eventGR);
+
+            var eventGuests = new List<EventGuest>();
+            for (int i = 0; i < guests.Count; i++)
+            {
+                var eventGuest = new EventGuest()
+                {
+                    EventId = eventGR.EventId,
+                    GuestId = guests[i].GuestId,
+                };
+                await this._eventGuestService.AddEventGuest(eventGuest);
+            }
+
+            for (int i = 0; i < recipes.Count; i++)
+            {
+                var eventRecipe = new EventRecipe()
+                {
+                    EventId = eventGR.EventId,
+                    RecipeId = recipes[i].RecipeId,
+                };
+                await this._eventRecipeService.AddEventRecipe(eventRecipe);
+            }
+
+            this._navigationService.NavigateTo<IEventListWindow>();
+            this.Close();
         }
     }
 }

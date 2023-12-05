@@ -16,7 +16,7 @@ namespace DAL.Models
 
         public ICollection<IngredientUnit> IngredientsUnits { get; set;}
 
-        public ICollection<Event> Events { get; set; }
+        public ICollection<EventRecipe> RecipeEvents { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

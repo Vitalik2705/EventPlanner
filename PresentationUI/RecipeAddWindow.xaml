@@ -234,7 +234,7 @@
                 VerticalScrollBarVisibility="Auto"
                 HorizontalAlignment="Left"/>
 
-            <Button x:Name="AddEventButton"
+            <Button x:Name="AddRecipeButton"
                     Width="60" 
                     Height="60" 
                     Background="#565A7B"
@@ -242,6 +242,7 @@
                     Foreground="White"
                     Canvas.Left="650"
                     Canvas.Top="470"
+                    Click="AddRecipeButton_Click"
                     >
                 <Button.Resources>
                     <Style TargetType="Border">

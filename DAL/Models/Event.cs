@@ -16,9 +16,9 @@
 
         public int UserId { get; set; }
 
-        public ICollection<Guest> Guests { get; set; }
+        public ICollection<EventGuest> EventGuests { get; set; }
 
-        public ICollection<Recipe> Recipes { get; set; }
+        public ICollection<EventRecipe> EventRecipes { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

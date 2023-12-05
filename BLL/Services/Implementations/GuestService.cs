@@ -32,7 +32,7 @@ namespace BLL.Services.Interfaces
             var validator = new GuestValidation();
             var validationResult = validator.Validate(_guest);
 
-            if (validationResult.IsValid)
+            if (!validationResult.IsValid)
             {
                 return;
             }

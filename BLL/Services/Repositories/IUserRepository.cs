@@ -21,5 +21,9 @@ namespace BLL.Services.Repositories
         Task<User> Login(string password, string email);
 
         Task<RegistrationResult> Register(User user);
+
+        Task UpdateAsync(User user);
+
+        Task SaveAsync();
     }
 }

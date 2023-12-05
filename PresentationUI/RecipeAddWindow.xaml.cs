@@ -6,6 +6,8 @@
     using System.Windows.Controls;
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
+    using BLL.Services.Interfaces;
+    using DAL.Models;
     using Microsoft.Win32;
     using PresentationUI.Interfaces;
 
@@ -14,6 +16,7 @@
     /// </summary>
     public partial class RecipeAddWindow : Window, IRecipeAddWindow
     {
+        private readonly IRecipeService _recipeService;
         private readonly INavigationService _navigationService;
         private List<ComboBox> comboBoxIngredientsList = new List<ComboBox>();
         private List<ComboBox> comboBoxUnitsList = new List<ComboBox>();
@@ -25,8 +28,9 @@
         /// Initializes a new instance of the <see cref="RecipeAddWindow"/> class.
         /// </summary>
         /// <param name="navigationService">navigationService.</param>
-        public RecipeAddWindow(INavigationService navigationService)
+        public RecipeAddWindow(IRecipeService recipeService, INavigationService navigationService)
         {
+            this._recipeService = recipeService;
             this._navigationService = navigationService;
             this.InitializeComponent();
         }
@@ -165,6 +169,56 @@
                 // Відображення зображення в елементі Image
                 this.SelectedImage.Source = new BitmapImage(new Uri(selectedImagePath));
             }
+        }
+
+        private async void AddRecipeButton_Click(object sender, RoutedEventArgs e)
+        {
+            var nameRecipe = this.RecipeNameInput.Text;
+            var caloriesText = this.AmountOfCaloriesInput.Text;
+            string hoursText = this.HoursComboBox.Text;
+            string minutesText = this.MinutesComboBox.Text;
+
+            int calories = int.TryParse(caloriesText, out int parsedCalories) ? parsedCalories : 0;
+            int hours = int.TryParse(hoursText, out int parsedHours) ? parsedHours : 0;
+            int minutes = int.TryParse(minutesText, out int parsedMinutes) ? parsedMinutes : 0;
+
+            int totalMinutes = (hours * 60) + minutes;
+
+            var recipeGR = new Recipe()
+            {
+                Name = nameRecipe,
+                Calories = calories,
+                CookingTime = totalMinutes,
+                IngredientsUnits = null,
+                RecipeEvents = null,
+                CreatedDate = DateTime.UtcNow,
+            };
+
+            await this._recipeService.AddRecipe(recipeGR);
+
+            //var eventGuests = new List<EventGuest>();
+            //for (int i = 0; i < guests.Count; i++)
+            //{
+            //    var eventGuest = new EventGuest()
+            //    {
+            //        EventId = eventGR.EventId,
+            //        GuestId = guests[i].GuestId,
+            //    };
+            //    await this._eventGuestService.AddEventGuest(eventGuest);
+            //}
+
+            //for (int i = 0; i < recipes.Count; i++)
+            //{
+            //    var eventRecipe = new EventRecipe()
+            //    {
+            //        EventId = eventGR.EventId,
+            //        RecipeId = recipes[i].RecipeId,
+            //    };
+            //    await this._eventRecipeService.AddEventRecipe(eventRecipe);
+            //}
+
+            this._navigationService.NavigateTo<IRecipeListWindow>();
+            this.Close();
         }
     }
 }

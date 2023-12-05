@@ -23,7 +23,7 @@ namespace BLL.Services.Repositories
         /// <inheritdoc/>
         public async Task AddAsync(T model)
         {
-            await _table.AddAsync(model);
+            await this._table.AddAsync(model);
             await SaveAsync();
         }
 
@@ -50,14 +50,17 @@ namespace BLL.Services.Repositories
         /// <inheritdoc/>
         public async Task<T> GetAsync(Expression<Func<T, bool>>? fillter = null)
         {
-            IQueryable<T> query = _table;
+            IQueryable<T> query = this._table;
 
             if (fillter != null)
             {
-                query.Where(fillter);
+                query = query.Where(fillter);
             }
 
-            return await query.FirstOrDefaultAsync();
+            var instance = await query.FirstOrDefaultAsync();
+            this._context.Attach(instance);
+
+            return instance;
         }
 
         /// <inheritdoc/>

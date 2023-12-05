@@ -5,6 +5,7 @@
 namespace PresentationUI
 {
     using System.Windows;
+    using BLL.Services.Implementations;
     using BLL.Services.Interfaces;
     using BLL.Services.Repositories;
     using BLL.Services.State.Authenticator;
@@ -44,11 +45,15 @@ namespace PresentationUI
                     services.AddTransient<IGenericRepository<Event>, GenericRepository<Event>>();
                     services.AddTransient<IGenericRepository<Recipe>, GenericRepository<Recipe>>();
                     services.AddTransient<IGenericRepository<IngredientUnit>, GenericRepository<IngredientUnit>>();
+                    services.AddTransient<IGenericRepository<EventGuest>, GenericRepository<EventGuest>>();
+                    services.AddTransient<IGenericRepository<EventRecipe>, GenericRepository<EventRecipe>>();
 
                     services.AddScoped<IUserService, UserService>();
                     services.AddScoped<IGuestService, GuestService>();
                     services.AddScoped<IEventService, EventService>();
                     services.AddScoped<IRecipeService, RecipeService>();
+                    services.AddScoped<IEventGuestService, EventGuestService>();
+                    services.AddScoped<IEventRecipeService, EventRecipeService>();
                     services.AddScoped<IIngredientUnitService, IngredientUnitService>();
                     services.AddScoped<IAuthenticator, Authenticator>();
                     services.AddSingleton<IUserStore, UserStore>();
