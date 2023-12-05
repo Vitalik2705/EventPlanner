@@ -48,7 +48,7 @@ namespace PresentationUI
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            this._navigationService.NavigateTo<IGuestListWindow>();
+            this._navigationService.NavigateTo<IOpportunitiesWindow>();
             this.Hide();
         }
 

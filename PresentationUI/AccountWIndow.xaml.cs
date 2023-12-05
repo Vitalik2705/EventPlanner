@@ -61,32 +61,45 @@ namespace PresentationUI
             string newEmail = this.NewEmailInput.Text;
             string newPassword = this.NewPasswordInput.Password;
 
-            //var userValidator = new RegisterValidation();
-
-            //var tempUser = new User
-            //{
-            //    Name = "ddd",
-            //    Surname = "ddd",
-            //    Email = newEmail,
-            //    Password = newPassword,
-            //    PhoneNumber = "0123456789",
-            //};
-
-            //var emailValidationResult = userValidator.Validate(tempUser);
-            //if (!emailValidationResult.IsValid)
-            //{
-            //    MessageBox.Show($"Invalid email: {string.Join(Environment.NewLine, emailValidationResult.Errors)}");
-            //    return;
-            //}
-
-            //var passwordValidationResult = userValidator.Validate(tempUser);
-            //if (!passwordValidationResult.IsValid)
-            //{
-            //    MessageBox.Show($"Invalid password: {string.Join(Environment.NewLine, passwordValidationResult.Errors)}");
-            //    return;
-            //}
+            var userValidator = new RegisterValidation();
 
             User user = this._authenticator.CurrentUser;
+            User temp = user;
+
+            if (NewEmailInput.Text == null && NewPasswordInput != null)
+            {
+                temp.Password = newPassword;
+            }
+            if (NewEmailInput.Text != null && NewPasswordInput == null)
+            {
+                temp.Email = newEmail;
+            }
+            if (NewEmailInput.Text != null && NewPasswordInput != null)
+            {
+                temp.Password = newPassword;
+                temp.Email = newEmail;
+            }
+            if (NewEmailInput.Text == null && newPassword == null)
+            {
+                return;
+            }
+
+            var emailValidationResult = userValidator.Validate(temp);
+            if (!emailValidationResult.IsValid)
+            {
+                MessageBox.Show($"Invalid email:\n{string.Join(Environment.NewLine, emailValidationResult.Errors)}");
+                return;
+            }
+
+            var passwordValidationResult = userValidator.Validate(temp);
+            if (!passwordValidationResult.IsValid)
+            {
+                MessageBox.Show($"Invalid password:\n{string.Join(Environment.NewLine, passwordValidationResult.Errors)}");
+                return;
+            }
+
+
+
 
             if (!string.IsNullOrEmpty(newEmail))
             {
@@ -104,6 +117,7 @@ namespace PresentationUI
 
             this.NewEmailInput.Clear();
             this.NewPasswordInput.Clear();
+
         }
     }
 }
