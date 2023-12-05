@@ -1,0 +1,92 @@
+﻿<Window x:Class="PresentationUI.OpportunitiesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationUI"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="GuestListWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="8*" />
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Fill="#8B92D0" />
+
+        <Canvas Grid.Column="0" Grid.Row="0">
+            <Image  Canvas.Left="10"
+                  Canvas.Top="5" 
+                  Height="50"
+                  Width="40"
+                  Source="images/agenda (4) 1.png"/>
+            <TextBlock Foreground="White" Canvas.Left="65" Canvas.Top="13" FontSize="25">
+            EventPlanner
+            </TextBlock>
+        </Canvas>
+        <TextBlock Canvas.Left="500"
+           Canvas.Top="18" Grid.Column="1" Margin="697,18,-103,46" Grid.RowSpan="2">
+    <Hyperlink NavigateUri="MainWindow.xaml"
+               FontSize="20"
+               Foreground="Black"
+               TextDecorations="None"
+               Click="Main_Click">
+        Головна
+    </Hyperlink>
+        </TextBlock>
+
+
+
+        <Canvas Grid.Column="1" Grid.Row="1">
+            <TextBlock Text="Можливості продукту"
+               FontSize="34"
+               Foreground="#565A7B"
+               Canvas.Left="102"
+               Canvas.Top="9"
+               FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </Canvas>
+
+        <Canvas Grid.Row="2" Grid.ColumnSpan="2" Margin="99,0,0,0">
+            <ListBox Style="{StaticResource MaterialDesignListBox}"
+                         Canvas.Left="90"
+                         Canvas.Top="30"
+                         Width="600"
+                         Height="350"
+                         x:Name="itemListBoxEvents"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                     >
+                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
+                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
+                        <TextBlock Margin="10 6 0 0" FontSize="23">Створення списку гостей</TextBlock>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
+                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
+                        <TextBlock Margin="10 6 0 0" FontSize="23">Створення меню для події</TextBlock>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
+                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
+                        <TextBlock Margin="10 6 0 0" FontSize="23">Розподіл необхідної кількості продуктів для страви</TextBlock>
+                    </StackPanel>
+                </ListBoxItem>
+                <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
+                        <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
+                        <TextBlock Margin="10 6 0 0" FontSize="23">Додавання унікальних рецептів</TextBlock>
+                    </StackPanel>
+                </ListBoxItem>
+            </ListBox>
+        </Canvas>
+    </Grid>
+</Window>
