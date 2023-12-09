@@ -20,19 +20,23 @@ namespace PresentationUI
         // private readonly IGuestService _guestService;
         private readonly INavigationService _navigationService;
         private readonly IGuestService _guestService;
+        private readonly IEventGuestService _eventGuestService;
+        private readonly IEventService _eventService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuestListWindow"/> class.
         /// </summary>
         /// <param name="guestService"></param>
         /// <param name="navigationService"></param>
-        public GuestListWindow(IGuestService guestService, INavigationService navigationService)
+        public GuestListWindow(IGuestService guestService, INavigationService navigationService, IEventGuestService eventGuestService, IEventService eventService)
         {
             this._guestService = guestService;
             this._navigationService = navigationService;
-
+            this._eventGuestService = eventGuestService;
+            this._eventService = eventService;
             // LoadGuests();
             this.InitializeComponent();
+            
         }
 
         private void Account_Page(object sender, RoutedEventArgs e)
@@ -157,7 +161,7 @@ namespace PresentationUI
 
                 int guestId = (int)selectedListBoxItem.Tag;
 
-                GuestInfoWindow guestInfoWindow = new GuestInfoWindow(_navigationService, _guestService, guestId);
+                GuestInfoWindow guestInfoWindow = new GuestInfoWindow(_navigationService, _guestService, _eventGuestService, _eventService, guestId);
                 this.Close();
                 guestInfoWindow.Show();
             }

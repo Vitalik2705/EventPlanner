@@ -116,11 +116,10 @@
             </TextBlock>
 
             <TextBlock Canvas.Left="483" FontWeight="SemiBold" Canvas.Top="299" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">
-                Подія, до якої належить гість:
+                Події, до яких належить гість:
             </TextBlock>
 
             <TextBlock x:Name="EventTextBlock" Canvas.Left="483" FontWeight="Light" Canvas.Top="341" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top">
-                День народження Віталіка
             </TextBlock>
 
         </Canvas>

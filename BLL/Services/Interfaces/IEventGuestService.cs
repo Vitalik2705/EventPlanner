@@ -19,5 +19,7 @@ namespace BLL.Services.Interfaces
         Task UpdateEventGuest(EventGuest _eventGuest);
 
         Task DeleteEventGuest(int id);
+
+        Task<IEnumerable<EventGuest>> GetEventsForGuest(int guestId);
     }
 }

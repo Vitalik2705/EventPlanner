@@ -25,12 +25,16 @@ namespace PresentationUI
 
         private readonly INavigationService _navigationService;
         private readonly IGuestService _guestService;
+        private readonly IEventGuestService _eventGuestService;
+        private readonly IEventService _eventService;
         private readonly int _guestId;
 
-        public GuestInfoWindow(INavigationService navigationService, IGuestService guestService, int guestId)
+        public GuestInfoWindow(INavigationService navigationService, IGuestService guestService, IEventGuestService eventGuestService, IEventService eventService ,int guestId)
         {
             this._navigationService = navigationService;
             this._guestService = guestService;
+            this._eventGuestService = eventGuestService;
+            this._eventService = eventService;
             this._guestId = guestId;
             InitializeComponent();
             Loaded += OnLoaded;
@@ -45,9 +49,23 @@ namespace PresentationUI
                 LastNameTextBlock.Text = guest.Surname;
                 FirstNameTextBlock.Text = guest.Name;
                 GenderTextBlock.Text = guest.Gender.ToString() == "Male" ? "Чоловік" : "Жінка";
-                //EventTextBlock.Text = guest.Event;
+
+                var eventsForGuest = await _eventGuestService.GetEventsForGuest(_guestId);
+
+                var eventNames = new List<string>();
+                foreach (var eg in eventsForGuest)
+                {
+                    var eventInfo = await _eventService.GetEventById(eg.EventId);
+                    if (eventInfo != null)
+                    {
+                        eventNames.Add(eventInfo.Name);
+                    }
+                }
+
+                EventTextBlock.Text = string.Join(Environment.NewLine, eventNames);
             }
         }
+
 
         private void Guests_Click(object sender, RoutedEventArgs e)
         {
