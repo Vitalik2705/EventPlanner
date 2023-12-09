@@ -57,5 +57,10 @@ namespace BLL.Services.Implementations
         {
             return await _eventGuestRepository.GetAllAsync(eg => eg.GuestId == guestId);
         }
+
+        public async Task<IEnumerable<EventGuest>> GetGuestsForEvent(int eventId)
+        {
+            return await _eventGuestRepository.GetAllAsync(eg => eg.EventId == eventId);
+        }
     }
 }

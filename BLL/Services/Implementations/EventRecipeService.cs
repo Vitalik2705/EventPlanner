@@ -52,5 +52,10 @@ namespace BLL.Services.Implementations
         {
             await this._eventRecipeRepository.DeleteAsync(id);
         }
+
+        public async Task<IEnumerable<EventRecipe>> GetRecipesForEvent(int eventId)
+        {
+            return await _eventRecipeRepository.GetAllAsync(er => er.EventId == eventId);
+        }
     }
 }

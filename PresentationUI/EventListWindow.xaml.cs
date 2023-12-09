@@ -17,7 +17,9 @@ namespace PresentationUI
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using System.Windows.Shapes;
+    using BLL.Services.Implementations;
     using BLL.Services.Interfaces;
+    using DAL.Models;
     using DAL.State.Authenticator;
     using PresentationUI.Interfaces;
 
@@ -28,17 +30,25 @@ namespace PresentationUI
     {
         private readonly INavigationService _navigationService;
         private readonly IEventService _eventService;
+        private readonly IEventGuestService _eventGuestService;
+        private readonly IEventRecipeService _eventRecipeService;
+        private readonly IGuestService _guestService;
+        private readonly IRecipeService _recipeService;
         private readonly IAuthenticator _autheticator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventListWindow"/> class.
         /// </summary>
         /// <param name="navigationService"></param>
-        public EventListWindow(INavigationService navigationService, IEventService eventService, IAuthenticator authenticator)
+        public EventListWindow(INavigationService navigationService, IEventService eventService, IAuthenticator authenticator, IEventGuestService eventGuestService, IEventRecipeService eventRecipeService, IGuestService guestService, IRecipeService recipeService)
         {
             this._navigationService = navigationService;
             this._eventService = eventService;
             this._autheticator = authenticator;
+            this._eventGuestService = eventGuestService;
+            _eventRecipeService = eventRecipeService;
+            _guestService = guestService;
+            _recipeService = recipeService;
             this.InitializeComponent();
         }
 
@@ -145,6 +155,7 @@ namespace PresentationUI
                         Height = 50,
                         Margin = new Thickness(0, 0, 0, 15),
                         Style = this.FindResource("MaterialDesignCardsListBoxItem") as Style, // Use the appropriate resource key
+                        Tag = even.EventId
                     };
 
                     StackPanel stackPanel = new StackPanel
@@ -177,6 +188,20 @@ namespace PresentationUI
             catch (Exception ex)
             {
                 string exc = $"{ex}";
+            }
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (itemListBoxEvents.SelectedItem != null)
+            {
+                ListBoxItem selectedListBoxItem = (ListBoxItem)itemListBoxEvents.SelectedItem;
+
+                int eventId = (int)selectedListBoxItem.Tag;
+
+                EventInfoWindow guestInfoWindow = new EventInfoWindow(_navigationService, eventId, _eventService, _eventGuestService, _eventRecipeService, _guestService, _recipeService);
+                this.Close();
+                guestInfoWindow.Show();
             }
         }
 
