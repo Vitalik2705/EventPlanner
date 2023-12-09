@@ -19,5 +19,7 @@ namespace BLL.Services.Interfaces
         Task UpdateEventRecipe(EventRecipe _eventRecipe);
 
         Task DeleteEventRecipe(int id);
+
+        Task<IEnumerable<EventRecipe>> GetRecipesForEvent(int eventId);
     }
 }

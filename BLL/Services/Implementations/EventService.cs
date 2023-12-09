@@ -49,5 +49,10 @@ namespace BLL.Services.Interfaces
         {
             await this._eventRepository.DeleteAsync(id);
         }
+
+        public async Task<Event> GetEventById(int eventId)
+        {
+            return await _eventRepository.GetAsync(g => g.EventId == eventId);
+        }
     }
 }

@@ -41,7 +41,7 @@ namespace BLL.Services.Repositories
             IQueryable<T> query = this._table;
             if (fillter != null)
             {
-                query.Where(fillter);
+                query = query.Where(fillter);
             }
 
             return await query.ToListAsync();

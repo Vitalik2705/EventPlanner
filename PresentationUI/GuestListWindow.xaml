@@ -116,7 +116,8 @@
          x:Name="itemListBox"
          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
          ScrollViewer.VerticalScrollBarVisibility="Disabled"
-         Loaded="LoadGuests_Click">
+         Loaded="LoadGuests_Click"
+         SelectionChanged="ListBox_SelectionChanged">
                 <!-- The ListBox items will be added dynamically in code-behind -->
             </ListBox>
         </Canvas>

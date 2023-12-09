@@ -56,6 +56,13 @@ namespace PresentationUI
             this.Close();
         }
 
+        private void ChangePasswordPage_click(object sender, RoutedEventArgs e)
+        {
+            this._navigationService.NavigateTo<IChangePasswordWindow>();
+            this.Close();
+        }
+        
+
         private async void ChangeCredentials_Click(object sender, RoutedEventArgs e)
         {
             string newEmail = this.NewEmailInput.Text;

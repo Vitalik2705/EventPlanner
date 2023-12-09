@@ -52,5 +52,15 @@ namespace BLL.Services.Implementations
         {
             await this._eventGuestRepository.DeleteAsync(id);
         }
+
+        public async Task<IEnumerable<EventGuest>> GetEventsForGuest(int guestId)
+        {
+            return await _eventGuestRepository.GetAllAsync(eg => eg.GuestId == guestId);
+        }
+
+        public async Task<IEnumerable<EventGuest>> GetGuestsForEvent(int eventId)
+        {
+            return await _eventGuestRepository.GetAllAsync(eg => eg.EventId == eventId);
+        }
     }
 }

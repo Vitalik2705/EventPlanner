@@ -20,5 +20,7 @@ namespace BLL.Services.Interfaces
 
         Task DeleteEvent(int id);
 
+        Task<Event> GetEventById(int eventId);
+
     }
 }

@@ -70,8 +70,10 @@ namespace PresentationUI
 
             var name = this.FirstNameInput.Text;
             var surname = this.LastNameInput.Text;
-            var gender = this.SexInput.SelectedItem != "Чоловік" ? Gender.Female : Gender.Male;
-
+            var selectedComboBoxItem = (ComboBoxItem)SexInput.SelectedItem;
+            string selectedSex = selectedComboBoxItem.Content.ToString();
+            var gender = selectedSex != "Чоловік" ? Gender.Female : Gender.Male;
+            
             Guest guest = new Guest()
             {
                 Surname = surname,

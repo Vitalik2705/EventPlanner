@@ -1,12 +1,12 @@
-﻿<Window x:Class="PresentationUI.EventListWindow"
+﻿<Window x:Class="PresentationUI.EventInfoWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PresentationUI"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:PresentationUI"
         mc:Ignorable="d"
-        Title="GuestListWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
+        Title="EventInfoWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -14,8 +14,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="8*" />
+            <RowDefinition Height="9*" />
         </Grid.RowDefinitions>
 
         <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Fill="#8B92D0" />
@@ -40,27 +39,27 @@
                   Width="40"
                   Source="images/mdi_account-outline.png"/>
             <TextBlock Canvas.Left="65" Canvas.Top="32" FontSize="25">
-                <Hyperlink NavigateUri="AccountWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Account_Page">
+                <Hyperlink NavigateUri="AccountWindow.xaml" TextDecorations="None" Foreground="#000000">
                 Акаунт
                 </Hyperlink>
             </TextBlock>
         </Canvas>
 
         <Canvas x:Name="eneCanvas" Grid.Column="0" Grid.Row="1">
-            <Rectangle Canvas.Top="95" Width="198" Height="50" Fill="#FFFFFF" />
             <Image  Canvas.Left="10"
                   Canvas.Top="95" 
                   Height="50"
                   Width="40"
                   Source="images/mdi_events.png"/>
             <TextBlock Canvas.Left="65" Canvas.Top="101" FontSize="25">
-                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000">
+                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000" Click="Events_Click">
             Події
                     </Hyperlink>
             </TextBlock>
         </Canvas>
 
         <Canvas x:Name="recipesCanvas" Grid.Column="0" Grid.Row="1">
+            <Rectangle Canvas.Top="165" Width="198" Height="50" Fill="#FFFFFF" />
             <Image  Canvas.Left="10"
                   Canvas.Top="165" 
                   Height="50"
@@ -80,69 +79,39 @@
                   Width="40"
                   Source="images/fluent_guest-add-20-filled.png"/>
             <TextBlock Canvas.Left="65" Canvas.Top="242" FontSize="25">
-                <Hyperlink TextDecorations="None" Foreground="#000000" Click="Guests_Click">
+                <Hyperlink NavigateUri="GuestListWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Guests_Click">
             Гості
                     </Hyperlink>
             </TextBlock>
         </Canvas>
 
-        <Canvas Grid.Column="1" Grid.Row="1">
-            <TextBox x:Name="searchTextBoxEvents"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     materialDesign:HintAssist.Hint="Пошук подій"
-                     Width="230"
-                     Height="60"
-                     Canvas.Left="250"
-                     Canvas.Top="-5"
-                     FontSize="22"
-                     BorderThickness="0 0 0 1.5" 
-                     BorderBrush="#565A7B" 
-                     materialDesign:HintAssist.FloatingOffset="0,-18"
-                     TextChanged="SearchTextBox_TextChanged"/>
 
-            <Button  Background="#565A"
-                    FontSize="19"
-                    Foreground="White" Canvas.Top="22" Canvas.Left="490" Click="Search_Click">
-                <Image Width="20" Height="20" Source="images/search (1).png" />
-            </Button>
-        </Canvas>
-
-        <Canvas Grid.Column="1" Grid.Row="2">
-            <ListBox Style="{StaticResource MaterialDesignListBox}"
-                         Canvas.Left="90"
-                         Canvas.Top="30"
-                         Width="600"
-                         Height="350"
-                         x:Name="itemListBoxEvents"
-                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                         ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                         Loaded="itemListBoxEvents_Loaded"
-                         SelectionChanged="ListBox_SelectionChanged"
-                     >
-            </ListBox>
-        </Canvas>
-
-        <Canvas Grid.Column="1" Grid.Row="2">
-            <Button x:Name="AddGuest"
-                    Width="60" 
-                    Height="60" 
-                    Background="#565A7B"
-                    FontSize="19"
-                    Foreground="White"
-                    Canvas.Left="650"
-                    Canvas.Top="400"
-                    Click="Add_Event_Click">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="7"></Setter>
-                    </Style>
-                </Button.Resources>
-                <Image Source="images/plus.png"/>
-            </Button>
-
-            <TextBlock Foreground="Black" Canvas.Left="620" Canvas.Top="460" FontSize="20">
-            Додати подію
+        <Canvas x:Name="MyCanvas" Grid.Column="1" Grid.Row="1">
+            <TextBlock Canvas.Left="326" Canvas.Top="67" FontSize="25" FontWeight="Bold">
+                Огляд події
             </TextBlock>
+
+            <TextBlock Canvas.Left="340" FontWeight="SemiBold" Canvas.Top="123" FontSize="20">
+                Назва події:
+            </TextBlock>
+
+            <TextBlock x:Name="EventNameTextBlock" Canvas.Left="340" FontWeight="Light" Canvas.Top="165" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.113,0.613" />
+
+            <TextBlock Canvas.Left="93" FontWeight="SemiBold" Canvas.Top="247" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top">
+                Список гостей:
+            </TextBlock>
+
+            <ListBox x:Name="GuestListBox" Canvas.Left="93" Canvas.Top="290" Width="200" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+            </ListBox>
+
+            <TextBlock Canvas.Left="479" FontWeight="SemiBold" Canvas.Top="247" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.068,0.52">
+                Список страв:
+            </TextBlock>
+
+            <ListBox x:Name="EventListBox" Canvas.Left="479" Canvas.Top="290" Width="200" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center">
+                
+            </ListBox>
         </Canvas>
     </Grid>
 </Window>
