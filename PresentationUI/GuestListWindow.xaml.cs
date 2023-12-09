@@ -113,6 +113,7 @@ namespace PresentationUI
                         Height = 50,
                         Margin = new Thickness(0, 0, 0, 15),
                         Style = this.FindResource("MaterialDesignCardsListBoxItem") as Style, // Use the appropriate resource key
+                        Tag = guest.GuestId
                     };
 
                     StackPanel stackPanel = new StackPanel
@@ -147,6 +148,21 @@ namespace PresentationUI
                 string exc = $"{ex}";
             }
         }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (itemListBox.SelectedItem != null)
+            {
+                ListBoxItem selectedListBoxItem = (ListBoxItem)itemListBox.SelectedItem;
+
+                int guestId = (int)selectedListBoxItem.Tag;
+
+                GuestInfoWindow guestInfoWindow = new GuestInfoWindow(_navigationService, _guestService, guestId);
+                this.Close();
+                guestInfoWindow.Show();
+            }
+        }
+
 
         // Call this method in the constructor or when needed to load guests
         private void LoadGuests_Click(object sender, RoutedEventArgs e)

@@ -53,5 +53,11 @@ namespace BLL.Services.Interfaces
         {
             return (await _guestRepository.GetAllAsync(filter)).ToList();
         }
+
+        public async Task<Guest> GetGuestById(int guestId)
+        {
+            return await _guestRepository.GetAsync(g => g.GuestId == guestId);
+        }
+
     }
 }
