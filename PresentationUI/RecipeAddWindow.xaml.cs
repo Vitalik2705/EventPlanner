@@ -70,6 +70,8 @@
                 FontSize = 17,
                 BorderThickness = new Thickness(0, 0, 0, 1.5),
                 BorderBrush = new SolidColorBrush(Color.FromRgb(86, 90, 123)),
+                IsEditable = true,
+                IsTextSearchEnabled = true,
             };
 
             Type enumIngredientType = typeof(Ingredient);
@@ -110,6 +112,8 @@
                 FontSize = 17,
                 BorderThickness = new Thickness(0, 0, 0, 1.5),
                 BorderBrush = new SolidColorBrush(Color.FromRgb(86, 90, 123)),
+                IsEditable = true,
+                IsTextSearchEnabled = true,
             };
 
             Type enumUnitType = typeof(Unit);

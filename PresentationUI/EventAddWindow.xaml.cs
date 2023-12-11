@@ -88,6 +88,8 @@ namespace PresentationUI
                 FontSize = 17,
                 BorderThickness = new Thickness(0, 0, 0, 1.5),
                 BorderBrush = new SolidColorBrush(Color.FromRgb(86, 90, 123)),
+                IsEditable = true,
+                IsTextSearchEnabled = true,
             };
 
             var guests = await this._guestService.GetGuestsAsync();
@@ -156,6 +158,8 @@ namespace PresentationUI
                 FontSize = 17,
                 BorderThickness = new Thickness(0, 0, 0, 1.5),
                 BorderBrush = new SolidColorBrush(Color.FromRgb(86, 90, 123)),
+                IsEditable = true,
+                IsTextSearchEnabled = true,
             };
 
             var recipes = (await this._recipeService.GetAll()).ToList();

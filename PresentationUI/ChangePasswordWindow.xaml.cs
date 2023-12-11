@@ -4,6 +4,7 @@
 
 namespace PresentationUI
 {
+    using BCrypt.Net;
     using BLL.Services.Interfaces;
     using BLL.Validation;
     using DAL.State.Authenticator;
@@ -66,15 +67,15 @@ namespace PresentationUI
             string repeatPassword = this.RepeatPasswordInput.Password;
 
             bool hasUpperCase = newPassword.Any(char.IsUpper);
-            bool hasMinLength = newPassword.Length >= 10;
+            bool hasMinLength = newPassword.Length >= 8;
             bool hasLettersAndDigits = Regex.IsMatch(newPassword, @"^[a-zA-Z0-9]+$");
 
             bool passwordsMatch = string.Equals(newPassword, repeatPassword);
 
             this.SetPasswordConditionText(this.PasswordConditionsTextUppercase, "Як мінімум 1 велика літера є обов'язковою.", hasUpperCase);
-            this.SetPasswordConditionText(this.PasswordConditionsTextLength, "Мінімальна довжина 10 символів.", hasMinLength);
+            this.SetPasswordConditionText(this.PasswordConditionsTextLength, "Мінімальна довжина 8 символів.", hasMinLength);
             this.SetPasswordConditionText(this.PasswordConditionsTextChars, "Тільки латинські літери та цифри дозволені.", hasLettersAndDigits);
-            this.SetPasswordConditionText(this.PasswordConditionsTextPasswordsMatch, "Паролі не співпадають.", passwordsMatch);
+            this.SetPasswordConditionText(this.PasswordConditionsTextPasswordsMatch, "Паролі співпадають.", passwordsMatch);
 
             if (hasUpperCase && hasMinLength && hasLettersAndDigits && passwordsMatch)
             {
@@ -86,6 +87,9 @@ namespace PresentationUI
         {
             var user = this._authenticator.CurrentUser;
             user.Password = NewPasswordInput.Password;
+            string hashedPassword = BCrypt.HashPassword(user.Password);
+
+            user.Password = hashedPassword;
             var registerValidation = new RegisterValidation();
 
             var userValidation = registerValidation.Validate(user);

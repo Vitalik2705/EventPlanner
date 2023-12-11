@@ -116,7 +116,7 @@
 
         <Canvas Grid.Column="1" Grid.Row="2">
             <TextBlock Canvas.Left="400" Canvas.Top="30" FontSize="25">
-                Змінити пароль
+                Змінити телефон
             </TextBlock>
         </Canvas>
 
@@ -141,9 +141,9 @@
         </Canvas>
 
         <Canvas Grid.Column="1" Grid.Row="2">
-            <PasswordBox x:Name="NewPasswordInput"
-                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
-                  materialDesign:HintAssist.Hint="New Password"
+            <TextBox x:Name="NewPhoneInput"
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                  materialDesign:HintAssist.Hint="New Phone"
                   Width="230"
                   Height="50"
                   Canvas.Left="400"
