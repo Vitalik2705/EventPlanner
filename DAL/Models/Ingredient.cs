@@ -5,6 +5,45 @@
 namespace DAL.Models
 {
     using System.ComponentModel;
+    using System.Reflection;
+
+    public static class IngredientExtensions
+    {
+        public static string GetDescription(this Ingredient ingredient)
+        {
+            Type enumType = typeof(Ingredient);
+            MemberInfo[] memberInfo = enumType.GetMember(ingredient.ToString());
+            if (memberInfo.Length > 0)
+            {
+                object[] attributes = memberInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
+                if (attributes.Length > 0)
+                {
+                    return ((DescriptionAttribute)attributes[0]).Description;
+                }
+            }
+            return ingredient.ToString();
+        }
+
+        public static Ingredient GetEnumValueFromDescription(string description)
+        {
+            Type enumType = typeof(Ingredient);
+            Array enumValues = Enum.GetValues(enumType);
+
+            foreach (var enumValue in enumValues)
+            {
+                Ingredient ingredientEnumValue = (Ingredient)enumValue;
+                string enumDescription = ingredientEnumValue.GetDescription();
+
+                if (enumDescription.Equals(description, StringComparison.OrdinalIgnoreCase))
+                {
+                    return ingredientEnumValue;
+                }
+            }
+
+            throw new ArgumentException("Description not found in enum.", nameof(description));
+        }
+    }
+
 
     public enum Ingredient
     {

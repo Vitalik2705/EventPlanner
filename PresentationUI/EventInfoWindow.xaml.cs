@@ -1,6 +1,7 @@
 ﻿using BLL.Services.Implementations;
 using BLL.Services.Interfaces;
 using DAL.Models;
+using DAL.State.Authenticator;
 using Microsoft.Extensions.Logging;
 using PresentationUI.Interfaces;
 using System;
@@ -31,10 +32,13 @@ namespace PresentationUI
         private readonly IEventRecipeService _eventRecipeService;
         private readonly IGuestService _guestService;
         private readonly IRecipeService _recipeService;
+        private readonly IAuthenticator _authenticator;
         private readonly int _eventId;
 
 
-        public EventInfoWindow(INavigationService navigationService, int eventId, IEventService eventService, IEventGuestService eventGuestService, IEventRecipeService eventRecipeService, IGuestService guestService, IRecipeService recipeService)
+        public EventInfoWindow(INavigationService navigationService, int eventId, IEventService eventService,
+            IEventGuestService eventGuestService, IEventRecipeService eventRecipeService, IGuestService guestService,
+            IRecipeService recipeService, IAuthenticator authenticator)
         {
             this._navigationService = navigationService;
             this._eventService = eventService;
@@ -43,6 +47,7 @@ namespace PresentationUI
             _eventRecipeService = eventRecipeService;
             _guestService = guestService;
             _recipeService = recipeService;
+            _authenticator = authenticator;
             this._eventId = eventId;
             InitializeComponent();
             Loaded += OnLoaded;
@@ -111,6 +116,14 @@ namespace PresentationUI
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.NavigateTo<IRecipeListWindow>();
+            this.Close();
+        }
+
+        private void ___images_icons8_logout_50_png_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this._authenticator.Logout();
+
+            this._navigationService.NavigateTo<IMainWindow>();
             this.Close();
         }
     }

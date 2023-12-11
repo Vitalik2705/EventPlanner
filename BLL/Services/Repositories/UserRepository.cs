@@ -2,10 +2,12 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
+//using Org.BouncyCastle.Crypto.Generators;
+
 namespace BLL.Services.Repositories
 {
+    using BCrypt.Net;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -28,14 +30,18 @@ namespace BLL.Services.Repositories
 
         public async Task<User> Login(string password, string email)
         {
-            IQueryable<User> query = this._table.Where(x => x.Email == email && x.Password == password);
+            IQueryable<User> query = this._table.Where(x => x.Email == email);
 
-            // var user = this._context.User.FirstOrDefaultAsync(u => u.Password == password && u.Email == email);
             var user = await query.FirstOrDefaultAsync();
 
             if (user == null)
             {
                 throw new ArgumentNullException(nameof(user), "Parameter 'name' cannot be null.");
+            }
+
+            if (!BCrypt.Verify(password, user.Password))
+            {
+                throw new ArgumentException("Invalid password.");
             }
 
             return user;
@@ -53,15 +59,26 @@ namespace BLL.Services.Repositories
                 return RegistrationResult.PasswordsDoNotMatch;
             }
 
+            bool userExist = await _table.AnyAsync(u => u.Email == user.Email);
+            if (userExist)
+            {
+                return RegistrationResult.EmailAlreadyExists;
+            }
+
+            string hashedPassword = BCrypt.HashPassword(user.Password);
+
+            user.Password = hashedPassword;
+
             await this._table.AddAsync(user);
 
-            await this._context.SaveChangesAsync();
+            await this.SaveAsync();
 
             return result;
         }
 
         public async Task UpdateAsync(User user)
         {
+            user.ModifiedDate = DateTime.UtcNow;
             this._table.Attach(user);
             this._context.Entry(user).State = EntityState.Modified;
             await this.SaveAsync();

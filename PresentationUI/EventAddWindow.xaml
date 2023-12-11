@@ -19,6 +19,16 @@
 
         <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Fill="#8B92D0" />
         <Rectangle Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Fill="#CBCBCB" />
+        <Image
+            x:Name="___images_icons8_logout_50_png"
+            Grid.Column="1"
+            Margin="701,15,53,15"
+            Source="/images/icons8-logout-50.png"
+            Stretch="Fill"
+            Width="38"
+            Height="33.404"
+            MouseDown="___images_icons8_logout_50_png_MouseDown"
+            RenderTransformOrigin="-0.079,0.585"/>
 
         <Canvas Grid.Column="0" Grid.Row="0">
             <Image  Canvas.Left="10"
@@ -86,12 +96,12 @@
         </Canvas>
 
 
-            <Canvas x:Name="MyCanvas" Grid.Column="1" Grid.Row="1">
-                <TextBlock Canvas.Left="260" Canvas.Top="50" FontSize="25">
+        <Canvas x:Name="MyCanvas" Grid.Column="1" Grid.Row="1">
+            <TextBlock Canvas.Left="260" Canvas.Top="50" FontSize="25">
                 Інформація про подію
-                </TextBlock>
+            </TextBlock>
 
-                <TextBox x:Name="EventNameInput"
+            <TextBox x:Name="EventNameInput"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      materialDesign:HintAssist.Hint="Назва події"
                      Width="230"
@@ -103,7 +113,7 @@
                      BorderBrush="#565A7B" 
                      materialDesign:HintAssist.FloatingOffset="0,-18" />
 
-                <!--<ComboBox x:Name="GuestsInput"
+            <!--<ComboBox x:Name="GuestsInput"
                   Style="{StaticResource MaterialDesignComboBox}"
                   Width="230" Height="50"
                   Canvas.Left="80" Canvas.Top="230"
@@ -112,16 +122,18 @@
                   materialDesign:HintAssist.FloatingOffset="0,-18"
                   materialDesign:HintAssist.Hint="Гості"
                   >
-                    --><!--<ComboBoxItem>Eminem</ComboBoxItem>
-                    <ComboBoxItem>50 Cent</ComboBoxItem>--><!--
+                    -->
+            <!--<ComboBoxItem>Eminem</ComboBoxItem>
+                    <ComboBoxItem>50 Cent</ComboBoxItem>-->
+            <!--
                 </ComboBox>-->
 
-                <TextBlock x:Name="GuestsInputTextBlock"
+            <TextBlock x:Name="GuestsInputTextBlock"
                        Canvas.Left="80"
                        Canvas.Top="350"
                        FontSize="20"
                        Text="{Binding ElementName=GuestsInput, Path=SelectedItem.Content}">
-                </TextBlock>
+            </TextBlock>
 
             <TextBlock x:Name="DishesInputTextBlock"
                        Canvas.Left="80"
@@ -131,7 +143,7 @@
             </TextBlock>
 
 
-                <Button
+            <Button
                     x:Name="AddGuestsButton"
                     Width="55" 
                     Height="35" 
@@ -141,16 +153,16 @@
                     Canvas.Top="247"
                     Click="AddGuestsButton_Click"
                     >
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="7"></Setter>
-                        </Style>
-                    </Button.Resources>
-                    <Image Width="23" 
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="7"></Setter>
+                    </Style>
+                </Button.Resources>
+                <Image Width="23" 
                     Height="19" Source="images/plus (1).png"/>
-                </Button>
-
-                <Button x:Name="AddDishesButton"
+            </Button>
+            <Label x:Name="labelGuest" Content="Додати гостя" Canvas.Left="324" Canvas.Top="220" Height="22" RenderTransformOrigin="0.573,0.345" Width="68" FontSize="10"></Label>
+            <Button x:Name="AddDishesButton"
                     Width="55" 
                     Height="35" 
                     Background="#565A7B"
@@ -159,16 +171,16 @@
                     Canvas.Top="247"
                     Click="AddDishesButton_Click"
                     >
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="7"></Setter>
-                        </Style>
-                    </Button.Resources>
-                    <Image Width="23" 
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="7"></Setter>
+                    </Style>
+                </Button.Resources>
+                <Image Width="23" 
                     Height="19" Source="images/plus (1).png"/>
-                </Button>
-
-                <Button x:Name="AddEventButton"
+            </Button>
+            <Label x:Name="labelDish" Content="Додати страву" Canvas.Left="710" Canvas.Top="220" Height="22" RenderTransformOrigin="0.573,0.345" Width="75" FontSize="10"></Label>
+            <Button x:Name="AddEventButton"
                     Width="60" 
                     Height="60" 
                     Background="#565A7B"
@@ -178,15 +190,15 @@
                     Canvas.Top="450"
                     Click="AddEventButton_Click"
                     >
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="7"></Setter>
-                        </Style>
-                    </Button.Resources>
-                    <Image Source="images/plus.png"/>
-                </Button>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="7"></Setter>
+                    </Style>
+                </Button.Resources>
+                <Image Source="images/plus.png"/>
+            </Button>
 
-            </Canvas>
+        </Canvas>
 
 
     </Grid>

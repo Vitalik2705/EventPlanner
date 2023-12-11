@@ -19,6 +19,7 @@ namespace PresentationUI
     using System.Windows.Shapes;
     using BLL.Services.Interfaces;
     using DAL.Models;
+    using DAL.State.Authenticator;
     using Microsoft.Extensions.Logging;
     using PresentationUI.Interfaces;
 
@@ -30,6 +31,7 @@ namespace PresentationUI
         private readonly INavigationService _navigationService;
         private readonly IGuestService _guestService;
         private readonly ILogger<GuestAddWindow> _guestLogger;
+        private readonly IAuthenticator _authenticator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuestAddWindow"/> class.
@@ -37,11 +39,12 @@ namespace PresentationUI
         /// <param name="guestService"></param>
         /// <param name="navigationService"></param>
         /// <param name="guestLogger"></param>
-        public GuestAddWindow(IGuestService guestService, INavigationService navigationService, ILogger<GuestAddWindow> guestLogger)
+        public GuestAddWindow(IGuestService guestService, INavigationService navigationService, ILogger<GuestAddWindow> guestLogger, IAuthenticator authenticator)
         {
             this._navigationService = navigationService;
             this._guestService = guestService;
             this._guestLogger = guestLogger;
+            this._authenticator = authenticator;
 
             this.InitializeComponent();
         }
@@ -94,6 +97,14 @@ namespace PresentationUI
             {
                 this._guestLogger.LogError($"Failed to add the guest. {ex}");
             }
+        }
+
+        private void ___images_icons8_logout_50_png_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this._authenticator.Logout();
+
+            this._navigationService.NavigateTo<IMainWindow>();
+            this.Close();
         }
     }
 }

@@ -75,7 +75,7 @@ namespace PresentationUI
 
         private readonly List<ComboBox> comboBoxList = new List<ComboBox>();
         private List<Button> deleteButtonList = new List<Button>();
-        private double verticalOffset = 300;
+        private double verticalOffset = 230;
 
         private async void AddGuestsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -143,7 +143,7 @@ namespace PresentationUI
 
         private readonly List<ComboBox> comboBoxDishesList = new List<ComboBox>();
         private List<Button> deleteButtonDishesList = new List<Button>();
-        private double verticalOffsetDishes = 300;
+        private double verticalOffsetDishes = 230;
 
         private async void AddDishesButton_Click(object sender, RoutedEventArgs e)
         {
@@ -263,6 +263,14 @@ namespace PresentationUI
             }
 
             this._navigationService.NavigateTo<IEventListWindow>();
+            this.Close();
+        }
+
+        private void ___images_icons8_logout_50_png_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this._authenticator.Logout();
+
+            this._navigationService.NavigateTo<IMainWindow>();
             this.Close();
         }
     }

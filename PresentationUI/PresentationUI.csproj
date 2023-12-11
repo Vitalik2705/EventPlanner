@@ -16,6 +16,7 @@
     <None Remove="images\github.png" />
     <None Remove="images\gmail-logo.png" />
     <None Remove="images\google.png" />
+    <None Remove="images\icons8-logout-50.png" />
     <None Remove="images\image 1.png" />
     <None Remove="images\image2.png" />
     <None Remove="images\instagram.png" />
@@ -35,10 +36,15 @@
     <Resource Include="images\20944999.jpg" />
     <Resource Include="images\github.png" />
     <Resource Include="images\gmail-logo.png" />
+    <Resource Include="images\icons8-logout-50.png" />
     <Resource Include="images\image2.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="FluentValidation" Version="11.8.1" />
     <PackageReference Include="JustMock" Version="2023.3.1122.188" />
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
@@ -72,6 +78,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Converter\" />
     <Folder Include="logs\" />
   </ItemGroup>
 

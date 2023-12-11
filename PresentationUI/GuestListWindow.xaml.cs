@@ -10,6 +10,7 @@ namespace PresentationUI
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using BLL.Services.Interfaces;
+    using DAL.State.Authenticator;
     using PresentationUI.Interfaces;
 
     /// <summary>
@@ -22,18 +23,21 @@ namespace PresentationUI
         private readonly IGuestService _guestService;
         private readonly IEventGuestService _eventGuestService;
         private readonly IEventService _eventService;
+        private readonly IAuthenticator _authenticator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuestListWindow"/> class.
         /// </summary>
         /// <param name="guestService"></param>
         /// <param name="navigationService"></param>
-        public GuestListWindow(IGuestService guestService, INavigationService navigationService, IEventGuestService eventGuestService, IEventService eventService)
+        public GuestListWindow(IGuestService guestService, INavigationService navigationService, IEventGuestService eventGuestService,
+            IEventService eventService, IAuthenticator authenticator)
         {
             this._guestService = guestService;
             this._navigationService = navigationService;
             this._eventGuestService = eventGuestService;
             this._eventService = eventService;
+            this._authenticator = authenticator;
             // LoadGuests();
             this.InitializeComponent();
             
@@ -197,6 +201,14 @@ namespace PresentationUI
             }
 
             return null;
+        }
+
+        private void ___images_icons8_logout_50_png_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this._authenticator.Logout();
+
+            this._navigationService.NavigateTo<IMainWindow>();
+            this.Close();
         }
     }
 }

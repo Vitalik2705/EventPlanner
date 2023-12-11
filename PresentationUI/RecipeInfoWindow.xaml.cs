@@ -17,6 +17,7 @@ namespace PresentationUI
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using System.Windows.Shapes;
+    using DAL.State.Authenticator;
     using PresentationUI.Interfaces;
 
     /// <summary>
@@ -25,10 +26,12 @@ namespace PresentationUI
     public partial class RecipeInfoWindow : Window, IRecipeInfoWindow
     {
         private readonly INavigationService _navigationService;
+        private readonly IAuthenticator _authenticator;
 
-        public RecipeInfoWindow(INavigationService navigationService)
+        public RecipeInfoWindow(INavigationService navigationService, IAuthenticator authenticator)
         {
             this._navigationService = navigationService;
+            this._authenticator = authenticator;
             this.InitializeComponent();
         }
 
@@ -47,6 +50,14 @@ namespace PresentationUI
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.NavigateTo<IRecipeListWindow>();
+            this.Close();
+        }
+
+        private void ___images_icons8_logout_50_png_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this._authenticator.Logout();
+
+            this._navigationService.NavigateTo<IMainWindow>();
             this.Close();
         }
     }

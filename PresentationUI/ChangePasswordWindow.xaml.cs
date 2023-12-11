@@ -4,6 +4,9 @@
 
 namespace PresentationUI
 {
+    using BLL.Services.Interfaces;
+    using BLL.Validation;
+    using DAL.State.Authenticator;
     using PresentationUI.Interfaces;
     using System.Linq;
     using System.Text.RegularExpressions;
@@ -18,14 +21,18 @@ namespace PresentationUI
     public partial class ChangePasswordWindow : Window, IChangePasswordWindow
     {
         private readonly INavigationService _navigationService;
+        private readonly IAuthenticator _authenticator;
+        private readonly IUserService _userService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ChangePasswordWindow"/> class.
         /// </summary>
         /// <param name="navigationService">.</param>
-        public ChangePasswordWindow(INavigationService navigationService)
+        public ChangePasswordWindow(IAuthenticator authenticator, INavigationService navigationService, IUserService userService)
         {
             this._navigationService = navigationService;
+            this._authenticator = authenticator;
+            this._userService = userService;
             this.InitializeComponent();
         }
 
@@ -68,6 +75,27 @@ namespace PresentationUI
             this.SetPasswordConditionText(this.PasswordConditionsTextLength, "Мінімальна довжина 10 символів.", hasMinLength);
             this.SetPasswordConditionText(this.PasswordConditionsTextChars, "Тільки латинські літери та цифри дозволені.", hasLettersAndDigits);
             this.SetPasswordConditionText(this.PasswordConditionsTextPasswordsMatch, "Паролі не співпадають.", passwordsMatch);
+
+            if (hasUpperCase && hasMinLength && hasLettersAndDigits && passwordsMatch)
+            {
+                AddEventButton.IsEnabled = true;
+            }
+        }
+
+        private async void AddEventButton_Click(object sender, RoutedEventArgs e)
+        {
+            var user = this._authenticator.CurrentUser;
+            user.Password = NewPasswordInput.Password;
+            var registerValidation = new RegisterValidation();
+
+            var userValidation = registerValidation.Validate(user);
+            if(userValidation.IsValid)
+            {
+                await this._userService.UpdateUser(user);
+            }
+
+            this._navigationService.NavigateTo<IAccountWindow>();
+            this.Close();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BLL.Services.Interfaces;
+using DAL.State.Authenticator;
 using PresentationUI.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -27,15 +28,18 @@ namespace PresentationUI
         private readonly IGuestService _guestService;
         private readonly IEventGuestService _eventGuestService;
         private readonly IEventService _eventService;
+        private readonly IAuthenticator _authenticator;
         private readonly int _guestId;
 
-        public GuestInfoWindow(INavigationService navigationService, IGuestService guestService, IEventGuestService eventGuestService, IEventService eventService ,int guestId)
+        public GuestInfoWindow(INavigationService navigationService, IGuestService guestService, IEventGuestService eventGuestService,
+            IEventService eventService, int guestId, IAuthenticator authenticator)
         {
             this._navigationService = navigationService;
             this._guestService = guestService;
             this._eventGuestService = eventGuestService;
             this._eventService = eventService;
             this._guestId = guestId;
+            this._authenticator = authenticator;
             InitializeComponent();
             Loaded += OnLoaded;
         }
@@ -82,6 +86,14 @@ namespace PresentationUI
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.NavigateTo<IRecipeListWindow>();
+            this.Close();
+        }
+
+        private void ___images_icons8_logout_50_png_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this._authenticator.Logout();
+
+            this._navigationService.NavigateTo<IMainWindow>();
             this.Close();
         }
     }

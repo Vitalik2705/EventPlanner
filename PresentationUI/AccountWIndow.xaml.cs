@@ -105,9 +105,6 @@ namespace PresentationUI
                 return;
             }
 
-
-
-
             if (!string.IsNullOrEmpty(newEmail))
             {
                 user.Email = newEmail;
@@ -125,6 +122,14 @@ namespace PresentationUI
             this.NewEmailInput.Clear();
             this.NewPasswordInput.Clear();
 
+        }
+
+        private void ___images_icons8_logout_50_png_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this._authenticator.Logout();
+
+            this._navigationService.NavigateTo<IMainWindow>();
+            this.Close();
         }
     }
 }
