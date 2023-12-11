@@ -165,7 +165,7 @@ namespace PresentationUI
 
                 int guestId = (int)selectedListBoxItem.Tag;
 
-                GuestInfoWindow guestInfoWindow = new GuestInfoWindow(_navigationService, _guestService, _eventGuestService, _eventService, guestId);
+                GuestInfoWindow guestInfoWindow = new GuestInfoWindow(_navigationService, _guestService, _eventGuestService, _eventService, guestId, _authenticator);
                 this.Close();
                 guestInfoWindow.Show();
             }

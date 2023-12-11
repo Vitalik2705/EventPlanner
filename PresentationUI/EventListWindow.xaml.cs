@@ -34,17 +34,19 @@ namespace PresentationUI
         private readonly IEventRecipeService _eventRecipeService;
         private readonly IGuestService _guestService;
         private readonly IRecipeService _recipeService;
-        private readonly IAuthenticator _autheticator;
+        private readonly IAuthenticator _authenticator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventListWindow"/> class.
         /// </summary>
         /// <param name="navigationService"></param>
-        public EventListWindow(INavigationService navigationService, IEventService eventService, IAuthenticator authenticator, IEventGuestService eventGuestService, IEventRecipeService eventRecipeService, IGuestService guestService, IRecipeService recipeService)
+        public EventListWindow(INavigationService navigationService, IEventService eventService, IAuthenticator authenticator,
+            IEventGuestService eventGuestService, IEventRecipeService eventRecipeService, IGuestService guestService,
+            IRecipeService recipeService)
         {
             this._navigationService = navigationService;
             this._eventService = eventService;
-            this._autheticator = authenticator;
+            this._authenticator = authenticator;
             this._eventGuestService = eventGuestService;
             _eventRecipeService = eventRecipeService;
             _guestService = guestService;
@@ -143,7 +145,7 @@ namespace PresentationUI
         {
             try
             {
-                var events = await this._eventService.GetAll(e => e.UserId == this._autheticator.CurrentUser.UserId);
+                var events = await this._eventService.GetAll(e => e.UserId == this._authenticator.CurrentUser.UserId);
 
                 // Clear existing items in the ListBox
                 this.itemListBoxEvents.Items.Clear();
@@ -199,7 +201,7 @@ namespace PresentationUI
 
                 int eventId = (int)selectedListBoxItem.Tag;
 
-                EventInfoWindow guestInfoWindow = new EventInfoWindow(_navigationService, eventId, _eventService, _eventGuestService, _eventRecipeService, _guestService, _recipeService, _autheticator);
+                EventInfoWindow guestInfoWindow = new EventInfoWindow(_navigationService, eventId, _eventService, _eventGuestService, _eventRecipeService, _guestService, _recipeService, _authenticator);
                 this.Close();
                 guestInfoWindow.Show();
             }
