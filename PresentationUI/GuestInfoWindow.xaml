@@ -7,6 +7,28 @@
         xmlns:local="clr-namespace:PresentationUI"
         mc:Ignorable="d"
         Title="GuestInfoWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style x:Key="MainTextboxStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="FontSize" Value="30"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        </Style>
+        <Style x:Key="TextboxStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        </Style>
+        <Style x:Key="DynamicTextboxStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Light"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -98,41 +120,77 @@
 
 
         <Canvas x:Name="MyCanvas" Grid.Column="1" Grid.Row="1">
-            <TextBlock Canvas.Left="305" Canvas.Top="50" FontSize="30" FontWeight="Bold">
+            <TextBlock
+                Style="{StaticResource MainTextboxStyle}"
+                Canvas.Left="305"
+                Canvas.Top="50"
+                >
                 Огляд гостя
             </TextBlock>
 
-            <TextBlock Canvas.Left="91" FontWeight="SemiBold" Canvas.Top="150" FontSize="20">
+            <TextBlock
+                Style="{StaticResource TextboxStyle}"
+                Canvas.Left="91"
+                Canvas.Top="150"
+                >
                 Прізвище гостя:
             </TextBlock>
 
-            <TextBlock x:Name="LastNameTextBlock" Canvas.Left="91" FontWeight="Light" Canvas.Top="190" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.113,0.613">
-                
-            </TextBlock>
+            <TextBlock
+                x:Name="LastNameTextBlock"
+                Style="{StaticResource DynamicTextboxStyle}"
+                Canvas.Left="91"
+                Canvas.Top="190"
+                RenderTransformOrigin="0.113,0.613"
+                />
 
-            <TextBlock Canvas.Left="483" FontWeight="SemiBold" Canvas.Top="150" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBlock
+                Style="{StaticResource TextboxStyle}"
+                Canvas.Left="483"
+                Canvas.Top="150"
+                >
                 Ім'я гостя:
             </TextBlock>
 
-            <TextBlock x:Name="FirstNameTextBlock" Canvas.Left="483" FontWeight="Light" Canvas.Top="190" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="-0.085,0.65">
-                
-            </TextBlock>
+            <TextBlock
+                x:Name="FirstNameTextBlock"
+                Style="{StaticResource DynamicTextboxStyle}"
+                Canvas.Left="483"
+                Canvas.Top="190"
+                RenderTransformOrigin="-0.085,0.65"
+                />
 
-            <TextBlock Canvas.Left="91" FontWeight="SemiBold" Canvas.Top="299" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBlock
+                Style="{StaticResource TextboxStyle}"
+                Canvas.Left="91"
+                Canvas.Top="299"
+                >
                 Гендер гостя:
             </TextBlock>
 
-            <TextBlock x:Name="GenderTextBlock" Canvas.Left="91" FontWeight="Light" Canvas.Top="341" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="-0.17,0.622">
-                
-            </TextBlock>
+            <TextBlock
+                x:Name="GenderTextBlock"
+                Canvas.Left="91"
+                Style="{StaticResource DynamicTextboxStyle}"
+                Canvas.Top="341"
+                RenderTransformOrigin="-0.17,0.622"
+                />
 
-            <TextBlock Canvas.Left="483" FontWeight="SemiBold" Canvas.Top="299" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock
+                Style="{StaticResource TextboxStyle}"
+                Canvas.Left="483"
+                Canvas.Top="299"
+                >
                 Події, до яких належить гість:
             </TextBlock>
 
-            <TextBlock x:Name="EventTextBlock" Canvas.Left="483" FontWeight="Light" Canvas.Top="341" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top">
-            </TextBlock>
-
+            <TextBlock
+                x:Name="EventTextBlock"
+                Style="{StaticResource DynamicTextboxStyle}"
+                Canvas.Left="483"
+                Canvas.Top="341"
+                />
         </Canvas>
+    
     </Grid>
 </Window>
