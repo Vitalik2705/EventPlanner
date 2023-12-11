@@ -5,6 +5,7 @@
 namespace PresentationUI
 {
     using BLL.Services.Interfaces;
+    using DAL.State.Authenticator;
     using PresentationUI.Interfaces;
     using System;
     using System.Windows;
@@ -19,15 +20,17 @@ namespace PresentationUI
     {
         private readonly INavigationService _navigationService;
         private readonly IRecipeService _recipeService;
+        private readonly IAuthenticator _authenticator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeListWindow"/> class.
         /// </summary>
         /// <param name="navigationService"></param>
-        public RecipeListWindow(IRecipeService recipeService, INavigationService navigationService)
+        public RecipeListWindow(IRecipeService recipeService, INavigationService navigationService, IAuthenticator authenticator)
         {
             this._recipeService = recipeService;
             this._navigationService = navigationService;
+            this._authenticator = authenticator;
             this.InitializeComponent();
         }
 
@@ -184,6 +187,14 @@ namespace PresentationUI
         private void itemListBoxRecipes_Loaded(object sender, RoutedEventArgs e)
         {
             this.LoadRecipes();
+        }
+
+        private void ___images_icons8_logout_50_png_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this._authenticator.Logout();
+
+            this._navigationService.NavigateTo<IMainWindow>();
+            this.Close();
         }
     }
 }

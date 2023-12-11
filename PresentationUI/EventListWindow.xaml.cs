@@ -199,7 +199,7 @@ namespace PresentationUI
 
                 int eventId = (int)selectedListBoxItem.Tag;
 
-                EventInfoWindow guestInfoWindow = new EventInfoWindow(_navigationService, eventId, _eventService, _eventGuestService, _eventRecipeService, _guestService, _recipeService);
+                EventInfoWindow guestInfoWindow = new EventInfoWindow(_navigationService, eventId, _eventService, _eventGuestService, _eventRecipeService, _guestService, _recipeService, _autheticator);
                 this.Close();
                 guestInfoWindow.Show();
             }
@@ -208,6 +208,14 @@ namespace PresentationUI
         private void itemListBoxEvents_Loaded(object sender, RoutedEventArgs e)
         {
             this.LoadGuests();
+        }
+
+        private void ___images_icons8_logout_50_png_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this._authenticator.Logout();
+
+            this._navigationService.NavigateTo<IMainWindow>();
+            this.Close();
         }
     }
 }

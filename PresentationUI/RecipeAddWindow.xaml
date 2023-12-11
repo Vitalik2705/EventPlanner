@@ -20,6 +20,17 @@
         <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Fill="#8B92D0" />
         <Rectangle Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Fill="#CBCBCB" />
 
+        <Image
+            x:Name="___images_icons8_logout_50_png"
+            Grid.Column="1"
+            Margin="701,15,53,15"
+            Source="/images/icons8-logout-50.png"
+            Stretch="Fill"
+            Width="38"
+            Height="33.404"
+            MouseDown="___images_icons8_logout_50_png_MouseDown"
+            RenderTransformOrigin="-0.079,0.585"/>
+
         <Canvas Grid.Column="0" Grid.Row="0">
             <Image  Canvas.Left="10"
                   Canvas.Top="5" 
@@ -150,25 +161,6 @@
                      BorderBrush="#565A7B" 
                      materialDesign:HintAssist.FloatingOffset="0,-18" />
 
-            <ComboBox 
-                x:Name="IngredientsInput"
-                Style="{StaticResource MaterialDesignComboBox}"
-                Width="230"
-                Height="50"
-                Canvas.Left="470"
-                Canvas.Top="190"
-                FontSize="17"
-                BorderThickness="0 0 0 1.5" 
-                BorderBrush="#565A7B"
-                materialDesign:HintAssist.FloatingOffset="0,-18"
-                materialDesign:HintAssist.Hint="Інгредієнти"
-                >
-                <ComboBoxItem>Тісто</ComboBoxItem>
-                <ComboBoxItem>Соус</ComboBoxItem>
-                <ComboBoxItem>Сир</ComboBoxItem>
-                <ComboBoxItem>Ковбаса</ComboBoxItem>
-            </ComboBox>
-
             <Button x:Name="AddDishesButton"
                     Width="55" 
                     Height="35" 
@@ -187,35 +179,9 @@
                     Height="19" Source="images/plus (1).png"/>
             </Button>
 
-            <ComboBox 
-                x:Name="UnitsInput"
-                Style="{StaticResource MaterialDesignComboBox}"
-                Width="105"
-                Height="50"
-                Canvas.Left="470"
-                Canvas.Top="250"
-                FontSize="17"
-                BorderThickness="0 0 0 1.5" 
-                BorderBrush="#565A7B"
-                materialDesign:HintAssist.FloatingOffset="0,-18"
-                materialDesign:HintAssist.Hint="Одиниця"
-                >
-                <ComboBoxItem>кг</ComboBoxItem>
-                <ComboBoxItem>шт</ComboBoxItem>
-                <ComboBoxItem>г</ComboBoxItem>
-            </ComboBox>
 
-            <TextBox x:Name="AmountOfUnitInput"
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     materialDesign:HintAssist.Hint="Кількість"
-                     Width="105"
-                     Height="50"
-                     Canvas.Left="600"
-                     Canvas.Top="250"
-                     FontSize="17"
-                     BorderThickness="0 0 0 1.5" 
-                     BorderBrush="#565A7B" 
-                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+
+
 
             <TextBox
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
@@ -269,12 +235,13 @@
                     </Style>
                 </Button.Resources>
             </Button>
-                
+
             <Image x:Name="SelectedImage"
                    Width="100"
                    Height="100"
                    Canvas.Left="220"
                    Canvas.Top="450"/>
+            <Label x:Name="label" Content="Додати інгредієнт" Canvas.Left="699" Canvas.Top="180" Height="22" RenderTransformOrigin="0.573,0.345" Width="93" FontSize="10"></Label>
 
         </Canvas>
     </Grid>

@@ -8,6 +8,7 @@
     using System.Windows.Media.Imaging;
     using BLL.Services.Interfaces;
     using DAL.Models;
+    using DAL.State.Authenticator;
     using Microsoft.Win32;
     using PresentationUI.Interfaces;
 
@@ -18,20 +19,25 @@
     {
         private readonly IRecipeService _recipeService;
         private readonly INavigationService _navigationService;
+        private readonly IIngredientUnitService _ingredientUnitService;
+        private readonly IAuthenticator _authenticator;
         private List<ComboBox> comboBoxIngredientsList = new List<ComboBox>();
         private List<ComboBox> comboBoxUnitsList = new List<ComboBox>();
         private List<TextBox> textBoxAmountOfUnitList = new List<TextBox>();
         private List<Button> deleteButtonIngredientsList = new List<Button>();
-        private double verticalOffsetIngredients = 310;
+        private double verticalOffsetIngredients = 190;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeAddWindow"/> class.
         /// </summary>
         /// <param name="navigationService">navigationService.</param>
-        public RecipeAddWindow(IRecipeService recipeService, INavigationService navigationService)
+        public RecipeAddWindow(IRecipeService recipeService, INavigationService navigationService, IIngredientUnitService
+            ingredientUnitService, IAuthenticator authenticator)
         {
             this._recipeService = recipeService;
             this._navigationService = navigationService;
+            this._ingredientUnitService = ingredientUnitService;
+            this._authenticator = authenticator;
             this.InitializeComponent();
         }
 
@@ -57,7 +63,7 @@
         {
             ComboBox newComboBox = new ComboBox
             {
-                Name = "GuestsInput" + this.comboBoxIngredientsList.Count,
+                Name = "IngredientInput" + this.comboBoxIngredientsList.Count,
                 Style = (Style)this.FindResource("MaterialDesignComboBox"),
                 Width = 230,
                 Height = 50,
@@ -66,10 +72,20 @@
                 BorderBrush = new SolidColorBrush(Color.FromRgb(86, 90, 123)),
             };
 
-            newComboBox.Items.Add(new ComboBoxItem { Content = "Тісто" });
-            newComboBox.Items.Add(new ComboBoxItem { Content = "Ковбаса" });
-            newComboBox.Items.Add(new ComboBoxItem { Content = "Соус" });
-            newComboBox.Items.Add(new ComboBoxItem { Content = "Сир" });
+            Type enumIngredientType = typeof(Ingredient);
+            Array enumIngredientValues = Enum.GetValues(enumIngredientType);
+
+            foreach (var enumValue in enumIngredientValues)
+            {
+                string description = IngredientExtensions.GetDescription((Ingredient)enumValue);
+                ComboBoxItem item = new ComboBoxItem
+                {
+                    Content = description,
+                    Tag = enumValue // You can use Tag property to store the enum value if needed
+                };
+
+                newComboBox.Items.Add(item);
+            }
 
             Button deleteButton = new Button
             {
@@ -96,9 +112,20 @@
                 BorderBrush = new SolidColorBrush(Color.FromRgb(86, 90, 123)),
             };
 
-            newComboBoxUnit.Items.Add(new ComboBoxItem { Content = "кг" });
-            newComboBoxUnit.Items.Add(new ComboBoxItem { Content = "шт" });
-            newComboBoxUnit.Items.Add(new ComboBoxItem { Content = "г" });
+            Type enumUnitType = typeof(Unit);
+            Array enumUnitValues = Enum.GetValues(enumUnitType);
+
+            foreach (var enumValue in enumUnitValues)
+            {
+                string description = UnitExtensions.GetDescription((Unit)enumValue);
+                ComboBoxItem item = new ComboBoxItem
+                {
+                    Content = description,
+                    Tag = enumValue
+                };
+
+                newComboBoxUnit.Items.Add(item);
+            }
 
             TextBox newTextBoxAmount = new TextBox
             {
@@ -189,35 +216,38 @@
                 Name = nameRecipe,
                 Calories = calories,
                 CookingTime = totalMinutes,
-                IngredientsUnits = null,
-                RecipeEvents = null,
                 CreatedDate = DateTime.UtcNow,
+                RecipeImage = null,
             };
 
             await this._recipeService.AddRecipe(recipeGR);
 
-            //var eventGuests = new List<EventGuest>();
-            //for (int i = 0; i < guests.Count; i++)
-            //{
-            //    var eventGuest = new EventGuest()
-            //    {
-            //        EventId = eventGR.EventId,
-            //        GuestId = guests[i].GuestId,
-            //    };
-            //    await this._eventGuestService.AddEventGuest(eventGuest);
-            //}
+            var ingredientUnits = new List<IngredientUnit>();
+            for (int i = 0; i < comboBoxIngredientsList.Count; i++)
+            {
+                var ingredient = IngredientExtensions.GetEnumValueFromDescription(comboBoxIngredientsList[i].Text);
+                var unit = UnitExtensions.GetEnumValueFromDescription(comboBoxUnitsList[i].Text);
+                var amount = Convert.ToInt32(textBoxAmountOfUnitList[i].Text);
 
-            //for (int i = 0; i < recipes.Count; i++)
-            //{
-            //    var eventRecipe = new EventRecipe()
-            //    {
-            //        EventId = eventGR.EventId,
-            //        RecipeId = recipes[i].RecipeId,
-            //    };
-            //    await this._eventRecipeService.AddEventRecipe(eventRecipe);
-            //}
+                var ingredientUnit = new IngredientUnit
+                {
+                    Ingredient = ingredient,
+                    Unit = unit,
+                    Amount = amount,
+                };
+
+                await this._ingredientUnitService.AddIngredientUnit(ingredientUnit);
+            }
 
             this._navigationService.NavigateTo<IRecipeListWindow>();
+            this.Close();
+        }
+
+        private void ___images_icons8_logout_50_png_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this._authenticator.Logout();
+
+            this._navigationService.NavigateTo<IMainWindow>();
             this.Close();
         }
     }

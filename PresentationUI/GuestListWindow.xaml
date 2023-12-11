@@ -21,6 +21,17 @@
         <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Fill="#8B92D0" />
         <Rectangle Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Fill="#CBCBCB" />
 
+        <Image
+            x:Name="___images_icons8_logout_50_png"
+            Grid.Column="1"
+            Margin="701,15,53,15"
+            Source="/images/icons8-logout-50.png"
+            Stretch="Fill"
+            Width="38"
+            Height="33.404"
+            MouseDown="___images_icons8_logout_50_png_MouseDown"
+            RenderTransformOrigin="-0.079,0.585"/>
+
         <Canvas Grid.Column="0" Grid.Row="0">
             <Image  Canvas.Left="10"
                   Canvas.Top="5" 

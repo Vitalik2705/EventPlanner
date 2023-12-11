@@ -30,7 +30,7 @@ namespace BLL.Services.Repositories
         /// <inheritdoc/>
         async public Task DeleteAsync(int id)
         {
-            T existing = await _table.FindAsync(id);
+            T existing = await this._table.FindAsync(id);
             _table.Remove(existing);
             await SaveAsync();
         }

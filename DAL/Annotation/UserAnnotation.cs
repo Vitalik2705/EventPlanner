@@ -22,7 +22,7 @@ namespace DAL.Annotation
             this.ModelBuilder.Property(u => u.Name).IsRequired().HasMaxLength(20).HasColumnName("name");
             this.ModelBuilder.Property(u => u.PhoneNumber).IsRequired().HasMaxLength(15).HasColumnName("phone_number");
             this.ModelBuilder.Property(u => u.Email).IsRequired().HasMaxLength(40).HasColumnName("email");
-            this.ModelBuilder.Property(u => u.Password).IsRequired().HasMaxLength(40).HasColumnName("password");
+            this.ModelBuilder.Property(u => u.Password).IsRequired().HasMaxLength(200).HasColumnName("password");
             this.ModelBuilder.HasMany(u => u.Events).WithOne(u => u.User).HasForeignKey(u => u.UserId);
             this.ModelBuilder.Property(u => u.Gender).IsRequired().HasConversion<string>().HasColumnName("gender");
             this.ModelBuilder.Property(u => u.CreatedDate).IsRequired().HasColumnName("created_date");

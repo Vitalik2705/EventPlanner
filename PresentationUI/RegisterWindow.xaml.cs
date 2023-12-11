@@ -63,7 +63,7 @@ namespace PresentationUI
                 Gender = gender,
                 CreatedDate = DateTime.UtcNow,
                 ModifiedDate = null,
-                UserImage = new byte[20],
+                UserImage = null,
             };
             try
             {
