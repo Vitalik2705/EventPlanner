@@ -10,6 +10,12 @@
         Title="GuestListWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <converters:DateTimeConverter x:Key="dateConverter"/>
+        <ControlTemplate x:Key="roundbutton" TargetType="Button">
+            <Grid>
+                <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="#565A"/>
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </ControlTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -115,20 +121,12 @@
                      materialDesign:HintAssist.FloatingOffset="0,-18"
                      TextChanged="SearchTextBox_TextChanged"/>
 
-            <Button  Background="Transparent"
+            <Button Template="{StaticResource roundbutton}"
+                    Background="Transparent"
                     Width="30"
                     Height="30"
-                    Canvas.Top="22" 
-                    Canvas.Left="490" 
-                    Click="Search_Click">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Grid>
-                            <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="#565A"/>
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Button.Template>
+                    FontSize="19"
+                    Foreground="White" Canvas.Top="22" Canvas.Left="490" Click="Search_Click">
                 <Image Width="20" Height="20" Source="images/search (1).png" />
             </Button>
         </Canvas>

@@ -7,6 +7,9 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="AccountWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+
+    </Window.Resources>
     <Grid x:Name="Account_Page">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -57,15 +60,6 @@
                 <Hyperlink NavigateUri="EventListWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Events_Page">
             Події
                     </Hyperlink>
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="TextDecorations" Value="Underline" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
             </TextBlock>
         </Canvas>
 
@@ -79,15 +73,6 @@
                 <Hyperlink NavigateUri="RecipeListWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Recipes_Page">
             Рецепти
                     </Hyperlink>
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="TextDecorations" Value="Underline" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
             </TextBlock>
         </Canvas>
 
@@ -203,7 +188,7 @@
             <Button x:Name="ChangePassword"
                         Content="Змінити пароль"
                         Width="150" 
-                        Height="40" 
+                        Height="40"
                         Background="#565A7B"
                         FontSize="15"
                         Foreground="White"
