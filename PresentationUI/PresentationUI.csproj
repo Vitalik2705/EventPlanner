@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Converter\**" />
+    <EmbeddedResource Remove="Converter\**" />
+    <None Remove="Converter\**" />
+    <Page Remove="Converter\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="images\20944999.jpg" />
     <None Remove="images\agenda %284%29 1.png" />
     <None Remove="images\Arrow1.png" />
@@ -78,7 +85,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Converter\" />
     <Folder Include="logs\" />
   </ItemGroup>
 
