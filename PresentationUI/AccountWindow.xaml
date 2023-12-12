@@ -7,6 +7,9 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="AccountWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+
+    </Window.Resources>
     <Grid x:Name="Account_Page">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -83,6 +86,15 @@
                 <Hyperlink NavigateUri="GuestListWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Guest_Page">
             Гості
                     </Hyperlink>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="TextDecorations" Value="Underline" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
             </TextBlock>
         </Canvas>
 
@@ -116,7 +128,7 @@
 
         <Canvas Grid.Column="1" Grid.Row="2">
             <TextBlock Canvas.Left="400" Canvas.Top="30" FontSize="25">
-                Змінити пароль
+                Змінити телефон
             </TextBlock>
         </Canvas>
 
@@ -141,9 +153,9 @@
         </Canvas>
 
         <Canvas Grid.Column="1" Grid.Row="2">
-            <PasswordBox x:Name="NewPasswordInput"
-                  Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
-                  materialDesign:HintAssist.Hint="New Password"
+            <TextBox x:Name="NewPhoneInput"
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                  materialDesign:HintAssist.Hint="New Phone"
                   Width="230"
                   Height="50"
                   Canvas.Left="400"
@@ -176,7 +188,7 @@
             <Button x:Name="ChangePassword"
                         Content="Змінити пароль"
                         Width="150" 
-                        Height="40" 
+                        Height="40"
                         Background="#565A7B"
                         FontSize="15"
                         Foreground="White"
