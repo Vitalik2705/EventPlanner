@@ -52,16 +52,16 @@
 
         <Canvas Grid.Column="0" Grid.Row="2">
             <TextBox x:Name="EmailInput"
-                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     materialDesign:HintAssist.Hint="Email"
-                     Width="230"
-                     Height="50"
-                     Canvas.Left="145"
-                     Canvas.Top="0"
-                     FontSize="17"
-                     BorderThickness="0 0 0 1.5" 
-                     BorderBrush="#565A7B" 
-                     materialDesign:HintAssist.FloatingOffset="0,-18" />
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 materialDesign:HintAssist.Hint="Email"
+                 Width="230"
+                 Height="50"
+                 Canvas.Left="145"
+                 Canvas.Top="0"
+                 FontSize="17"
+                 BorderThickness="0 0 0 1.5" 
+                 BorderBrush="#565A7B" 
+                 materialDesign:HintAssist.FloatingOffset="0,-18" />
 
             <PasswordBox x:Name="PasswordInput" 
                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
