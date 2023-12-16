@@ -99,8 +99,8 @@
         </Canvas>
 
         <Canvas Grid.Column="1" Grid.Row="1">
-            <Image Height="150" Width="150" Canvas.Left="30"
-                  Canvas.Top="30"  Source="images/Ellipse 1.png"/>
+            <Image x:Name="ImageName" Height="150" Width="150" Canvas.Left="30"
+                  Canvas.Top="30"/>
         </Canvas>
 
 

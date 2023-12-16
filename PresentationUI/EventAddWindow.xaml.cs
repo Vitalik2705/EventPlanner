@@ -89,6 +89,7 @@ namespace PresentationUI
                 BorderThickness = new Thickness(0, 0, 0, 1.5),
                 BorderBrush = new SolidColorBrush(Color.FromRgb(86, 90, 123)),
                 IsEditable = true,
+                Background = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
                 IsTextSearchEnabled = true,
             };
 
@@ -159,13 +160,14 @@ namespace PresentationUI
                 BorderThickness = new Thickness(0, 0, 0, 1.5),
                 BorderBrush = new SolidColorBrush(Color.FromRgb(86, 90, 123)),
                 IsEditable = true,
+                Background = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
                 IsTextSearchEnabled = true,
             };
 
             var recipes = (await this._recipeService.GetAll()).ToList();
             foreach (var recipe in recipes)
             {
-                newComboBox.Items.Add(new ComboBoxItem { Content = $"{recipe.Name}" });
+                newComboBox.Items.Add(new ComboBoxItem { Content = $"{recipe.Name}", Background = new SolidColorBrush(Color.FromRgb(255, 255, 255)) });
             }
 
             Button deleteButton = new Button

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
@@ -26,6 +27,8 @@
         private List<TextBox> textBoxAmountOfUnitList = new List<TextBox>();
         private List<Button> deleteButtonIngredientsList = new List<Button>();
         private double verticalOffsetIngredients = 190;
+
+        private OpenFileDialog openFileDialog;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeAddWindow"/> class.
@@ -189,7 +192,7 @@
 
         private void SelectImage_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Файли зображень (*.jpg; *.jpeg; *.png)|*.jpg;*.jpeg;*.png|Всі файли (*.*)|*.*";
 
             if (openFileDialog.ShowDialog() == true)
@@ -215,13 +218,29 @@
 
             int totalMinutes = (hours * 60) + minutes;
 
+            var image = "";
+
+            if (openFileDialog != null)
+            {
+                string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string saveDirectory = Path.Combine(currentDirectory, "RecipeImages");
+                image = Path.GetFileName(openFileDialog.FileName);
+                string fileSavePath = Path.Combine(saveDirectory, image);
+                if (!Directory.Exists(saveDirectory))
+                {
+                    Directory.CreateDirectory(saveDirectory);
+                }
+
+                File.Copy(openFileDialog.FileName, fileSavePath, true);
+            }
+
             var recipeGR = new Recipe()
             {
                 Name = nameRecipe,
                 Calories = calories,
                 CookingTime = totalMinutes,
                 CreatedDate = DateTime.UtcNow,
-                RecipeImage = null,
+                RecipeImageName = image,
             };
 
             await this._recipeService.AddRecipe(recipeGR);

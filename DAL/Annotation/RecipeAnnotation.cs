@@ -21,7 +21,7 @@
             this.ModelBuilder.Property(u => u.CreatedDate).IsRequired().HasColumnName("created_date");
             this.ModelBuilder.Property(u => u.ModifiedDate).HasColumnName("modified_date");
             this.ModelBuilder.HasMany(u => u.IngredientsUnits).WithMany(u => u.Recipes);
-            this.ModelBuilder.Property(u => u.RecipeImage).HasColumnName("recipe_image").IsRequired(false);
+            this.ModelBuilder.Property(u => u.RecipeImageName).HasColumnName("recipe_image").IsRequired(false);
         }
     }
 }

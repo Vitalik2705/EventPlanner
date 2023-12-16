@@ -179,10 +179,6 @@
                     Height="19" Source="images/plus (1).png"/>
             </Button>
 
-
-
-
-
             <TextBox
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 Width="300"

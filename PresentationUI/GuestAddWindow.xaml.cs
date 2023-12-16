@@ -81,6 +81,7 @@ namespace PresentationUI
             {
                 Surname = surname,
                 Name = name,
+                UserId = this._authenticator.CurrentUser.UserId,
                 Gender = gender,
             };
             try

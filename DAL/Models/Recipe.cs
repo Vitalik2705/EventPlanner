@@ -22,6 +22,6 @@ namespace DAL.Models
 
         public DateTime? ModifiedDate { get; set; }
 
-        public byte[] RecipeImage { get; set; }
+        public string? RecipeImageName { get; set; }
     }
 }
