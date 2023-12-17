@@ -4,7 +4,10 @@
 
 namespace PresentationUI
 {
+    using BLL.Services.Implementations;
     using BLL.Services.Interfaces;
+    using BLL.Services.State.Authenticator;
+    using DAL.Models;
     using DAL.State.Authenticator;
     using PresentationUI.Interfaces;
     using System;
@@ -12,6 +15,7 @@ namespace PresentationUI
     using System.Windows.Controls;
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
+    using System.Windows.Navigation;
 
     /// <summary>
     /// Interaction logic for RecipeListWindow.xaml.
@@ -68,12 +72,6 @@ namespace PresentationUI
         private void Recipes_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.NavigateTo<IRecipeListWindow>();
-            this.Close();
-        }
-
-        private void Item_Click(object sender, RoutedEventArgs e)
-        {
-            this._navigationService.NavigateTo<IRecipeInfoWindow>();
             this.Close();
         }
 
@@ -149,6 +147,7 @@ namespace PresentationUI
                         Height = 50,
                         Margin = new Thickness(0, 0, 0, 15),
                         Style = this.FindResource("MaterialDesignCardsListBoxItem") as Style, // Use the appropriate resource key
+                        Tag = recipe.RecipeId
                     };
 
                     StackPanel stackPanel = new StackPanel
@@ -181,6 +180,17 @@ namespace PresentationUI
             catch (Exception ex)
             {
                 string exc = $"{ex}";
+            }
+        }
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (itemListBoxRecipes.SelectedItem != null)
+            {
+                ListBoxItem selectedListBoxItem = (ListBoxItem)itemListBoxRecipes.SelectedItem;
+                int recipeId = (int)selectedListBoxItem.Tag;
+                RecipeInfoWindow recipeInfoWindow = new RecipeInfoWindow(_recipeService, _navigationService, _authenticator, recipeId);
+                this.Close();
+                recipeInfoWindow.Show();
             }
         }
 

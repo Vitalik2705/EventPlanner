@@ -87,20 +87,20 @@
         </Canvas>
 
         <Canvas x:Name="eneCanvas" Grid.Column="0" Grid.Row="1">
+            <Rectangle Canvas.Top="95" Width="198" Height="50" Fill="#FFFFFF" />
             <Image  Canvas.Left="10"
                   Canvas.Top="95" 
                   Height="50"
                   Width="40"
                   Source="images/mdi_events.png"/>
             <TextBlock Canvas.Left="65" Canvas.Top="101" FontSize="25">
-                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000" Click="Events_Click">
+                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000">
             Події
                     </Hyperlink>
             </TextBlock>
         </Canvas>
 
         <Canvas x:Name="recipesCanvas" Grid.Column="0" Grid.Row="1">
-            <Rectangle Canvas.Top="165" Width="198" Height="50" Fill="#FFFFFF" />
             <Image  Canvas.Left="10"
                   Canvas.Top="165" 
                   Height="50"

@@ -1,13 +1,13 @@
-﻿#nullable disable
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+
+#nullable disable
 
 namespace DAL.Migrations
 {
-    using System;
-    using Microsoft.EntityFrameworkCore.Migrations;
-    using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-
     /// <inheritdoc />
-    public partial class CreateDataBase : Migration
+    public partial class name : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,9 +18,9 @@ namespace DAL.Migrations
                 {
                     ingredient_unit_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Ingredient = table.Column<string>(type: "text", nullable: false),
-                    Unit = table.Column<string>(type: "text", nullable: false),
-                    Amount = table.Column<int>(type: "integer", nullable: false),
+                    ingredient = table.Column<string>(type: "text", nullable: false),
+                    unit = table.Column<string>(type: "text", nullable: false),
+                    Amount = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,11 +33,12 @@ namespace DAL.Migrations
                 {
                     recipe_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    Calories = table.Column<int>(type: "integer", nullable: false),
-                    CookingTime = table.Column<int>(type: "integer", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    calories = table.Column<int>(type: "integer", nullable: false),
+                    cooking_time = table.Column<int>(type: "integer", nullable: false),
+                    created_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    modified_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    recipe_image = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -50,14 +51,15 @@ namespace DAL.Migrations
                 {
                     user_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Surname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    Name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    surname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     phone_number = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    Email = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
-                    Password = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
-                    Gender = table.Column<int>(type: "integer", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    email = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
+                    password = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    gender = table.Column<string>(type: "text", nullable: false),
+                    created_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    modified_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    user_image = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -69,7 +71,7 @@ namespace DAL.Migrations
                 columns: table => new
                 {
                     IngredientsUnitsIngredientUnitId = table.Column<int>(type: "integer", nullable: false),
-                    RecipesRecipeId = table.Column<int>(type: "integer", nullable: false),
+                    RecipesRecipeId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -94,10 +96,10 @@ namespace DAL.Migrations
                 {
                     event_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    name = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    created_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    modified_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -111,48 +113,77 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EventRecipe",
+                name: "Guest",
                 columns: table => new
                 {
-                    EventsEventId = table.Column<int>(type: "integer", nullable: false),
-                    RecipesRecipeId = table.Column<int>(type: "integer", nullable: false),
+                    guest_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    surname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    gender = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EventRecipe", x => new { x.EventsEventId, x.RecipesRecipeId });
+                    table.PrimaryKey("PK_Guest", x => x.guest_id);
                     table.ForeignKey(
-                        name: "FK_EventRecipe_Event_EventsEventId",
-                        column: x => x.EventsEventId,
+                        name: "FK_Guest_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "user_id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventRecipe",
+                columns: table => new
+                {
+                    event_recipe_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    EventId = table.Column<int>(type: "integer", nullable: false),
+                    RecipeId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventRecipe", x => x.event_recipe_id);
+                    table.ForeignKey(
+                        name: "FK_EventRecipe_Event_EventId",
+                        column: x => x.EventId,
                         principalTable: "Event",
                         principalColumn: "event_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EventRecipe_Recipe_RecipesRecipeId",
-                        column: x => x.RecipesRecipeId,
+                        name: "FK_EventRecipe_Recipe_RecipeId",
+                        column: x => x.RecipeId,
                         principalTable: "Recipe",
                         principalColumn: "recipe_id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Guest",
+                name: "EventGuest",
                 columns: table => new
                 {
-                    guest_id = table.Column<int>(type: "integer", nullable: false)
+                    event_guest_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Surname = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    Name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    Gender = table.Column<int>(type: "integer", nullable: false),
-                    EventId = table.Column<int>(type: "integer", nullable: true),
+                    EventId = table.Column<int>(type: "integer", nullable: false),
+                    GuestId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Guest", x => x.guest_id);
+                    table.PrimaryKey("PK_EventGuest", x => x.event_guest_id);
                     table.ForeignKey(
-                        name: "FK_Guest_Event_EventId",
+                        name: "FK_EventGuest_Event_EventId",
                         column: x => x.EventId,
                         principalTable: "Event",
-                        principalColumn: "event_id");
+                        principalColumn: "event_id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EventGuest_Guest_GuestId",
+                        column: x => x.GuestId,
+                        principalTable: "Guest",
+                        principalColumn: "guest_id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -161,14 +192,29 @@ namespace DAL.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EventRecipe_RecipesRecipeId",
-                table: "EventRecipe",
-                column: "RecipesRecipeId");
+                name: "IX_EventGuest_EventId",
+                table: "EventGuest",
+                column: "EventId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Guest_EventId",
-                table: "Guest",
+                name: "IX_EventGuest_GuestId",
+                table: "EventGuest",
+                column: "GuestId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EventRecipe_EventId",
+                table: "EventRecipe",
                 column: "EventId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EventRecipe_RecipeId",
+                table: "EventRecipe",
+                column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Guest_UserId",
+                table: "Guest",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_IngredientUnitRecipe_RecipesRecipeId",
@@ -180,13 +226,16 @@ namespace DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "EventGuest");
+
+            migrationBuilder.DropTable(
                 name: "EventRecipe");
 
             migrationBuilder.DropTable(
-                name: "Guest");
+                name: "IngredientUnitRecipe");
 
             migrationBuilder.DropTable(
-                name: "IngredientUnitRecipe");
+                name: "Guest");
 
             migrationBuilder.DropTable(
                 name: "Event");

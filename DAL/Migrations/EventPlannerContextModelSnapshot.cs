@@ -130,7 +130,12 @@ namespace DAL.Migrations
                         .HasColumnType("character varying(20)")
                         .HasColumnName("surname");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
                     b.HasKey("GuestId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Guest");
                 });
@@ -193,8 +198,8 @@ namespace DAL.Migrations
                         .HasColumnType("character varying(20)")
                         .HasColumnName("name");
 
-                    b.Property<byte[]>("RecipeImage")
-                        .HasColumnType("bytea")
+                    b.Property<string>("RecipeImageName")
+                        .HasColumnType("text")
                         .HasColumnName("recipe_image");
 
                     b.HasKey("RecipeId");
@@ -257,8 +262,8 @@ namespace DAL.Migrations
                         .HasColumnType("character varying(20)")
                         .HasColumnName("surname");
 
-                    b.Property<byte[]>("UserImage")
-                        .HasColumnType("bytea")
+                    b.Property<string>("UserImageName")
+                        .HasColumnType("text")
                         .HasColumnName("user_image");
 
                     b.HasKey("UserId");
@@ -330,6 +335,17 @@ namespace DAL.Migrations
                     b.Navigation("Recipe");
                 });
 
+            modelBuilder.Entity("DAL.Models.Guest", b =>
+                {
+                    b.HasOne("DAL.Models.User", "User")
+                        .WithMany("Guests")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("IngredientUnitRecipe", b =>
                 {
                     b.HasOne("DAL.Models.IngredientUnit", null)
@@ -365,6 +381,8 @@ namespace DAL.Migrations
             modelBuilder.Entity("DAL.Models.User", b =>
                 {
                     b.Navigation("Events");
+
+                    b.Navigation("Guests");
                 });
 #pragma warning restore 612, 618
         }

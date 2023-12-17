@@ -139,6 +139,7 @@
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
                          Loaded="itemListBoxRecipes_Loaded"
+                         SelectionChanged="ListBox_SelectionChanged">
                      >
             </ListBox>
         </Canvas>
