@@ -32,7 +32,7 @@ namespace BLL.Services.Interfaces
             var validator = new IngredientUnitValidation();
             var validationResult = validator.Validate(_ingredientUnit);
 
-            if (validationResult.IsValid)
+            if (!validationResult.IsValid)
             {
                 return;
             }
