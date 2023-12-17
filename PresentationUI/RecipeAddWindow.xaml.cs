@@ -22,6 +22,7 @@
         private readonly INavigationService _navigationService;
         private readonly IIngredientUnitService _ingredientUnitService;
         private readonly IAuthenticator _authenticator;
+        private readonly IIngredientUnitRecipeService _ingredientUnitRecipeService;
         private List<ComboBox> comboBoxIngredientsList = new List<ComboBox>();
         private List<ComboBox> comboBoxUnitsList = new List<ComboBox>();
         private List<TextBox> textBoxAmountOfUnitList = new List<TextBox>();
@@ -35,12 +36,13 @@
         /// </summary>
         /// <param name="navigationService">navigationService.</param>
         public RecipeAddWindow(IRecipeService recipeService, INavigationService navigationService, IIngredientUnitService
-            ingredientUnitService, IAuthenticator authenticator)
+            ingredientUnitService, IAuthenticator authenticator, IIngredientUnitRecipeService ingredientUnitRecipeService)
         {
             this._recipeService = recipeService;
             this._navigationService = navigationService;
             this._ingredientUnitService = ingredientUnitService;
             this._authenticator = authenticator;
+            this._ingredientUnitRecipeService = ingredientUnitRecipeService;
             this.InitializeComponent();
         }
 
@@ -260,6 +262,13 @@
                 };
 
                 await this._ingredientUnitService.AddIngredientUnit(ingredientUnit);
+
+                var ingredientUnitRecipe = new IngredientUnitRecipe
+                {
+                    IngredientUnitId = ingredientUnit.IngredientUnitId,
+                    RecipeId = recipeGR.RecipeId,
+                };
+                await this._ingredientUnitRecipeService.AddIngredientUnitRecipe(ingredientUnitRecipe);
             }
 
             this._navigationService.NavigateTo<IRecipeListWindow>();

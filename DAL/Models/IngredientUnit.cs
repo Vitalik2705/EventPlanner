@@ -14,6 +14,6 @@ namespace DAL.Models
 
         public int Amount { get; set; }
 
-        public ICollection<Recipe> Recipes { get; set; }
+        public ICollection<IngredientUnitRecipe> IngredientUnitRecipes { get; set; }
     }
 }

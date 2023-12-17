@@ -14,7 +14,9 @@ namespace DAL.Models
 
         public int CookingTime { get; set; }
 
-        public ICollection<IngredientUnit> IngredientsUnits { get; set;}
+        public string Description { get; set; }
+
+        public ICollection<IngredientUnitRecipe> IngredientsUnitsRecipe { get; set;}
 
         public ICollection<EventRecipe> RecipeEvents { get; set; }
 
