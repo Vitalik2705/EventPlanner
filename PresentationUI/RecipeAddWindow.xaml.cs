@@ -12,6 +12,7 @@
     using DAL.State.Authenticator;
     using Microsoft.Win32;
     using PresentationUI.Interfaces;
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Interaction logic for RecipeAddWindow.xaml.
@@ -23,6 +24,7 @@
         private readonly IIngredientUnitService _ingredientUnitService;
         private readonly IAuthenticator _authenticator;
         private readonly IIngredientUnitRecipeService _ingredientUnitRecipeService;
+        private readonly ILogger<RecipeAddWindow> _addRecipeLogger;
         private List<ComboBox> comboBoxIngredientsList = new List<ComboBox>();
         private List<ComboBox> comboBoxUnitsList = new List<ComboBox>();
         private List<TextBox> textBoxAmountOfUnitList = new List<TextBox>();
@@ -36,13 +38,14 @@
         /// </summary>
         /// <param name="navigationService">navigationService.</param>
         public RecipeAddWindow(IRecipeService recipeService, INavigationService navigationService, IIngredientUnitService
-            ingredientUnitService, IAuthenticator authenticator, IIngredientUnitRecipeService ingredientUnitRecipeService)
+            ingredientUnitService, IAuthenticator authenticator, IIngredientUnitRecipeService ingredientUnitRecipeService, ILogger<RecipeAddWindow> addRecipeLogger)
         {
             this._recipeService = recipeService;
             this._navigationService = navigationService;
             this._ingredientUnitService = ingredientUnitService;
             this._authenticator = authenticator;
             this._ingredientUnitRecipeService = ingredientUnitRecipeService;
+            this._addRecipeLogger = addRecipeLogger;
             this.InitializeComponent();
         }
 
@@ -209,6 +212,7 @@
 
         private async void AddRecipeButton_Click(object sender, RoutedEventArgs e)
         {
+            this._addRecipeLogger.LogInformation("Attempting to add the recipe.");
             var nameRecipe = this.RecipeNameInput.Text;
             var caloriesText = this.AmountOfCaloriesInput.Text;
             var description = this.DescriptionInput.Text;
@@ -248,34 +252,43 @@
                 Description = description,
             };
 
-            await this._recipeService.AddRecipe(recipeGR);
-
-            var ingredientUnits = new List<IngredientUnit>();
-            for (int i = 0; i < comboBoxIngredientsList.Count; i++)
+            try
             {
-                var ingredient = IngredientExtensions.GetEnumValueFromDescription(comboBoxIngredientsList[i].Text);
-                var unit = UnitExtensions.GetEnumValueFromDescription(comboBoxUnitsList[i].Text);
-                var amount = Convert.ToInt32(textBoxAmountOfUnitList[i].Text);
+                await this._recipeService.AddRecipe(recipeGR);
 
-                var ingredientUnit = new IngredientUnit
+                var ingredientUnits = new List<IngredientUnit>();
+                for (int i = 0; i < comboBoxIngredientsList.Count; i++)
                 {
-                    Ingredient = ingredient,
-                    Unit = unit,
-                    Amount = amount,
-                };
+                    var ingredient = IngredientExtensions.GetEnumValueFromDescription(comboBoxIngredientsList[i].Text);
+                    var unit = UnitExtensions.GetEnumValueFromDescription(comboBoxUnitsList[i].Text);
+                    var amount = Convert.ToInt32(textBoxAmountOfUnitList[i].Text);
 
-                await this._ingredientUnitService.AddIngredientUnit(ingredientUnit);
+                    var ingredientUnit = new IngredientUnit
+                    {
+                        Ingredient = ingredient,
+                        Unit = unit,
+                        Amount = amount,
+                    };
 
-                var ingredientUnitRecipe = new IngredientUnitRecipe
-                {
-                    IngredientUnitId = ingredientUnit.IngredientUnitId,
-                    RecipeId = recipeGR.RecipeId,
-                };
-                await this._ingredientUnitRecipeService.AddIngredientUnitRecipe(ingredientUnitRecipe);
+                    await this._ingredientUnitService.AddIngredientUnit(ingredientUnit);
+
+                    var ingredientUnitRecipe = new IngredientUnitRecipe
+                    {
+                        IngredientUnitId = ingredientUnit.IngredientUnitId,
+                        RecipeId = recipeGR.RecipeId,
+                    };
+                    await this._ingredientUnitRecipeService.AddIngredientUnitRecipe(ingredientUnitRecipe);
+                }
+
+                this._addRecipeLogger.LogInformation("Successfully added the recipe.");
+                this._navigationService.NavigateTo<IRecipeListWindow>();
+                this.Close();
+            }
+            catch(Exception ex)
+            {
+                this._addRecipeLogger.LogError($"Failed to add the recipe. {ex}");
             }
 
-            this._navigationService.NavigateTo<IRecipeListWindow>();
-            this.Close();
         }
 
         private void ___images_icons8_logout_50_png_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

@@ -33,6 +33,7 @@ namespace PresentationUI
         private readonly ILogger<GuestAddWindow> _guestLogger;
         private readonly IAuthenticator _authenticator;
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GuestAddWindow"/> class.
         /// </summary>
