@@ -223,6 +223,12 @@ namespace PresentationUI
         {
             var nameEvent = this.EventNameInput.Text;
 
+            if(string.IsNullOrEmpty(nameEvent))
+            {
+                ShowErrorMessage("Назва не може бути порожньою");
+                return;
+            }
+
             //var comboBoxGuests = new List<string>();
             var guests = new List<Guest>();
             foreach (var comboBoxGuest in this.comboBoxList)
@@ -292,6 +298,13 @@ namespace PresentationUI
 
             this._navigationService.NavigateTo<IMainWindow>();
             this.Close();
+        }
+
+        private void ShowErrorMessage(string errorMessage)
+        {
+            // You can implement the logic to display the error message to the user here.
+            // For example, show a MessageBox or update a UI element with the error message.
+            MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

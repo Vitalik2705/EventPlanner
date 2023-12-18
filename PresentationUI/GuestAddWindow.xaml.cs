@@ -78,6 +78,12 @@ namespace PresentationUI
             string selectedSex = selectedComboBoxItem.Content.ToString();
             var gender = selectedSex != "Чоловік" ? Gender.Female : Gender.Male;
             
+            if(string.IsNullOrEmpty(name) || string.IsNullOrEmpty(surname))
+            {
+                ShowErrorMessage("Гість повинен мати не порожнє ім'я та прізвище");
+                return;
+            }
+
             Guest guest = new Guest()
             {
                 Surname = surname,
@@ -107,6 +113,12 @@ namespace PresentationUI
 
             this._navigationService.NavigateTo<IMainWindow>();
             this.Close();
+        }
+        private void ShowErrorMessage(string errorMessage)
+        {
+            // You can implement the logic to display the error message to the user here.
+            // For example, show a MessageBox or update a UI element with the error message.
+            MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

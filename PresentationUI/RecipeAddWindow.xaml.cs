@@ -225,6 +225,17 @@
 
             int totalMinutes = (hours * 60) + minutes;
 
+            if (string.IsNullOrEmpty(nameRecipe) || string.IsNullOrEmpty(caloriesText))
+            {
+                ShowErrorMessage("Рецепт повинен містити ім'я та кількість калорій");
+                return;
+            }
+            if (totalMinutes <= 0)
+            {
+                ShowErrorMessage("Рецепт повинен містити час приготування");
+                return;
+            }
+            
             var image = "";
 
             if (openFileDialog != null)
@@ -240,7 +251,6 @@
 
                 File.Copy(openFileDialog.FileName, fileSavePath, true);
             }
-
 
             var recipeGR = new Recipe()
             {
@@ -297,6 +307,12 @@
 
             this._navigationService.NavigateTo<IMainWindow>();
             this.Close();
+        }
+        private void ShowErrorMessage(string errorMessage)
+        {
+            // You can implement the logic to display the error message to the user here.
+            // For example, show a MessageBox or update a UI element with the error message.
+            MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
