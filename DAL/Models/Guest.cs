@@ -12,6 +12,10 @@
 
         public string Surname { get; set; }
 
+        public User User { get; set; }
+
+        public int UserId { get; set; }
+
         public ICollection<EventGuest> GuestEvents { get; set; }
 
         public string? Name { get; set; }

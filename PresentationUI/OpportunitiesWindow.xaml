@@ -81,7 +81,7 @@
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem Height="50" Margin="0 0 0 15" Style="{StaticResource MaterialDesignCardsListBoxItem}">
-                    <StackPanel Background="#F9F9F9" Orientation="Horizontal">
+                    <StackPanel Background="#F9F9F9" Orientation="Horizontal" RenderTransformOrigin="0.502,2.235">
                         <Image Width="50" Height="40" Source="images/Ellipse 1.png" />
                         <TextBlock Margin="10 6 0 0" FontSize="23">Додавання унікальних рецептів</TextBlock>
                     </StackPanel>

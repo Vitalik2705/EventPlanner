@@ -23,6 +23,7 @@ namespace PresentationUI
     using DAL.Models;
     using DAL.State.Authenticator;
     using MaterialDesignThemes.Wpf;
+    using Microsoft.Extensions.Logging;
     using PresentationUI.Interfaces;
 
     /// <summary>
@@ -37,13 +38,15 @@ namespace PresentationUI
         private readonly IEventRecipeService _eventRecipeService;
         private readonly IEventGuestService _eventGuestService;
         private readonly IAuthenticator _authenticator;
+        private readonly ILogger<EventAddWindow> _addEventLogger;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventAddWindow"/> class.
         /// </summary>
         /// <param name="navigationService"></param>
         public EventAddWindow(INavigationService navigationService, IEventService eventService, IGuestService guestService,
-            IRecipeService recipeService, IAuthenticator authenticator, IEventRecipeService eventRecipeService, IEventGuestService eventGuestService)
+            IRecipeService recipeService, IAuthenticator authenticator, IEventRecipeService eventRecipeService, IEventGuestService eventGuestService, ILogger<EventAddWindow> addEventLogger)
         {
             this._navigationService = navigationService;
             this._eventService = eventService;
@@ -52,6 +55,7 @@ namespace PresentationUI
             this._eventGuestService = eventGuestService;
             this._eventRecipeService = eventRecipeService;
             this._authenticator = authenticator;
+            this._addEventLogger = addEventLogger;
             this.InitializeComponent();
         }
 
@@ -89,6 +93,7 @@ namespace PresentationUI
                 BorderThickness = new Thickness(0, 0, 0, 1.5),
                 BorderBrush = new SolidColorBrush(Color.FromRgb(86, 90, 123)),
                 IsEditable = true,
+                Background = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
                 IsTextSearchEnabled = true,
             };
 
@@ -159,13 +164,14 @@ namespace PresentationUI
                 BorderThickness = new Thickness(0, 0, 0, 1.5),
                 BorderBrush = new SolidColorBrush(Color.FromRgb(86, 90, 123)),
                 IsEditable = true,
+                Background = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
                 IsTextSearchEnabled = true,
             };
 
             var recipes = (await this._recipeService.GetAll()).ToList();
             foreach (var recipe in recipes)
             {
-                newComboBox.Items.Add(new ComboBoxItem { Content = $"{recipe.Name}" });
+                newComboBox.Items.Add(new ComboBoxItem { Content = $"{recipe.Name}", Background = new SolidColorBrush(Color.FromRgb(255, 255, 255)) });
             }
 
             Button deleteButton = new Button
@@ -243,31 +249,41 @@ namespace PresentationUI
                 CreatedDate = DateTime.UtcNow,
             };
 
-            await this._eventService.AddEvent(eventGR);
-
-            var eventGuests = new List<EventGuest>();
-            for (int i = 0; i < guests.Count; i++)
+            try
             {
-                var eventGuest = new EventGuest()
+                this._addEventLogger.LogInformation("Attempting to add the event.");
+                await this._eventService.AddEvent(eventGR);
+
+                var eventGuests = new List<EventGuest>();
+                for (int i = 0; i < guests.Count; i++)
                 {
-                    EventId = eventGR.EventId,
-                    GuestId = guests[i].GuestId,
-                };
-                await this._eventGuestService.AddEventGuest(eventGuest);
+                    var eventGuest = new EventGuest()
+                    {
+                        EventId = eventGR.EventId,
+                        GuestId = guests[i].GuestId,
+                    };
+                    await this._eventGuestService.AddEventGuest(eventGuest);
+                }
+
+                for (int i = 0; i < recipes.Count; i++)
+                {
+                    var eventRecipe = new EventRecipe()
+                    {
+                        EventId = eventGR.EventId,
+                        RecipeId = recipes[i].RecipeId,
+                    };
+                    await this._eventRecipeService.AddEventRecipe(eventRecipe);
+                }
+
+                this._addEventLogger.LogInformation("Successfully added the event.");
+                this._navigationService.NavigateTo<IEventListWindow>();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                this._addEventLogger.LogError($"Failed to add the event. {ex}");
             }
 
-            for (int i = 0; i < recipes.Count; i++)
-            {
-                var eventRecipe = new EventRecipe()
-                {
-                    EventId = eventGR.EventId,
-                    RecipeId = recipes[i].RecipeId,
-                };
-                await this._eventRecipeService.AddEventRecipe(eventRecipe);
-            }
-
-            this._navigationService.NavigateTo<IEventListWindow>();
-            this.Close();
         }
 
         private void ___images_icons8_logout_50_png_MouseDown(object sender, MouseButtonEventArgs e)
