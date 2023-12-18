@@ -49,5 +49,9 @@ namespace BLL.Services.Interfaces
         {
             await _ingredientUnitRepository.DeleteAsync(id);
         }
+        public async Task<IngredientUnit> GetIngredientUnitById(int ingredientUnitId)
+        {
+            return await _ingredientUnitRepository.GetAsync(g => g.IngredientUnitId == ingredientUnitId);
+        }
     }
 }

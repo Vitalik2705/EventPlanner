@@ -24,15 +24,19 @@ namespace PresentationUI
     {
         private readonly INavigationService _navigationService;
         private readonly IRecipeService _recipeService;
+        private readonly IIngredientUnitRecipeService _ingredientUnitRecipeService;
+        private readonly IIngredientUnitService _ingredientUnitService;
         private readonly IAuthenticator _authenticator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeListWindow"/> class.
         /// </summary>
         /// <param name="navigationService"></param>
-        public RecipeListWindow(IRecipeService recipeService, INavigationService navigationService, IAuthenticator authenticator)
+        public RecipeListWindow(IRecipeService recipeService, IIngredientUnitRecipeService ingredientUnitRecipeService, IIngredientUnitService ingredientUnitService, INavigationService navigationService, IAuthenticator authenticator)
         {
             this._recipeService = recipeService;
+            this._ingredientUnitRecipeService = ingredientUnitRecipeService;
+            this._ingredientUnitService = ingredientUnitService;
             this._navigationService = navigationService;
             this._authenticator = authenticator;
             this.InitializeComponent();
@@ -188,7 +192,7 @@ namespace PresentationUI
             {
                 ListBoxItem selectedListBoxItem = (ListBoxItem)itemListBoxRecipes.SelectedItem;
                 int recipeId = (int)selectedListBoxItem.Tag;
-                RecipeInfoWindow recipeInfoWindow = new RecipeInfoWindow(_recipeService, _navigationService, _authenticator, recipeId);
+                RecipeInfoWindow recipeInfoWindow = new RecipeInfoWindow(_recipeService, _ingredientUnitRecipeService, _ingredientUnitService, _navigationService, _authenticator, recipeId);
                 this.Close();
                 recipeInfoWindow.Show();
             }

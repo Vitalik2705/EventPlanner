@@ -5,6 +5,7 @@
 namespace PresentationUI
 {
     using System;
+    using System.IO;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
@@ -17,10 +18,13 @@ namespace PresentationUI
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using System.Windows.Shapes;
+    using BLL.Services.Implementations;
     using BLL.Services.Interfaces;
+    using DAL.Models;
     using DAL.State.Authenticator;
     using Microsoft.Extensions.Logging;
     using PresentationUI.Interfaces;
+    using Path = System.IO.Path;
 
     /// <summary>
     /// Interaction logic for RecipeInfoWindow.xaml.
@@ -28,13 +32,17 @@ namespace PresentationUI
     public partial class RecipeInfoWindow : Window, IRecipeInfoWindow
     {
         private readonly IRecipeService _recipeService;
+        private readonly IIngredientUnitRecipeService _ingredientUnitRecipeService;
+        private readonly IIngredientUnitService _ingredientUnitService;
         private readonly INavigationService _navigationService;
         private readonly IAuthenticator _authenticator;
         private readonly int _recipeId;
 
-        public RecipeInfoWindow(IRecipeService recipeService, INavigationService navigationService, IAuthenticator authenticator, int recipeId)
+        public RecipeInfoWindow(IRecipeService recipeService, IIngredientUnitRecipeService ingredientUnitRecipeService, IIngredientUnitService ingredientUnitService, INavigationService navigationService, IAuthenticator authenticator, int recipeId)
         {
             this._recipeService = recipeService;
+            this._ingredientUnitRecipeService = ingredientUnitRecipeService;
+            this._ingredientUnitService = ingredientUnitService;
             this._navigationService = navigationService;
             this._authenticator = authenticator;
             this._recipeId = recipeId;
@@ -43,7 +51,6 @@ namespace PresentationUI
         }
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            // Отримайте подію (event) за допомогою поточного eventId (ваш логічний чи ідентифікатор події)
             var recipeInfo = await _recipeService.GetRecipeById(_recipeId);
 
             if (recipeInfo != null)
@@ -54,44 +61,46 @@ namespace PresentationUI
 
                 RecipeCaloriesTextBlock.Text = recipeInfo.Calories.ToString();
 
-                //RecipeDescriptionTextBlock.Text = recipeInfo.Description;
+                string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string saveDirectory = Path.Combine(currentDirectory, "RecipeImages");
+                string fileSavePath = Path.Combine(saveDirectory, recipeInfo.RecipeImageName);
+                if (File.Exists(fileSavePath))
+                {
+                    this.ImageName.Source = new BitmapImage(new Uri(fileSavePath));
+                }
+                else
+                {
+                }
 
-                // Отримайте список гостей для події
-                //var ingredientsForRecipe = await _eventGuestService.GetGuestsForEvent(_recipeId);
+                int totalAmount = 0;
 
-                //foreach (var eg in guestsForEvent)
-                //{
-                //    var guest = await _guestService.GetGuestById(eg.GuestId);
-                //    if (guest != null)
-                //    {
-                //        ListBoxItem guestItem = new ListBoxItem
-                //        {
-                //            Content = $"{guest.Name} {guest.Surname}",
-                //            // Якщо вам потрібно обробити подію при виборі гостя, додайте відповідний обробник подій.
-                //        };
+                RecipeDescriptionTextBlock.Text = recipeInfo.Description;
 
-                //        GuestListBox.Items.Add(guestItem);
-                //    }
-                //}
+                var ingredientsForRecipe = await _ingredientUnitRecipeService.GetIngredientUnitForRecipe(_recipeId);
 
-                //// Отримайте список рецептів для події
-                //var recipesForEvent = await _eventRecipeService.GetRecipesForEvent(_eventId);
+                foreach (var eg in ingredientsForRecipe)
+                {
+                    var ingredientUnit = await _ingredientUnitService.GetIngredientUnitById(eg.IngredientUnitId);
+                    if (ingredientUnit != null)
+                    {
+                        ListBoxItem ingredientUnitItem = new ListBoxItem
+                        {
+                            Content = $"{IngredientExtensions.GetDescription(ingredientUnit.Ingredient)} {ingredientUnit.Amount} {UnitExtensions.GetDescription(ingredientUnit.Unit)}",
+                        };
 
-                //foreach (var er in recipesForEvent)
-                //{
-                //    var recipe = await _recipeService.GetRecipeById(er.RecipeId);
-                //    if (recipe != null)
-                //    {
-                //        ListBoxItem recipeItem = new ListBoxItem
-                //        {
-                //            Content = recipe.Name,
-                //            // Якщо вам потрібно обробити подію при виборі рецепта, додайте відповідний обробник подій.
-                //        };
+                        ingredientUnitListBox.Items.Add(ingredientUnitItem);
 
-                //        EventListBox.Items.Add(recipeItem);
-                //    }
-                //}
+                        totalAmount += 1;
+                    }
+                }
+                IngredientsAmountTextBlock.Text = totalAmount.ToString();
             }
+        }
+
+        private void Account_Page(object sender, RoutedEventArgs e)
+        {
+            this._navigationService.NavigateTo<IAccountWindow>();
+            this.Close();
         }
         private void Guests_Click(object sender, RoutedEventArgs e)
         {

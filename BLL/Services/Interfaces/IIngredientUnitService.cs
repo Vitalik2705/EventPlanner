@@ -15,5 +15,6 @@ namespace BLL.Services.Interfaces
         Task AddIngredientUnit(IngredientUnit _ingredientUnit);
         Task UpdateIngredientUnit(IngredientUnit _ingredientUnit);
         Task DeleteIngredientUnit(int id);
+        Task<IngredientUnit> GetIngredientUnitById(int ingredientUnitId);
     }
 }

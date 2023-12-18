@@ -167,6 +167,29 @@ namespace DAL.Migrations
                     b.ToTable("IngredientUnit");
                 });
 
+            modelBuilder.Entity("DAL.Models.IngredientUnitRecipe", b =>
+                {
+                    b.Property<int>("IngredientUnitRecipeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IngredientUnitRecipeId"));
+
+                    b.Property<int>("IngredientUnitId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IngredientUnitRecipeId");
+
+                    b.HasIndex("IngredientUnitId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("IngredientUnitRecipe");
+                });
+
             modelBuilder.Entity("DAL.Models.Recipe", b =>
                 {
                     b.Property<int>("RecipeId")
@@ -187,6 +210,10 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_date");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text")
+                        .HasColumnName("description");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("timestamp with time zone")
@@ -271,21 +298,6 @@ namespace DAL.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("IngredientUnitRecipe", b =>
-                {
-                    b.Property<int>("IngredientsUnitsIngredientUnitId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("RecipesRecipeId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IngredientsUnitsIngredientUnitId", "RecipesRecipeId");
-
-                    b.HasIndex("RecipesRecipeId");
-
-                    b.ToTable("IngredientUnitRecipe");
-                });
-
             modelBuilder.Entity("DAL.Models.Event", b =>
                 {
                     b.HasOne("DAL.Models.User", "User")
@@ -346,19 +358,23 @@ namespace DAL.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("IngredientUnitRecipe", b =>
+            modelBuilder.Entity("DAL.Models.IngredientUnitRecipe", b =>
                 {
-                    b.HasOne("DAL.Models.IngredientUnit", null)
-                        .WithMany()
-                        .HasForeignKey("IngredientsUnitsIngredientUnitId")
+                    b.HasOne("DAL.Models.IngredientUnit", "IngredientUnit")
+                        .WithMany("IngredientUnitRecipes")
+                        .HasForeignKey("IngredientUnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DAL.Models.Recipe", null)
-                        .WithMany()
-                        .HasForeignKey("RecipesRecipeId")
+                    b.HasOne("DAL.Models.Recipe", "Recipe")
+                        .WithMany("IngredientsUnitsRecipe")
+                        .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("IngredientUnit");
+
+                    b.Navigation("Recipe");
                 });
 
             modelBuilder.Entity("DAL.Models.Event", b =>
@@ -373,8 +389,15 @@ namespace DAL.Migrations
                     b.Navigation("GuestEvents");
                 });
 
+            modelBuilder.Entity("DAL.Models.IngredientUnit", b =>
+                {
+                    b.Navigation("IngredientUnitRecipes");
+                });
+
             modelBuilder.Entity("DAL.Models.Recipe", b =>
                 {
+                    b.Navigation("IngredientsUnitsRecipe");
+
                     b.Navigation("RecipeEvents");
                 });
 

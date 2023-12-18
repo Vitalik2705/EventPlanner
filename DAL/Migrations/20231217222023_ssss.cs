@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class name : Migration
+    public partial class ssss : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -36,6 +36,7 @@ namespace DAL.Migrations
                     name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     calories = table.Column<int>(type: "integer", nullable: false),
                     cooking_time = table.Column<int>(type: "integer", nullable: false),
+                    description = table.Column<string>(type: "text", nullable: true),
                     created_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     modified_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     recipe_image = table.Column<string>(type: "text", nullable: true)
@@ -70,21 +71,23 @@ namespace DAL.Migrations
                 name: "IngredientUnitRecipe",
                 columns: table => new
                 {
-                    IngredientsUnitsIngredientUnitId = table.Column<int>(type: "integer", nullable: false),
-                    RecipesRecipeId = table.Column<int>(type: "integer", nullable: false)
+                    IngredientUnitRecipeId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IngredientUnitId = table.Column<int>(type: "integer", nullable: false),
+                    RecipeId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IngredientUnitRecipe", x => new { x.IngredientsUnitsIngredientUnitId, x.RecipesRecipeId });
+                    table.PrimaryKey("PK_IngredientUnitRecipe", x => x.IngredientUnitRecipeId);
                     table.ForeignKey(
-                        name: "FK_IngredientUnitRecipe_IngredientUnit_IngredientsUnitsIngredi~",
-                        column: x => x.IngredientsUnitsIngredientUnitId,
+                        name: "FK_IngredientUnitRecipe_IngredientUnit_IngredientUnitId",
+                        column: x => x.IngredientUnitId,
                         principalTable: "IngredientUnit",
                         principalColumn: "ingredient_unit_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_IngredientUnitRecipe_Recipe_RecipesRecipeId",
-                        column: x => x.RecipesRecipeId,
+                        name: "FK_IngredientUnitRecipe_Recipe_RecipeId",
+                        column: x => x.RecipeId,
                         principalTable: "Recipe",
                         principalColumn: "recipe_id",
                         onDelete: ReferentialAction.Cascade);
@@ -217,9 +220,14 @@ namespace DAL.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_IngredientUnitRecipe_RecipesRecipeId",
+                name: "IX_IngredientUnitRecipe_IngredientUnitId",
                 table: "IngredientUnitRecipe",
-                column: "RecipesRecipeId");
+                column: "IngredientUnitId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IngredientUnitRecipe_RecipeId",
+                table: "IngredientUnitRecipe",
+                column: "RecipeId");
         }
 
         /// <inheritdoc />

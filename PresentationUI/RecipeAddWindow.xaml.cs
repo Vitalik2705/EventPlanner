@@ -4,10 +4,10 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Windows;
+    using BLL.Services.Interfaces;
     using System.Windows.Controls;
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
-    using BLL.Services.Interfaces;
     using DAL.Models;
     using DAL.State.Authenticator;
     using Microsoft.Win32;
@@ -211,6 +211,7 @@
         {
             var nameRecipe = this.RecipeNameInput.Text;
             var caloriesText = this.AmountOfCaloriesInput.Text;
+            var description = this.DescriptionInput.Text;
             string hoursText = this.HoursComboBox.Text;
             string minutesText = this.MinutesComboBox.Text;
 
@@ -236,6 +237,7 @@
                 File.Copy(openFileDialog.FileName, fileSavePath, true);
             }
 
+
             var recipeGR = new Recipe()
             {
                 Name = nameRecipe,
@@ -243,6 +245,7 @@
                 CookingTime = totalMinutes,
                 CreatedDate = DateTime.UtcNow,
                 RecipeImageName = image,
+                Description = description,
             };
 
             await this._recipeService.AddRecipe(recipeGR);

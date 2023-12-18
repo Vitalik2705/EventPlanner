@@ -43,6 +43,12 @@ namespace PresentationUI
             this.Close();
         }
 
+        private void Events_Page(object sender, RoutedEventArgs e)
+        {
+            this._navigationService.NavigateTo<IEventListWindow>();
+            this.Close();
+        }
+
         private void Guests_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.NavigateTo<IGuestListWindow>();
