@@ -109,7 +109,7 @@ namespace PresentationUI
         {
             try
             {
-                var guests = await this._guestService.GetGuestsAsync();
+                var guests = await this._guestService.GetGuestsAsync(e => e.UserId == this._authenticator.CurrentUser.UserId);
 
                 // Clear existing items in the ListBox
                 this.itemListBox.Items.Clear();

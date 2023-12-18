@@ -70,7 +70,11 @@ namespace PresentationUI
             }
         }
 
-
+        private void Account_Page(object sender, RoutedEventArgs e)
+        {
+            this._navigationService.NavigateTo<IAccountWindow>();
+            this.Close();
+        }
         private void Guests_Click(object sender, RoutedEventArgs e)
         {
             this._navigationService.NavigateTo<IGuestListWindow>();

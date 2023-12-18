@@ -33,6 +33,7 @@ namespace PresentationUI
         private readonly ILogger<GuestAddWindow> _guestLogger;
         private readonly IAuthenticator _authenticator;
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GuestAddWindow"/> class.
         /// </summary>
@@ -87,6 +88,7 @@ namespace PresentationUI
             {
                 Surname = surname,
                 Name = name,
+                UserId = this._authenticator.CurrentUser.UserId,
                 Gender = gender,
             };
             try

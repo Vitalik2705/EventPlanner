@@ -18,7 +18,7 @@ namespace BLL.Test
         {
             // Arrange
             var email = "test@example.com";
-            var password = "password123";
+            var password = "Password123";
             var expectedUser = new User { UserId = 1, Email = email, /* other properties */ };
 
             var userRepositoryMock = new Mock<IUserRepository>();

@@ -5,7 +5,9 @@
 namespace PresentationUI
 {
     using System;
+    using System.IO;
     using System.Windows;
+    using System.Windows.Media.Imaging;
     using BLL.Services.Interfaces;
     using BLL.Validation;
     using DAL.Models;
@@ -36,6 +38,11 @@ namespace PresentationUI
             this.UserName.Text = userName;
             this.Email.Text = user.Email;
             this.Phone.Text = user.PhoneNumber;
+
+            string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string saveDirectory = Path.Combine(currentDirectory, "UserImages");
+            string fileSavePath = Path.Combine(saveDirectory, user.UserImageName);
+            this.ImageName.Source = new BitmapImage(new Uri(fileSavePath));
         }
 
         private void Guest_Page(object sender, RoutedEventArgs e)
@@ -66,27 +73,27 @@ namespace PresentationUI
         private async void ChangeCredentials_Click(object sender, RoutedEventArgs e)
         {
             string newEmail = this.NewEmailInput.Text;
-            string newPassword = this.NewPasswordInput.Password;
+            string newPhone = this.NewPhoneInput.Text;
 
             var userValidator = new RegisterValidation();
 
             User user = this._authenticator.CurrentUser;
             User temp = user;
 
-            if (NewEmailInput.Text == null && NewPasswordInput != null)
+            if (NewEmailInput.Text == "" && NewPhoneInput.Text != "")
             {
-                temp.Password = newPassword;
+                temp.PhoneNumber = newPhone;
             }
-            if (NewEmailInput.Text != null && NewPasswordInput == null)
+            if (NewEmailInput.Text != "" && NewPhoneInput.Text == "")
             {
                 temp.Email = newEmail;
             }
-            if (NewEmailInput.Text != null && NewPasswordInput != null)
+            if (NewEmailInput.Text != "" && NewPhoneInput.Text != "")
             {
-                temp.Password = newPassword;
+                temp.PhoneNumber = newPhone;
                 temp.Email = newEmail;
             }
-            if (NewEmailInput.Text == null && newPassword == null)
+            if (NewEmailInput.Text == "" && NewPhoneInput.Text == "")
             {
                 return;
             }
@@ -98,10 +105,10 @@ namespace PresentationUI
                 return;
             }
 
-            var passwordValidationResult = userValidator.Validate(temp);
-            if (!passwordValidationResult.IsValid)
+            var phoneValidationResult = userValidator.Validate(temp);
+            if (!phoneValidationResult.IsValid)
             {
-                MessageBox.Show($"Invalid password:\n{string.Join(Environment.NewLine, passwordValidationResult.Errors)}");
+                MessageBox.Show($"Invalid phone:\n{string.Join(Environment.NewLine, phoneValidationResult.Errors)}");
                 return;
             }
 
@@ -110,17 +117,18 @@ namespace PresentationUI
                 user.Email = newEmail;
             }
 
-            if (!string.IsNullOrEmpty(newPassword))
+            if (!string.IsNullOrEmpty(newPhone))
             {
-                user.Password = newPassword;
+                user.PhoneNumber = newPhone;
             }
 
             await this._userService.UpdateUser(user);
 
             this.Email.Text = user.Email;
+            this.Phone.Text = user.PhoneNumber;
 
             this.NewEmailInput.Clear();
-            this.NewPasswordInput.Clear();
+            this.NewPhoneInput.Clear();
 
         }
 

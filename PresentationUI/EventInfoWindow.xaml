@@ -7,6 +7,36 @@
         xmlns:local="clr-namespace:PresentationUI"
         mc:Ignorable="d"
         Title="EventInfoWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style x:Key="TextboxStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="SemiBold"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        </Style>
+        <Style x:Key="ListboxStyle" TargetType="ListBox">
+            <Setter Property="Width" Value="200"></Setter>
+            <Setter Property="Height" Value="150"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="MainTextboxStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="FontSize" Value="30"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        </Style>
+        <Style x:Key="DynamicTextboxStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Light"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+    </Window.Resources>
+
+
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -19,17 +49,6 @@
 
         <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Fill="#8B92D0" />
         <Rectangle Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Fill="#CBCBCB" />
-
-        <Image
-            x:Name="___images_icons8_logout_50_png"
-            Grid.Column="1"
-            Margin="701,15,53,15"
-            Source="/images/icons8-logout-50.png"
-            Stretch="Fill"
-            Width="38"
-            Height="33.404"
-            MouseDown="___images_icons8_logout_50_png_MouseDown"
-            RenderTransformOrigin="-0.079,0.585"/>
 
         <Canvas Grid.Column="0" Grid.Row="0">
             <Image  Canvas.Left="10"
@@ -50,13 +69,23 @@
                   Width="40"
                   Source="images/mdi_account-outline.png"/>
             <TextBlock Canvas.Left="65" Canvas.Top="32" FontSize="25">
-                <Hyperlink NavigateUri="AccountWindow.xaml" TextDecorations="None" Foreground="#000000">
+                <Hyperlink NavigateUri="AccountWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Account_Page">
                 Акаунт
                 </Hyperlink>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
             </TextBlock>
         </Canvas>
 
         <Canvas x:Name="eneCanvas" Grid.Column="0" Grid.Row="1">
+            <Rectangle Canvas.Top="95" Width="198" Height="50" Fill="#FFFFFF" />
             <Image  Canvas.Left="10"
                   Canvas.Top="95" 
                   Height="50"
@@ -70,7 +99,6 @@
         </Canvas>
 
         <Canvas x:Name="recipesCanvas" Grid.Column="0" Grid.Row="1">
-            <Rectangle Canvas.Top="165" Width="198" Height="50" Fill="#FFFFFF" />
             <Image  Canvas.Left="10"
                   Canvas.Top="165" 
                   Height="50"
@@ -80,6 +108,15 @@
                 <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000" Click="Recipes_Click">
             Рецепти
                     </Hyperlink>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
             </TextBlock>
         </Canvas>
 
@@ -93,36 +130,50 @@
                 <Hyperlink NavigateUri="GuestListWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Guests_Click">
             Гості
                     </Hyperlink>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
             </TextBlock>
         </Canvas>
 
 
         <Canvas x:Name="MyCanvas" Grid.Column="1" Grid.Row="1">
-            <TextBlock Canvas.Left="326" Canvas.Top="67" FontSize="25" FontWeight="Bold">
+            <TextBlock Style="{StaticResource MainTextboxStyle}" Canvas.Left="326" Canvas.Top="67">
                 Огляд події
             </TextBlock>
 
-            <TextBlock Canvas.Left="340" FontWeight="SemiBold" Canvas.Top="123" FontSize="20">
+            <TextBlock Style="{StaticResource TextboxStyle}" Canvas.Left="340"  Canvas.Top="123" >
                 Назва події:
             </TextBlock>
 
-            <TextBlock x:Name="EventNameTextBlock" Canvas.Left="340" FontWeight="Light" Canvas.Top="165" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.113,0.613" />
+            <TextBlock Style="{StaticResource DynamicTextboxStyle}" x:Name="EventNameTextBlock" Canvas.Left="340"  Canvas.Top="165" RenderTransformOrigin="0.113,0.613" />
 
-            <TextBlock Canvas.Left="93" FontWeight="SemiBold" Canvas.Top="247" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <TextBlock Style="{StaticResource TextboxStyle}" Canvas.Left="93" Canvas.Top="247">
                 Список гостей:
             </TextBlock>
 
-            <ListBox x:Name="GuestListBox" Canvas.Left="93" Canvas.Top="290" Width="200" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ListBox x:Name="GuestListBox" Style="{StaticResource ListboxStyle}" Canvas.Left="93" Canvas.Top="290" />
 
-            </ListBox>
-
-            <TextBlock Canvas.Left="479" FontWeight="SemiBold" Canvas.Top="247" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.068,0.52">
+            <TextBlock Style="{StaticResource TextboxStyle}" Canvas.Left="479" Canvas.Top="247" RenderTransformOrigin="0.068,0.52">
                 Список страв:
             </TextBlock>
 
-            <ListBox x:Name="EventListBox" Canvas.Left="479" Canvas.Top="290" Width="200" Height="150" HorizontalAlignment="Left" VerticalAlignment="Center">
-                
-            </ListBox>
+            <ListBox x:Name="EventListBox" Style="{StaticResource ListboxStyle}" Canvas.Left="479" Canvas.Top="290"  />
         </Canvas>
+        <Image
+            x:Name="___images_icons8_logout_50_png"
+            Grid.Column="1"
+            Margin="703,18,55,18"
+            Source="/images/icons8-logout-50.png"
+            Stretch="Fill"
+            MouseDown="___images_icons8_logout_50_png_MouseDown"
+            RenderTransformOrigin="-0.079,0.585"/>
+
     </Grid>
 </Window>

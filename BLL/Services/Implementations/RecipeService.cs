@@ -32,7 +32,7 @@ namespace BLL.Services.Interfaces
             var validator = new RecipeValidation();
             var validationResult = validator.Validate(_recipe);
 
-            if (validationResult.IsValid)
+            if (!validationResult.IsValid)
             {
                 return;
             }

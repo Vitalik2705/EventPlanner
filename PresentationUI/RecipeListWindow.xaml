@@ -7,6 +7,14 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="RecipeListWindow" Height="660" Width="990" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ControlTemplate x:Key="roundbutton" TargetType="Button">
+            <Grid>
+                <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="#565A"/>
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -20,17 +28,6 @@
 
         <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Fill="#8B92D0" />
         <Rectangle Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Fill="#CBCBCB" />
-
-        <Image
-            x:Name="___images_icons8_logout_50_png"
-            Grid.Column="1"
-            Margin="701,15,53,15"
-            Source="/images/icons8-logout-50.png"
-            Stretch="Fill"
-            Width="38"
-            Height="33.404"
-            MouseDown="___images_icons8_logout_50_png_MouseDown"
-            RenderTransformOrigin="-0.079,0.585"/>
 
         <Canvas Grid.Column="0" Grid.Row="0">
             <Image  Canvas.Left="10"
@@ -54,6 +51,15 @@
                 <Hyperlink NavigateUri="AccountWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Account_Page">
                 Акаунт
                 </Hyperlink>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
             </TextBlock>
         </Canvas>
 
@@ -67,6 +73,15 @@
                 <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000" Click="Events_Click">
             Події
                     </Hyperlink>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
             </TextBlock>
         </Canvas>
 
@@ -94,6 +109,15 @@
                 <Hyperlink TextDecorations="None" Foreground="#000000" Click="Guests_Click">
             Гості
                     </Hyperlink>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
             </TextBlock>
         </Canvas>
 
@@ -111,7 +135,10 @@
                      materialDesign:HintAssist.FloatingOffset="0,-18"
                      TextChanged="SearchTextBox_TextChanged"/>
 
-            <Button  Background="#565A"
+            <Button Template="{StaticResource roundbutton}"
+                    Background="Transparent"
+                    Width="30"
+                    Height="30"
                     FontSize="19"
                     Foreground="White" Canvas.Top="22" Canvas.Left="490" Click="Search_Click">
                 <Image Width="20" Height="20" Source="images/search (1).png" />
@@ -128,6 +155,7 @@
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
                          Loaded="itemListBoxRecipes_Loaded"
+                         SelectionChanged="ListBox_SelectionChanged">
                      >
             </ListBox>
         </Canvas>
@@ -154,5 +182,13 @@
             Додати рецепт
             </TextBlock>
         </Canvas>
+        <Image
+            x:Name="___images_icons8_logout_50_png"
+            Grid.Column="1"
+            Margin="703,18,55,18"
+            Source="/images/icons8-logout-50.png"
+            Stretch="Fill"
+            MouseDown="___images_icons8_logout_50_png_MouseDown"
+            RenderTransformOrigin="-0.079,0.585"/>
     </Grid>
 </Window>

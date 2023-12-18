@@ -14,7 +14,9 @@ namespace DAL.Models
 
         public int CookingTime { get; set; }
 
-        public ICollection<IngredientUnit> IngredientsUnits { get; set;}
+        public string Description { get; set; }
+
+        public ICollection<IngredientUnitRecipe> IngredientsUnitsRecipe { get; set;}
 
         public ICollection<EventRecipe> RecipeEvents { get; set; }
 
@@ -22,6 +24,6 @@ namespace DAL.Models
 
         public DateTime? ModifiedDate { get; set; }
 
-        public byte[] RecipeImage { get; set; }
+        public string? RecipeImageName { get; set; }
     }
 }
