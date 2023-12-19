@@ -39,20 +39,48 @@ namespace PresentationUI
             var email = this.EmailInput.Text;
             var password = this.PasswordInput.Password;
 
+            // Check if email and password fields are empty
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+            {
+                // Show an error message indicating that both fields are required
+                ShowErrorMessage("Email �� ������ � ����'��������");
+                return;
+            }
+
             try
             {
                 var user = await this._authenticator.Login(password, email);
 
-                this._loginLogger.LogInformation("Successfully logged into the account.");
+                // Check if the authentication was successful (customize based on your authentication logic)
+                if (user != false)
+                {
+                    this._loginLogger.LogInformation("Successfully logged into the account.");
 
-                this._navigationService.NavigateTo<IAccountWindow>();
+                    this._navigationService.NavigateTo<IAccountWindow>();
 
-                this.Close();
+                    this.Close();
+                }
+                else
+                {
+                    // Show an error message indicating authentication failure
+                    ShowErrorMessage("������������ email ��� ������. ��������� �� ���.");
+                }
             }
             catch (Exception ex)
             {
-                this._loginLogger.LogError($"Failed to log into the account. {ex}");
+                // Log the exception details
+                this._loginLogger.LogError($"Failed to log into the account. {ex.Message}");
+
+                // Show a generic error message to the user
+                ShowErrorMessage("An error occurred. Please try again later.");
             }
+        }
+
+        private void ShowErrorMessage(string errorMessage)
+        {
+            // You can implement the logic to display the error message to the user here.
+            // For example, show a MessageBox or update a UI element with the error message.
+            MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
