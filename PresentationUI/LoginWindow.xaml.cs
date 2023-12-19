@@ -43,7 +43,7 @@ namespace PresentationUI
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 // Show an error message indicating that both fields are required
-                ShowErrorMessage("Email �� ������ � ����'��������");
+                ShowErrorMessage("Email and password are required");
                 return;
             }
 
@@ -63,7 +63,7 @@ namespace PresentationUI
                 else
                 {
                     // Show an error message indicating authentication failure
-                    ShowErrorMessage("������������ email ��� ������. ��������� �� ���.");
+                    ShowErrorMessage("Either password or email incorrect. Please try again.");
                 }
             }
             catch (Exception ex)
