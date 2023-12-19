@@ -39,7 +39,7 @@
                   Width="40"
                   Source="images/mdi_account-outline.png"/>
             <TextBlock Canvas.Left="65" Canvas.Top="32" FontSize="25">
-                <Hyperlink NavigateUri="AccountWindow.xaml" TextDecorations="None" Foreground="#000000">
+                <Hyperlink NavigateUri="AccountWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Hyperlink_Click">
                 Акаунт
                 </Hyperlink>
                 <TextBlock.Style>

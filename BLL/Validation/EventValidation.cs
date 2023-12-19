@@ -14,8 +14,8 @@ namespace BLL.Validation
         {
             this.RuleFor(u => u.Name).NotNull().WithMessage("{PropertyName} mustn't be null");
             //this.RuleFor(u => u.User).NotNull().WithMessage("{PropertyName} mustn't be null");
-            //this.RuleFor(u => u.Guests).NotNull().WithMessage("{PropertyName} mustn't be null");
-            //this.RuleFor(u => u.Recipes).NotNull().WithMessage("{PropertyName} mustn't be null");
+            //this.RuleFor(u => u.EventGuests).NotNull().WithMessage("{PropertyName} mustn't be null");
+            //this.RuleFor(u => u.EventRecipes).NotNull().WithMessage("{PropertyName} mustn't be null");
         }
     }
 }

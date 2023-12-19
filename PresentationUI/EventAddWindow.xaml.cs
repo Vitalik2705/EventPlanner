@@ -306,5 +306,11 @@ namespace PresentationUI
             // For example, show a MessageBox or update a UI element with the error message.
             MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            this._navigationService.NavigateTo<IAccountWindow>();
+            this.Close();
+        }
     }
 }

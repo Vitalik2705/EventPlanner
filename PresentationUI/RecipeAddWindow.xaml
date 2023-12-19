@@ -39,7 +39,7 @@
                   Width="40"
                   Source="images/mdi_account-outline.png"/>
             <TextBlock Canvas.Left="65" Canvas.Top="32" FontSize="25">
-                <Hyperlink NavigateUri="AccountWindow.xaml" TextDecorations="None" Foreground="#000000">
+                <Hyperlink NavigateUri="AccountWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Hyperlink_Click">
                 Акаунт
                 </Hyperlink>
                 <TextBlock.Style>
@@ -143,11 +143,11 @@
                   materialDesign:HintAssist.FloatingOffset="0,-18"
                   materialDesign:HintAssist.Hint="Год"
                   >
-                <ComboBoxItem>1</ComboBoxItem>
-                <ComboBoxItem>2</ComboBoxItem>
-                <ComboBoxItem>3</ComboBoxItem>
-                <ComboBoxItem>4</ComboBoxItem>
-                <ComboBoxItem>5</ComboBoxItem>
+                <ComboBoxItem Background="White">1</ComboBoxItem>
+                <ComboBoxItem Background="White">2</ComboBoxItem>
+                <ComboBoxItem Background="White">3</ComboBoxItem>
+                <ComboBoxItem Background="White">4</ComboBoxItem>
+                <ComboBoxItem Background="White">5</ComboBoxItem>
             </ComboBox>
 
             <ComboBox x:Name="MinutesComboBox"
@@ -159,9 +159,9 @@
                   materialDesign:HintAssist.FloatingOffset="0,-18"
                   materialDesign:HintAssist.Hint="Хв"
                   >
-                <ComboBoxItem>15</ComboBoxItem>
-                <ComboBoxItem>30</ComboBoxItem>
-                <ComboBoxItem>45</ComboBoxItem>
+                <ComboBoxItem Background="White">15</ComboBoxItem>
+                <ComboBoxItem Background="White">30</ComboBoxItem>
+                <ComboBoxItem Background="White">45</ComboBoxItem>
             </ComboBox>
 
 
