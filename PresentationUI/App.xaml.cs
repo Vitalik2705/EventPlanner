@@ -47,6 +47,7 @@ namespace PresentationUI
                     services.AddTransient<IGenericRepository<IngredientUnit>, GenericRepository<IngredientUnit>>();
                     services.AddTransient<IGenericRepository<EventGuest>, GenericRepository<EventGuest>>();
                     services.AddTransient<IGenericRepository<EventRecipe>, GenericRepository<EventRecipe>>();
+                    services.AddTransient<IGenericRepository<IngredientUnitRecipe>, GenericRepository<IngredientUnitRecipe>>();
 
                     services.AddScoped<IUserService, UserService>();
                     services.AddScoped<IGuestService, GuestService>();
@@ -57,6 +58,7 @@ namespace PresentationUI
                     services.AddScoped<IIngredientUnitService, IngredientUnitService>();
                     services.AddScoped<IAuthenticator, Authenticator>();
                     services.AddSingleton<IUserStore, UserStore>();
+                    services.AddScoped<IIngredientUnitRecipeService, IngredientUnitRecipeService>();
 
                     services.AddTransient<IMainWindow, MainWindow>();
                     services.AddTransient<ILoginWindow, LoginWindow>();

@@ -5,7 +5,9 @@
 namespace PresentationUI
 {
     using System;
+    using System.IO;
     using System.Windows;
+    using System.Windows.Media.Imaging;
     using BLL.Services.Interfaces;
     using BLL.Validation;
     using DAL.Models;
@@ -36,6 +38,11 @@ namespace PresentationUI
             this.UserName.Text = userName;
             this.Email.Text = user.Email;
             this.Phone.Text = user.PhoneNumber;
+
+            string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string saveDirectory = Path.Combine(currentDirectory, "UserImages");
+            string fileSavePath = Path.Combine(saveDirectory, user.UserImageName);
+            this.ImageName.Source = new BitmapImage(new Uri(fileSavePath));
         }
 
         private void Guest_Page(object sender, RoutedEventArgs e)

@@ -2,15 +2,17 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Windows;
+    using BLL.Services.Interfaces;
     using System.Windows.Controls;
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
-    using BLL.Services.Interfaces;
     using DAL.Models;
     using DAL.State.Authenticator;
     using Microsoft.Win32;
     using PresentationUI.Interfaces;
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Interaction logic for RecipeAddWindow.xaml.
@@ -21,23 +23,29 @@
         private readonly INavigationService _navigationService;
         private readonly IIngredientUnitService _ingredientUnitService;
         private readonly IAuthenticator _authenticator;
+        private readonly IIngredientUnitRecipeService _ingredientUnitRecipeService;
+        private readonly ILogger<RecipeAddWindow> _addRecipeLogger;
         private List<ComboBox> comboBoxIngredientsList = new List<ComboBox>();
         private List<ComboBox> comboBoxUnitsList = new List<ComboBox>();
         private List<TextBox> textBoxAmountOfUnitList = new List<TextBox>();
         private List<Button> deleteButtonIngredientsList = new List<Button>();
         private double verticalOffsetIngredients = 190;
 
+        private OpenFileDialog openFileDialog;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeAddWindow"/> class.
         /// </summary>
         /// <param name="navigationService">navigationService.</param>
         public RecipeAddWindow(IRecipeService recipeService, INavigationService navigationService, IIngredientUnitService
-            ingredientUnitService, IAuthenticator authenticator)
+            ingredientUnitService, IAuthenticator authenticator, IIngredientUnitRecipeService ingredientUnitRecipeService, ILogger<RecipeAddWindow> addRecipeLogger)
         {
             this._recipeService = recipeService;
             this._navigationService = navigationService;
             this._ingredientUnitService = ingredientUnitService;
             this._authenticator = authenticator;
+            this._ingredientUnitRecipeService = ingredientUnitRecipeService;
+            this._addRecipeLogger = addRecipeLogger;
             this.InitializeComponent();
         }
 
@@ -189,7 +197,7 @@
 
         private void SelectImage_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Файли зображень (*.jpg; *.jpeg; *.png)|*.jpg;*.jpeg;*.png|Всі файли (*.*)|*.*";
 
             if (openFileDialog.ShowDialog() == true)
@@ -204,8 +212,10 @@
 
         private async void AddRecipeButton_Click(object sender, RoutedEventArgs e)
         {
+            this._addRecipeLogger.LogInformation("Attempting to add the recipe.");
             var nameRecipe = this.RecipeNameInput.Text;
             var caloriesText = this.AmountOfCaloriesInput.Text;
+            var description = this.DescriptionInput.Text;
             string hoursText = this.HoursComboBox.Text;
             string minutesText = this.MinutesComboBox.Text;
 
@@ -215,36 +225,80 @@
 
             int totalMinutes = (hours * 60) + minutes;
 
+            if (string.IsNullOrEmpty(nameRecipe) || string.IsNullOrEmpty(caloriesText))
+            {
+                ShowErrorMessage("Рецепт повинен містити ім'я та кількість калорій");
+                return;
+            }
+            if (totalMinutes <= 0)
+            {
+                ShowErrorMessage("Рецепт повинен містити час приготування");
+                return;
+            }
+            
+            var image = "";
+
+            if (openFileDialog != null)
+            {
+                string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string saveDirectory = Path.Combine(currentDirectory, "RecipeImages");
+                image = Path.GetFileName(openFileDialog.FileName);
+                string fileSavePath = Path.Combine(saveDirectory, image);
+                if (!Directory.Exists(saveDirectory))
+                {
+                    Directory.CreateDirectory(saveDirectory);
+                }
+
+                File.Copy(openFileDialog.FileName, fileSavePath, true);
+            }
+
             var recipeGR = new Recipe()
             {
                 Name = nameRecipe,
                 Calories = calories,
                 CookingTime = totalMinutes,
                 CreatedDate = DateTime.UtcNow,
-                RecipeImage = null,
+                RecipeImageName = image,
+                Description = description,
             };
 
-            await this._recipeService.AddRecipe(recipeGR);
-
-            var ingredientUnits = new List<IngredientUnit>();
-            for (int i = 0; i < comboBoxIngredientsList.Count; i++)
+            try
             {
-                var ingredient = IngredientExtensions.GetEnumValueFromDescription(comboBoxIngredientsList[i].Text);
-                var unit = UnitExtensions.GetEnumValueFromDescription(comboBoxUnitsList[i].Text);
-                var amount = Convert.ToInt32(textBoxAmountOfUnitList[i].Text);
+                await this._recipeService.AddRecipe(recipeGR);
 
-                var ingredientUnit = new IngredientUnit
+                var ingredientUnits = new List<IngredientUnit>();
+                for (int i = 0; i < comboBoxIngredientsList.Count; i++)
                 {
-                    Ingredient = ingredient,
-                    Unit = unit,
-                    Amount = amount,
-                };
+                    var ingredient = IngredientExtensions.GetEnumValueFromDescription(comboBoxIngredientsList[i].Text);
+                    var unit = UnitExtensions.GetEnumValueFromDescription(comboBoxUnitsList[i].Text);
+                    var amount = Convert.ToInt32(textBoxAmountOfUnitList[i].Text);
 
-                await this._ingredientUnitService.AddIngredientUnit(ingredientUnit);
+                    var ingredientUnit = new IngredientUnit
+                    {
+                        Ingredient = ingredient,
+                        Unit = unit,
+                        Amount = amount,
+                    };
+
+                    await this._ingredientUnitService.AddIngredientUnit(ingredientUnit);
+
+                    var ingredientUnitRecipe = new IngredientUnitRecipe
+                    {
+                        IngredientUnitId = ingredientUnit.IngredientUnitId,
+                        RecipeId = recipeGR.RecipeId,
+                    };
+                    await this._ingredientUnitRecipeService.AddIngredientUnitRecipe(ingredientUnitRecipe);
+                }
+
+                this._addRecipeLogger.LogInformation("Successfully added the recipe.");
+                this._navigationService.NavigateTo<IRecipeListWindow>();
+                this.Close();
+            }
+            catch(Exception ex)
+            {
+                this._addRecipeLogger.LogError($"Failed to add the recipe. {ex}");
             }
 
-            this._navigationService.NavigateTo<IRecipeListWindow>();
-            this.Close();
         }
 
         private void ___images_icons8_logout_50_png_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -253,6 +307,12 @@
 
             this._navigationService.NavigateTo<IMainWindow>();
             this.Close();
+        }
+        private void ShowErrorMessage(string errorMessage)
+        {
+            // You can implement the logic to display the error message to the user here.
+            // For example, show a MessageBox or update a UI element with the error message.
+            MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

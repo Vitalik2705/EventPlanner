@@ -14,6 +14,7 @@ namespace PresentationUI
     using DAL.Models;
     using DAL.State.Authenticator;
     using Microsoft.Extensions.Logging;
+    using Microsoft.Win32;
 
     /// <summary>
     /// Interaction logic for Register.xaml.
@@ -23,6 +24,7 @@ namespace PresentationUI
         private readonly IAuthenticator _authenticator;
         private readonly INavigationService _navigationService;
         private readonly ILogger<RegisterWindow> _registerLogger;
+        private OpenFileDialog openFileDialog;
 
 #pragma warning disable SA1614 // Element parameter documentation should have text
         /// <summary>
@@ -132,7 +134,6 @@ namespace PresentationUI
                 return;
             }
 
-
             User user = new User()
             {
                 Surname = surname,
@@ -144,7 +145,7 @@ namespace PresentationUI
                 Gender = gender,
                 CreatedDate = DateTime.UtcNow,
                 ModifiedDate = null,
-                UserImage = null,
+                UserImageName = image,
             };
             try
             {
@@ -169,11 +170,30 @@ namespace PresentationUI
             }
         }
 
+
         private void ShowErrorMessage(string errorMessage)
         {
             // You can implement the logic to display the error message to the user here.
             // For example, show a MessageBox or update a UI element with the error message.
             MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        
+        private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Файли зображень (*.jpg; *.jpeg; *.png)|*.jpg;*.jpeg;*.png|Всі файли (*.*)|*.*";
+
+            //string saveDirectory = "RecipesImages/";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Отримайте шлях до обраного файлу
+                string selectedImagePath = openFileDialog.FileName;
+
+                // Відображення зображення в елементі Image
+                this.SelectedImage.Source = new BitmapImage(new Uri(selectedImagePath));
+            }
+
         }
     }
 }

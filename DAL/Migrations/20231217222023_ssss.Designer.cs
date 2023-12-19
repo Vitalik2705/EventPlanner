@@ -3,6 +3,7 @@ using System;
 using DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -12,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     [DbContext(typeof(EventPlannerContext))]
-    [Migration("20231027125141_Update-Database-And_added-images")]
-    partial class UpdateDatabaseAnd_addedimages
+    [Migration("20231217222023_ssss")]
+    partial class ssss
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,8 +45,8 @@ namespace DAL.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)")
                         .HasColumnName("name");
 
                     b.Property<int>("UserId")
@@ -58,6 +59,54 @@ namespace DAL.Migrations
                     b.ToTable("Event");
                 });
 
+            modelBuilder.Entity("DAL.Models.EventGuest", b =>
+                {
+                    b.Property<int>("EventGuestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("event_guest_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("EventGuestId"));
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("GuestId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("EventGuestId");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("GuestId");
+
+                    b.ToTable("EventGuest");
+                });
+
+            modelBuilder.Entity("DAL.Models.EventRecipe", b =>
+                {
+                    b.Property<int>("EventRecipeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("event_recipe_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("EventRecipeId"));
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("EventRecipeId");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("EventRecipe");
+                });
+
             modelBuilder.Entity("DAL.Models.Guest", b =>
                 {
                     b.Property<int>("GuestId")
@@ -66,9 +115,6 @@ namespace DAL.Migrations
                         .HasColumnName("guest_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("GuestId"));
-
-                    b.Property<int?>("EventId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Gender")
                         .IsRequired()
@@ -87,9 +133,12 @@ namespace DAL.Migrations
                         .HasColumnType("character varying(20)")
                         .HasColumnName("surname");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
                     b.HasKey("GuestId");
 
-                    b.HasIndex("EventId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Guest");
                 });
@@ -121,6 +170,29 @@ namespace DAL.Migrations
                     b.ToTable("IngredientUnit");
                 });
 
+            modelBuilder.Entity("DAL.Models.IngredientUnitRecipe", b =>
+                {
+                    b.Property<int>("IngredientUnitRecipeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IngredientUnitRecipeId"));
+
+                    b.Property<int>("IngredientUnitId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IngredientUnitRecipeId");
+
+                    b.HasIndex("IngredientUnitId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("IngredientUnitRecipe");
+                });
+
             modelBuilder.Entity("DAL.Models.Recipe", b =>
                 {
                     b.Property<int>("RecipeId")
@@ -142,6 +214,10 @@ namespace DAL.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_date");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("modified_date");
@@ -152,9 +228,8 @@ namespace DAL.Migrations
                         .HasColumnType("character varying(20)")
                         .HasColumnName("name");
 
-                    b.Property<byte[]>("RecipeImage")
-                        .IsRequired()
-                        .HasColumnType("bytea")
+                    b.Property<string>("RecipeImageName")
+                        .HasColumnType("text")
                         .HasColumnName("recipe_image");
 
                     b.HasKey("RecipeId");
@@ -167,7 +242,10 @@ namespace DAL.Migrations
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("user_id");
+                        .HasColumnName("user_id")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 10000)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1L)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserId"));
 
@@ -198,8 +276,8 @@ namespace DAL.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("character varying(40)")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)")
                         .HasColumnName("password");
 
                     b.Property<string>("PhoneNumber")
@@ -214,44 +292,13 @@ namespace DAL.Migrations
                         .HasColumnType("character varying(20)")
                         .HasColumnName("surname");
 
-                    b.Property<byte[]>("UserImage")
-                        .IsRequired()
-                        .HasColumnType("bytea")
+                    b.Property<string>("UserImageName")
+                        .HasColumnType("text")
                         .HasColumnName("user_image");
 
                     b.HasKey("UserId");
 
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("EventRecipe", b =>
-                {
-                    b.Property<int>("EventsEventId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("RecipesRecipeId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("EventsEventId", "RecipesRecipeId");
-
-                    b.HasIndex("RecipesRecipeId");
-
-                    b.ToTable("EventRecipe");
-                });
-
-            modelBuilder.Entity("IngredientUnitRecipe", b =>
-                {
-                    b.Property<int>("IngredientsUnitsIngredientUnitId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("RecipesRecipeId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IngredientsUnitsIngredientUnitId", "RecipesRecipeId");
-
-                    b.HasIndex("RecipesRecipeId");
-
-                    b.ToTable("IngredientUnitRecipe");
                 });
 
             modelBuilder.Entity("DAL.Models.Event", b =>
@@ -265,51 +312,103 @@ namespace DAL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("DAL.Models.EventGuest", b =>
+                {
+                    b.HasOne("DAL.Models.Event", "Event")
+                        .WithMany("EventGuests")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DAL.Models.Guest", "Guest")
+                        .WithMany("GuestEvents")
+                        .HasForeignKey("GuestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+
+                    b.Navigation("Guest");
+                });
+
+            modelBuilder.Entity("DAL.Models.EventRecipe", b =>
+                {
+                    b.HasOne("DAL.Models.Event", "Event")
+                        .WithMany("EventRecipes")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DAL.Models.Recipe", "Recipe")
+                        .WithMany("RecipeEvents")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+
+                    b.Navigation("Recipe");
+                });
+
             modelBuilder.Entity("DAL.Models.Guest", b =>
                 {
-                    b.HasOne("DAL.Models.Event", null)
+                    b.HasOne("DAL.Models.User", "User")
                         .WithMany("Guests")
-                        .HasForeignKey("EventId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("EventRecipe", b =>
+            modelBuilder.Entity("DAL.Models.IngredientUnitRecipe", b =>
                 {
-                    b.HasOne("DAL.Models.Event", null)
-                        .WithMany()
-                        .HasForeignKey("EventsEventId")
+                    b.HasOne("DAL.Models.IngredientUnit", "IngredientUnit")
+                        .WithMany("IngredientUnitRecipes")
+                        .HasForeignKey("IngredientUnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DAL.Models.Recipe", null)
-                        .WithMany()
-                        .HasForeignKey("RecipesRecipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("IngredientUnitRecipe", b =>
-                {
-                    b.HasOne("DAL.Models.IngredientUnit", null)
-                        .WithMany()
-                        .HasForeignKey("IngredientsUnitsIngredientUnitId")
+                    b.HasOne("DAL.Models.Recipe", "Recipe")
+                        .WithMany("IngredientsUnitsRecipe")
+                        .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DAL.Models.Recipe", null)
-                        .WithMany()
-                        .HasForeignKey("RecipesRecipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("IngredientUnit");
+
+                    b.Navigation("Recipe");
                 });
 
             modelBuilder.Entity("DAL.Models.Event", b =>
                 {
-                    b.Navigation("Guests");
+                    b.Navigation("EventGuests");
+
+                    b.Navigation("EventRecipes");
+                });
+
+            modelBuilder.Entity("DAL.Models.Guest", b =>
+                {
+                    b.Navigation("GuestEvents");
+                });
+
+            modelBuilder.Entity("DAL.Models.IngredientUnit", b =>
+                {
+                    b.Navigation("IngredientUnitRecipes");
+                });
+
+            modelBuilder.Entity("DAL.Models.Recipe", b =>
+                {
+                    b.Navigation("IngredientsUnitsRecipe");
+
+                    b.Navigation("RecipeEvents");
                 });
 
             modelBuilder.Entity("DAL.Models.User", b =>
                 {
                     b.Navigation("Events");
+
+                    b.Navigation("Guests");
                 });
 #pragma warning restore 612, 618
         }

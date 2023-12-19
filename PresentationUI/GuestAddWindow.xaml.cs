@@ -33,6 +33,7 @@ namespace PresentationUI
         private readonly ILogger<GuestAddWindow> _guestLogger;
         private readonly IAuthenticator _authenticator;
 
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GuestAddWindow"/> class.
         /// </summary>
@@ -77,10 +78,17 @@ namespace PresentationUI
             string selectedSex = selectedComboBoxItem.Content.ToString();
             var gender = selectedSex != "Чоловік" ? Gender.Female : Gender.Male;
             
+            if(string.IsNullOrEmpty(name) || string.IsNullOrEmpty(surname))
+            {
+                ShowErrorMessage("Гість повинен мати не порожнє ім'я та прізвище");
+                return;
+            }
+
             Guest guest = new Guest()
             {
                 Surname = surname,
                 Name = name,
+                UserId = this._authenticator.CurrentUser.UserId,
                 Gender = gender,
             };
             try
@@ -105,6 +113,12 @@ namespace PresentationUI
 
             this._navigationService.NavigateTo<IMainWindow>();
             this.Close();
+        }
+        private void ShowErrorMessage(string errorMessage)
+        {
+            // You can implement the logic to display the error message to the user here.
+            // For example, show a MessageBox or update a UI element with the error message.
+            MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

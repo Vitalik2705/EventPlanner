@@ -38,16 +38,10 @@
             </TextBlock>
         </Canvas>
 
-        <Canvas Grid.Column="0" Grid.Row="1">
-            <TextBlock Canvas.Left="168" Canvas.Top="20" FontWeight="Bold"  FontSize="35">
+        <Canvas Grid.Column="0" Grid.Row="1" Margin="0,0,0,72">
+            <TextBlock Canvas.Left="157" FontWeight="Bold"  FontSize="35">
                Реєстрація
             </TextBlock>
-            <Button Background="White" Canvas.Left="145" Canvas.Top="80" Width="230" Height="35" BorderBrush="Gray" BorderThickness="1">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Image Source="images/google.png" Width="20" Height="20" Margin="0,0,0,0" />
-                    <TextBlock FontSize="15" Text="Вхід через Google" Margin="10,0,0,0"/>
-                </StackPanel>
-            </Button>
         </Canvas>
 
         <Canvas Grid.Column="0" Grid.Row="2">
@@ -69,7 +63,7 @@
                 Width="230"
                 Height="50"
                 Canvas.Left="145"
-                Canvas.Top="50"
+                Canvas.Top="-35"
                 FontSize="17"
                 BorderThickness="0 0 0 1.5" 
                 BorderBrush="#565A7B"
@@ -81,7 +75,7 @@
                      Width="230"
                      Height="50"
                      Canvas.Left="145"
-                     Canvas.Top="100"
+                     Canvas.Top="15"
                      FontSize="17"
                      BorderThickness="0 0 0 1.5" 
                      BorderBrush="#565A7B" 
@@ -93,7 +87,7 @@
                      Width="230"
                      Height="50"
                      Canvas.Left="145"
-                     Canvas.Top="150"
+                     Canvas.Top="65"
                      FontSize="17"
                      BorderThickness="0 0 0 1.5" 
                      BorderBrush="#565A7B" 
@@ -105,7 +99,7 @@
                      Width="230"
                      Height="50"
                      Canvas.Left="145"
-                     Canvas.Top="200"
+                     Canvas.Top="115"
                      FontSize="17"
                      BorderThickness="0 0 0 1.5" 
                      BorderBrush="#565A7B" 
@@ -116,7 +110,7 @@
                 Width="115"
                 Height="50"
                 Canvas.Left="145"
-                Canvas.Top="250"
+                Canvas.Top="165"
                 FontSize="17"
                 BorderThickness="0 0 0 1.5" 
                 BorderBrush="#565A7B"
@@ -127,6 +121,29 @@
                 <ComboBoxItem Panel.ZIndex="1">Чоловік</ComboBoxItem>
                 <ComboBoxItem Panel.ZIndex="1">Жінка</ComboBoxItem>
             </ComboBox>
+            <Button x:Name="AddPhotoButton"
+                    Width="100" 
+                    Height="25" 
+                    Background="#565A7B"
+                    FontSize="10"
+                    Foreground="White"
+                    Canvas.Left="145"
+                    Canvas.Top="247"
+                    Content="Додати фото"
+                    Click="AddPhotoButton_Click"
+                    >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="7"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Image x:Name="SelectedImage"
+                   Width="100"
+                   Height="100"
+                   Canvas.Left="299"
+                   Canvas.Top="197"/>
 
             <Button x:Name="Register"
                     Content="Реєстрація"

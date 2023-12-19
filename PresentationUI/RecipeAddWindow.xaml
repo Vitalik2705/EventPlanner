@@ -20,17 +20,6 @@
         <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Fill="#8B92D0" />
         <Rectangle Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Fill="#CBCBCB" />
 
-        <Image
-            x:Name="___images_icons8_logout_50_png"
-            Grid.Column="1"
-            Margin="701,15,53,15"
-            Source="/images/icons8-logout-50.png"
-            Stretch="Fill"
-            Width="38"
-            Height="33.404"
-            MouseDown="___images_icons8_logout_50_png_MouseDown"
-            RenderTransformOrigin="-0.079,0.585"/>
-
         <Canvas Grid.Column="0" Grid.Row="0">
             <Image  Canvas.Left="10"
                   Canvas.Top="5" 
@@ -53,6 +42,15 @@
                 <Hyperlink NavigateUri="AccountWindow.xaml" TextDecorations="None" Foreground="#000000">
                 Акаунт
                 </Hyperlink>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
             </TextBlock>
         </Canvas>
 
@@ -66,6 +64,15 @@
                 <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000" Click="Events_Click">
             Події
                     </Hyperlink>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
             </TextBlock>
         </Canvas>
 
@@ -93,6 +100,15 @@
                 <Hyperlink NavigateUri="GuestListWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Guests_Click">
             Гості
                     </Hyperlink>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
             </TextBlock>
         </Canvas>
 
@@ -179,11 +195,7 @@
                     Height="19" Source="images/plus (1).png"/>
             </Button>
 
-
-
-
-
-            <TextBox
+            <TextBox x:Name="DescriptionInput"
                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                 Width="300"
                 Height="150"
@@ -244,5 +256,13 @@
             <Label x:Name="label" Content="Додати інгредієнт" Canvas.Left="699" Canvas.Top="180" Height="22" RenderTransformOrigin="0.573,0.345" Width="93" FontSize="10"></Label>
 
         </Canvas>
+        <Image
+            x:Name="___images_icons8_logout_50_png"
+            Grid.Column="1"
+            Margin="703,18,55,18"
+            Source="/images/icons8-logout-50.png"
+            Stretch="Fill"
+            MouseDown="___images_icons8_logout_50_png_MouseDown"
+            RenderTransformOrigin="-0.079,0.585"/>
     </Grid>
 </Window>

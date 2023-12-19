@@ -43,7 +43,7 @@ namespace PresentationUI
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 // Show an error message indicating that both fields are required
-                ShowErrorMessage("Email та пароль є обов'язковими");
+                ShowErrorMessage("Email пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
                 return;
             }
 
@@ -63,7 +63,7 @@ namespace PresentationUI
                 else
                 {
                     // Show an error message indicating authentication failure
-                    ShowErrorMessage("Неправильний email або пароль. Спробуйте ще раз.");
+                    ShowErrorMessage("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ email пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ.");
                 }
             }
             catch (Exception ex)
