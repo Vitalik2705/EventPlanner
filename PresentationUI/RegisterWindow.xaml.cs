@@ -6,10 +6,12 @@ namespace PresentationUI
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Windows;
     using System.Windows.Media;
+    using System.Windows.Media.Imaging;
     using BLL.Services.Interfaces;
     using DAL.Models;
     using DAL.State.Authenticator;
@@ -113,6 +115,8 @@ namespace PresentationUI
             var selectedGenderItem = this.GenderItem.SelectedItem;
             var gender = (selectedGenderItem != null && selectedGenderItem.ToString() != "Чоловік") ? Gender.Female : Gender.Male;
 
+            var image = "";
+
             bool isAnyFieldInvalid =
                 selectedGenderItem == null ||
                 !ValidateEmail(email) ||
@@ -132,6 +136,24 @@ namespace PresentationUI
             if (isAnyFieldInvalid)
             {
                 return;
+            }
+
+            if (openFileDialog != null)
+            {
+                string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string saveDirectory = Path.Combine(currentDirectory, "UserImages");
+                image = Path.GetFileName(openFileDialog.FileName);
+                string fileSavePath = Path.Combine(saveDirectory, image);
+                if (!Directory.Exists(saveDirectory))
+                {
+                    Directory.CreateDirectory(saveDirectory);
+                }
+
+                File.Copy(openFileDialog.FileName, fileSavePath, true);
+            }
+            else
+            {
+                image = gender == Gender.Female ? "avatar_woman.jpg" : "avatar_man.jpg";
             }
 
             User user = new User()
