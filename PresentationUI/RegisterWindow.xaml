@@ -57,6 +57,7 @@
                  BorderBrush="#565A7B" 
                  materialDesign:HintAssist.FloatingOffset="0,-18" HorizontalAlignment="Center" VerticalAlignment="Top" />
 
+
             <PasswordBox x:Name="PasswordInput" 
                 Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                 materialDesign:HintAssist.Hint="Password"
