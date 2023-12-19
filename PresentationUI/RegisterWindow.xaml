@@ -119,8 +119,8 @@
                 materialDesign:HintAssist.Hint="Sex"
                 Panel.ZIndex="1"
                 >
-                <ComboBoxItem Panel.ZIndex="1">Чоловік</ComboBoxItem>
-                <ComboBoxItem Panel.ZIndex="1">Жінка</ComboBoxItem>
+                <ComboBoxItem Panel.ZIndex="1" Background="White">Чоловік</ComboBoxItem>
+                <ComboBoxItem Panel.ZIndex="1" Background="White">Жінка</ComboBoxItem>
             </ComboBox>
             <Button x:Name="AddPhotoButton"
                     Width="100" 

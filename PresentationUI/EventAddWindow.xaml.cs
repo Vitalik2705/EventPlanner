@@ -100,7 +100,7 @@ namespace PresentationUI
             var guests = await this._guestService.GetGuestsAsync();
             foreach (var guest in guests)
             {
-                newComboBox.Items.Add(new ComboBoxItem { Content = $"{guest.Name} {guest.Surname}" });
+                newComboBox.Items.Add(new ComboBoxItem { Content = $"{guest.Name} {guest.Surname}", Background = new SolidColorBrush(Color.FromRgb(255, 255, 255)) });
             }
 
             Button deleteButton = new Button

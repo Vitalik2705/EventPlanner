@@ -91,7 +91,8 @@
                 ComboBoxItem item = new ComboBoxItem
                 {
                     Content = description,
-                    Tag = enumValue // You can use Tag property to store the enum value if needed
+                    Tag = enumValue, // You can use Tag property to store the enum value if needed
+                    Background = new SolidColorBrush(Color.FromRgb(255, 255, 255))
                 };
 
                 newComboBox.Items.Add(item);
@@ -133,7 +134,8 @@
                 ComboBoxItem item = new ComboBoxItem
                 {
                     Content = description,
-                    Tag = enumValue
+                    Tag = enumValue,
+                    Background = new SolidColorBrush(Color.FromRgb(255, 255, 255))
                 };
 
                 newComboBoxUnit.Items.Add(item);
