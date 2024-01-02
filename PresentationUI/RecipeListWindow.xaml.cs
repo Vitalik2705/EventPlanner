@@ -210,5 +210,11 @@ namespace PresentationUI
             this._navigationService.NavigateTo<IMainWindow>();
             this.Close();
         }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            this._navigationService.NavigateTo<IIngredientNew>();
+            this.Close();
+        }
     }
 }

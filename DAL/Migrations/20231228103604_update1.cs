@@ -7,11 +7,24 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class ssss : Migration
+    public partial class update1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "IngredientNew",
+                columns: table => new
+                {
+                    ingredient_new_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IngredientNew", x => x.ingredient_new_id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "IngredientUnit",
                 columns: table => new
@@ -238,6 +251,9 @@ namespace DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "EventRecipe");
+
+            migrationBuilder.DropTable(
+                name: "IngredientNew");
 
             migrationBuilder.DropTable(
                 name: "IngredientUnitRecipe");

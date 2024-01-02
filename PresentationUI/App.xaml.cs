@@ -31,7 +31,7 @@ namespace PresentationUI
             AppHost = Host.CreateDefaultBuilder()
                 .UseSerilog((host, loggerConfiguration) =>
                 {
-                    loggerConfiguration.WriteTo.File("C:/Users/bozen/Documents/Програмна інженерія/EventPlanner/PresentationUI/logs/log.txt", rollingInterval: RollingInterval.Day)
+                    loggerConfiguration.WriteTo.File("C:/Users/Юля/source/repos/EventPlanner/EventPlanner/PresentationUI/logs/log.txt", rollingInterval: RollingInterval.Day)
                         .WriteTo.Debug();
                 })
                 .ConfigureServices((hostContext, services) =>
@@ -48,6 +48,7 @@ namespace PresentationUI
                     services.AddTransient<IGenericRepository<EventGuest>, GenericRepository<EventGuest>>();
                     services.AddTransient<IGenericRepository<EventRecipe>, GenericRepository<EventRecipe>>();
                     services.AddTransient<IGenericRepository<IngredientUnitRecipe>, GenericRepository<IngredientUnitRecipe>>();
+                    services.AddTransient<IGenericRepository<DAL.Models.IngredientNew>, GenericRepository<DAL.Models.IngredientNew>>();
 
                     services.AddScoped<IUserService, UserService>();
                     services.AddScoped<IGuestService, GuestService>();
@@ -59,6 +60,7 @@ namespace PresentationUI
                     services.AddScoped<IAuthenticator, Authenticator>();
                     services.AddSingleton<IUserStore, UserStore>();
                     services.AddScoped<IIngredientUnitRecipeService, IngredientUnitRecipeService>();
+                    services.AddScoped<IIngredientNewService, IngredientNewService>();
 
                     services.AddTransient<IMainWindow, MainWindow>();
                     services.AddTransient<ILoginWindow, LoginWindow>();
@@ -74,6 +76,7 @@ namespace PresentationUI
                     services.AddTransient<IEventListWindow, EventListWindow>();
                     services.AddTransient<IAboutUsWindow, AboutUsWindow>();
                     services.AddTransient<IChangePasswordWindow, ChangePasswordWindow>();
+                    services.AddTransient<IIngredientNew, Ingr>();
                 })
                 .Build();
         }

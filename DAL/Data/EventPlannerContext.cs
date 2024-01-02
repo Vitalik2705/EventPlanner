@@ -33,7 +33,7 @@ namespace DAL.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=123456;Database=EventPlanner");
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=123456;Database=EventPlanner1");
             }
         }
 
@@ -48,6 +48,7 @@ namespace DAL.Data
                 new EventGuestAnnotation(modelBuilder),
                 new EventRecipeAnnotaion(modelBuilder),
                 new EventAnnotation(modelBuilder),
+                new IngredientNewAnnotation(modelBuilder),
             };
             foreach (var annotation in annotationCollection)
             {
@@ -68,5 +69,6 @@ namespace DAL.Data
         public DbSet<EventGuest> EventGuest { get; set; }
 
         public DbSet<EventRecipe> EventRecipe { get; set; }
+        public DbSet<IngredientNew> IngredientNew { get; set; }
     }
 }

@@ -1,0 +1,142 @@
+﻿<Window x:Class="PresentationUI.IngredientNew"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationUI"
+        mc:Ignorable="d"
+        Title="IngredientNew" Height="660" Width="990" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="9*" />
+        </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Fill="#8B92D0" />
+        <Rectangle Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Fill="#CBCBCB" />
+
+        <Canvas Grid.Column="0" Grid.Row="0">
+            <Image  Canvas.Left="10"
+                  Canvas.Top="5" 
+                  Height="50"
+                  Width="40"
+                  Source="images/agenda (4) 1.png"/>
+            <TextBlock Foreground="White" Canvas.Left="65" Canvas.Top="13" FontSize="25">
+            EventPlanner
+            </TextBlock>
+        </Canvas>
+
+        <Canvas x:Name="accountCanvas" Grid.Column="0" Grid.Row="1">
+
+            <Image  Canvas.Left="10"
+                  Canvas.Top="25" 
+                  Height="50"
+                  Width="40"
+                  Source="images/mdi_account-outline.png"/>
+            <TextBlock Canvas.Left="65" Canvas.Top="32" FontSize="25">
+                <Hyperlink NavigateUri="AccountWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Account_Click">
+                Акаунт
+                </Hyperlink>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Canvas>
+
+        <Canvas x:Name="eneCanvas" Grid.Column="0" Grid.Row="1">
+            <Rectangle Canvas.Top="95" Width="198" Height="50" Fill="#FFFFFF" />
+            <Image  Canvas.Left="10"
+                  Canvas.Top="95" 
+                  Height="50"
+                  Width="40"
+                  Source="images/mdi_events.png"/>
+            <TextBlock Canvas.Left="65" Canvas.Top="101" FontSize="25">
+                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000" Click="Events_Click">
+            Події
+                    </Hyperlink>
+            </TextBlock>
+        </Canvas>
+
+        <Canvas x:Name="recipesCanvas" Grid.Column="0" Grid.Row="1">
+            <Image  Canvas.Left="10"
+                  Canvas.Top="165" 
+                  Height="50"
+                  Width="40"
+                  Source="images/Mask group1.png"/>
+            <TextBlock Canvas.Left="65" Canvas.Top="172" FontSize="25">
+                <Hyperlink NavigateUri="YourPage.xaml" TextDecorations="None" Foreground="#000000" Click="Recipes_Click">
+            Рецепти
+                    </Hyperlink>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Canvas>
+
+        <Canvas x:Name="guestsCanvas" Grid.Column="0" Grid.Row="1">
+            <Image  Canvas.Left="10"
+                  Canvas.Top="235" 
+                  Height="50"
+                  Width="40"
+                  Source="images/fluent_guest-add-20-filled.png"/>
+            <TextBlock Canvas.Left="65" Canvas.Top="242" FontSize="25">
+                <Hyperlink NavigateUri="GuestListWindow.xaml" TextDecorations="None" Foreground="#000000" Click="Guests_Click">
+            Гості
+                    </Hyperlink>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Canvas>
+
+        <TextBox x:Name="FirstNameInput"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Width="230"
+                     Height="50"
+                     Canvas.Left="80"
+                     Canvas.Top="130"
+                     FontSize="17"
+                     BorderThickness="0 0 0 1.5" 
+                     BorderBrush="#565A7B" />
+        
+                    <Button x:Name="AddGuestButton"
+                    Width="60" 
+                    Height="60" 
+                    Background="#565A7B"
+                    FontSize="19"
+                    Foreground="White"
+                    Canvas.Left="350"
+                    Canvas.Top="450"
+                    Click="AddGuest_Click"
+                    >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="7"></Setter>
+                    </Style>
+                </Button.Resources>
+                <Image Source="images/plus.png"/>
+            </Button>
+    </Grid>
+</Window>

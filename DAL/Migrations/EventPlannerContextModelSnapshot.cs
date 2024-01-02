@@ -140,6 +140,26 @@ namespace DAL.Migrations
                     b.ToTable("Guest");
                 });
 
+            modelBuilder.Entity("DAL.Models.IngredientNew", b =>
+                {
+                    b.Property<int>("IngredientNewId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("ingredient_new_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IngredientNewId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)")
+                        .HasColumnName("name");
+
+                    b.HasKey("IngredientNewId");
+
+                    b.ToTable("IngredientNew");
+                });
+
             modelBuilder.Entity("DAL.Models.IngredientUnit", b =>
                 {
                     b.Property<int>("IngredientUnitId")
